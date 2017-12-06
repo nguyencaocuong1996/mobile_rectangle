@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     View,
-    Image,
+    TextInput,
 } from 'react-native';
 import HomeItem from "../components/home/HomeItem";
 
@@ -19,7 +19,14 @@ export default class Home extends Component<{}>
     {
         return (
             <View style={styles.container}>
-            <Text>{settings.api_key}</Text>
+                <View style={styles.searchSection}>
+                    <TextInput
+                        style={styles.searchInput}
+                        // onChangeText={(text) => this.setState({text})}
+                        // value={this.state.text}
+                    />
+                </View>
+                <View style={styles.menuSection}>
                 {
                     listItem.map((item, index)=>{
                         return <HomeItem key={index}
@@ -29,6 +36,7 @@ export default class Home extends Component<{}>
                                          description={item.description}/>
                     })
                 }
+                </View>
             </View>
         );
     }
@@ -39,6 +47,32 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    searchSection: {
+        flex:1,
+        flexDirection: 'row',
+        height: 50,
+        backgroundColor: 'red',
+        borderWidth: 1,
+        borderColor:'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // paddingTop:100,
+    },
+    menuSection: {
+        flex:4,
+        flexDirection: 'column',
+        padding: 5,
+        backgroundColor: '#fff',
+    },
+    searchInput: {
+        marginTop: 50,
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        width:200
+    }
+
+
 });
 
 const listItem = [
@@ -57,5 +91,5 @@ const listItem = [
         img: EventImg,
         title: "Event",
         description: "des 3",
-    }
+    },
 ];
