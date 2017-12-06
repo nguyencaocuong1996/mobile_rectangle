@@ -10,7 +10,8 @@
 		"native-base": "^2.3.3",
 		"react": "16.0.0",
 		"react-native": "latest",
-		"react-native-linear-gradient": "^2.3.0"
+		"react-native-linear-gradient": "^2.3.0",
+		"react-navigation": "^1.0.0-beta.21"
 	},
 	"devDependencies": {
 		"babel-jest": "21.2.0",

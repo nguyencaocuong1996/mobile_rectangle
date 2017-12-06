@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput,
+    TextInput, FlatList,
 } from 'react-native';
 import HomeItem from "../components/home/HomeItem";
 
@@ -15,27 +15,45 @@ import settings from '../config';
 
 export default class Home extends Component<{}>
 {
+    static navigationOptions = {
+        title: 'FooCo',
+    };
+
+
+    _keyExtractor = (item, index)=>{
+        return index;
+    };
+
+    _renderItem = ({item}) => {
+        console.log("name", item.title);
+        return (
+            <HomeItem isLeft={item.left}
+                      imgSrc={item.img}
+                      title={item.title}
+                      description={item.description}/>
+        )
+    };
+
+
     render()
     {
+        console.log(listItem);
         return (
             <View style={styles.container}>
                 <View style={styles.searchSection}>
                     <TextInput
                         style={styles.searchInput}
+                        placeholder={"🔍 Search services"}
                         // onChangeText={(text) => this.setState({text})}
                         // value={this.state.text}
                     />
                 </View>
                 <View style={styles.menuSection}>
-                {
-                    listItem.map((item, index)=>{
-                        return <HomeItem key={index}
-                                         isLeft={item.left}
-                                         imgSrc={item.img}
-                                         title={item.title}
-                                         description={item.description}/>
-                    })
-                }
+                    <FlatList
+                        data = {listItem}
+                        renderItem = {this._renderItem}
+                        keyExtractor={this._keyExtractor}
+                    />
                 </View>
             </View>
         );
@@ -51,25 +69,33 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: 'row',
         height: 50,
-        backgroundColor: 'red',
-        borderWidth: 1,
-        borderColor:'black',
+        backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
-        // paddingTop:100,
+
+        shadowColor: '#9c9c9c',
+        shadowOffset: {
+            width: 0,
+            height: 5
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.7,
+        elevation: 10,
+        marginBottom: 10,
     },
     menuSection: {
-        flex:4,
+        flex:7,
         flexDirection: 'column',
         padding: 5,
         backgroundColor: '#fff',
     },
     searchInput: {
-        marginTop: 50,
         height: 40,
-        borderColor: 'gray',
+        borderColor: '#d1d1d1',
         borderWidth: 1,
-        width:200
+        minWidth: 350,
+        borderRadius: 20,
+        textAlign: 'center',
     }
 
 
