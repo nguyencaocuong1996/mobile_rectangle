@@ -51,9 +51,13 @@ export default class Loading extends Component<{}>
                     <Text style={[styles.txtDescription, styles.txtBlue]}>
                         {`this is example text`}
                     </Text>
-                    <Text style={styles.txtUse}>
-                        {`\nLet's use!`}
-                    </Text>
+                    <View style={styles.txtUseWrap}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')}>
+                            <Text style={styles.txtUse}>
+                                {`\nLet's use!`}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </Swiper>
 
@@ -116,12 +120,17 @@ const styles = StyleSheet.create({
     txtBlue:{
         color: '#70B1B6',
     },
+    txtUseWrap:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: '10%',
+    },
     txtUse:{
         color: '#ff8a40',
         fontWeight: 'bold',
         fontSize: 18,
-        bottom: '10%',
-        position: 'absolute',
     }
 
 

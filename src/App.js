@@ -7,14 +7,14 @@ import Loading from "./screens/Loading";
 
 
 const MainScreenStack = StackNavigator({
+    Loading: {
+        screen: Loading
+    },
     Register: {
         screen: Register,
     },
     Login: {
         screen: Login,
-    },
-    Loading: {
-        screen: Loading
     },
     Home: {
         screen: Home,
