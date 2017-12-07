@@ -11,9 +11,11 @@ import {
 
 import Swiper from 'react-native-swiper';
 import BgTut1 from '../assets/img/bgTutorial1.png';
+import BgTut3 from '../assets/img/bgTutorial3.png';
+import BgTut4 from '../assets/img/bgTutorial4.png';
 import BgTut5 from '../assets/img/bgTutorial5.jpg';
 import IcTut1 from '../assets/img/icAtTut1.png';
-import {Button} from 'native-base';
+
 
 export default class Loading extends Component<{}>
 {
@@ -25,9 +27,9 @@ export default class Loading extends Component<{}>
     render()
     {
         return (
-            <Swiper style={styles.wrapper}>
+            <Swiper style={styles.wrapper} dotColor={'#E5E5E5'} activeDotColor={'#70B1B6'}>
                 <View style={styles.container}>
-                    <Image source={BgTut5} style={styles.tutImg} />
+                    <Image source={BgTut5} style={[styles.tutImg, styles.tutImg1]} />
                     <Image source={IcTut1} style={styles.icTut1}/>
                     <Text style={styles.appName}>FooCo</Text>
                     <Text style={styles.txtDescription}>asdasdashdjkh</Text>
@@ -35,13 +37,23 @@ export default class Loading extends Component<{}>
                         <Text style={styles.cancelText}>Cancel</Text>
                     </TouchableOpacity>
 
-
                 </View>
                 <View style={styles.container}>
-                    <Text>abc</Text>
+                    <Image source={BgTut1} style={styles.tutImg}/>
+                    <Text style={[styles.txtDescription, styles.txtBlue]}>this is example text</Text>
                 </View>
                 <View style={styles.container}>
-                    <Text>abc</Text>
+                    <Image source={BgTut3} style={styles.tutImg}/>
+                    <Text style={[styles.txtDescription, styles.txtBlue]}>this is example text</Text>
+                </View>
+                <View style={styles.container}>
+                    <Image source={BgTut4} style={styles.tutImg}/>
+                    <Text style={[styles.txtDescription, styles.txtBlue]}>
+                        {`this is example text`}
+                    </Text>
+                    <Text style={styles.txtUse}>
+                        {`\nLet's use!`}
+                    </Text>
                 </View>
             </Swiper>
 
@@ -52,7 +64,7 @@ export default class Loading extends Component<{}>
 
 const styles = StyleSheet.create({
     wrapper:{
-
+        backgroundColor: '#fff',
     },
     appName:{
         fontSize: 40,
@@ -74,16 +86,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     tutImg: {
-        position: 'absolute',
-        // flex: 1,
         resizeMode: 'stretch',
+        position: 'absolute',
+        width: '90%',
+        height: '70%',
+        top:0,
+
+    },
+    tutImg1: {
+        position: 'absolute',
         width: '100%',
         height: '100%',
     },
     txtDescription:{
         position: 'absolute',
-        bottom: 100,
-        fontSize: 20,
+        bottom: '25%',
+        fontSize: 17,
         color: '#fff',
     },
     cancelButton: {
@@ -94,6 +112,16 @@ const styles = StyleSheet.create({
     cancelText: {
         fontSize: 17,
         color: '#fff',
+    },
+    txtBlue:{
+        color: '#70B1B6',
+    },
+    txtUse:{
+        color: '#ff8a40',
+        fontWeight: 'bold',
+        fontSize: 18,
+        bottom: '10%',
+        position: 'absolute',
     }
 
 
