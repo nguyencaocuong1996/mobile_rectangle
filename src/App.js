@@ -6,9 +6,13 @@ import Login from './screens/Login'
 import {
     View,
 } from 'react-native';
+import Loading from "./screens/Loading";
 
 
 const MainScreenStack = StackNavigator({
+    Loading: {
+        screen: Loading
+    },
     Home: {
         screen: Home,
     },
