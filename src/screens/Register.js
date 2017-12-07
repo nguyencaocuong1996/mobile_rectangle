@@ -6,7 +6,7 @@ import GreenButton from '../components/core/GreenButton';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
 
-export default class Login extends Component<{}>
+export default class Register extends Component<{}>
 {
 
     static navigationOptions = {
@@ -20,7 +20,7 @@ export default class Login extends Component<{}>
                 <Image source={bgImage} style={styles.bgImage} />
                 <Content style={styles.content}>
                     <Text style={styles.txtHeader}>
-                        WELCOME BACK
+                        LET'S GET STARTED
                     </Text>
                     <View style={styles.iconWrap}>
                         <Image source={iconFooco} style={styles.icon}/>
@@ -29,14 +29,18 @@ export default class Login extends Component<{}>
                         </Text>
                     </View>
                     <Form style={styles.form}>
+                        <MyInput icon={'user'} placeholder={'FULL NAME'}/>
                         <MyInput icon={'envelope-o'} placeholder={'EMAIL'}/>
                         <MyInput icon={'unlock'} placeholder={'PASSWORD'}/>
+                        <MyInput icon={'unlock'} placeholder={'RE-PASSWORD'}/>
+                        <MyInput icon={'globe'} placeholder={'LOCATION'}/>
+                        <MyInput icon={'phone'} placeholder={'PHONE'}/>
                         <View style={styles.space} />
-                        <GreenButton text={'Sign In'}/>
+                        <GreenButton text={'Sign Up'}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
-                        <Text style={styles.txtSignUp}>Don't have an account?</Text>
-                        <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Sign Up now</Text>
+                        <Text style={styles.txtSignUp}>Have an account?</Text>
+                        <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Sign In now</Text>
                     </View>
                 </Content>
             </Container>
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        marginBottom: 50,
+        marginBottom: 20,
     },
     icon: {
         width: 50,
