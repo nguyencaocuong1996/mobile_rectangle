@@ -30,7 +30,9 @@ export default class Home extends Component<{}>
             <HomeItem isLeft={item.left}
                       imgSrc={item.img}
                       title={item.title}
-                      description={item.description}/>
+                      description={item.description}
+                      navigation={this.props.navigation}
+            />
         )
     };
 
