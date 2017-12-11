@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Container, Header, Form, Content, Button } from 'native-base';
 import {OpacityHeader, GreenButton, InputWithIconAndUnderline as MyInput} from '../components/core';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View, AsyncStorage} from 'react-native';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
 import {common as apiCommon} from '../api';
@@ -24,14 +24,14 @@ class Login extends Component<{}>
             username: null,
             password: null,
             isLogin: false,
-        }
+        };
     }
 
     _login(){
-
-        apiCommon.login(this.state,(response)=>{
+        apiCommon.login(this.state, async (response)=>{
             this.props.login(response.data);
             this.props.navigation.navigate('Home');
+            await AsyncStorage.setItem('account', JSON.stringify(response.data));
         }, (error=>{
             alert("Login fail");
             console.log(error);
@@ -55,8 +55,13 @@ class Login extends Component<{}>
                         </Text>
                     </View>
                     <Form style={styles.form}>
-                        <MyInput icon={'envelope-o'} placeholder={'EMAIL'} onChangeText={(email)=>this.setState({username: email})}/>
-                        <MyInput secureTextEntry={true} icon={'unlock'} placeholder={'PASSWORD'} onChangeText={(password)=>this.setState({password})}/>
+                        <MyInput icon={'envelope-o'}
+                                 placeholder={'EMAIL'}
+                                 onChangeText={(email)=>this.setState({username: email})}/>
+                        <MyInput secureTextEntry={true}
+                                 icon={'unlock'}
+                                 placeholder={'PASSWORD'}
+                                 onChangeText={(password)=>this.setState({password})}/>
                         <View style={styles.space} />
                         <GreenButton text={'Sign In'} onPress={()=>this._login()}/>
                     </Form>

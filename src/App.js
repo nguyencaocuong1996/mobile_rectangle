@@ -12,22 +12,22 @@ import RestaurantList from './screens/RestaurantList';
 
 const MainScreenStack = StackNavigator({
 
-    // Loading: {
-    //     screen: Loading
+    Loading: {
+        screen: Loading
+    },
+    //
+    // Login: {
+    //     screen: Login,
     // },
-
-    Login: {
-        screen: Login,
-    },
-    Register: {
-        screen: Register,
-    },
-    HotelList:{
-        screen: HotelList,
-    },
-    Home: {
-        screen: Home,
-    },
+    // Register: {
+    //     screen: Register,
+    // },
+    // HotelList:{
+    //     screen: HotelList,
+    // },
+    // Home: {
+    //     screen: Home,
+    // },
 
 });
 

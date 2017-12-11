@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
-    TextInput, FlatList,
     TouchableOpacity,
     Image
 } from 'react-native';
+
+import {connect} from 'react-redux';
+
+import {common as commonHelper} from "../helpers";
+
+import {common as commonAction} from '../redux/actions'
 
 import Swiper from 'react-native-swiper';
 import BgTut1 from '../assets/img/bgTutorial1.png';
@@ -15,14 +19,25 @@ import BgTut3 from '../assets/img/bgTutorial3.png';
 import BgTut4 from '../assets/img/bgTutorial4.png';
 import BgTut5 from '../assets/img/bgTutorial5.jpg';
 import IcTut1 from '../assets/img/icAtTut1.png';
+import Home from "./Home";
 
 
-export default class Loading extends Component<{}>
+class Loading extends Component<{}>
 {
 
     static navigationOptions = {
         header: null,
     };
+
+    constructor(props){
+        super(props);
+        // commonHelper.setLogin({id: 11, email: 'asdasd'});
+        commonHelper.checkLogin((account)=>{
+            console.log("islogin ", account);
+        }, (error)=>{
+            console.log("not login", error);
+        });
+    }
 
     render()
     {
@@ -64,6 +79,15 @@ export default class Loading extends Component<{}>
         );
     }
 }
+
+const mapStateToProps = (state)=>({
+    account: state.common.account,
+});
+
+
+export default connect(mapStateToProps, {login: commonAction.login})(Loading);
+
+
 
 
 const styles = StyleSheet.create({

@@ -1,17 +1,26 @@
-import {AsyncStorage} from 'react-native';
+import localStore from './localStoreHelper';
 
 const commonHelper = {
-    checkLogin: (isLoginCallback, notLoginCallback)=>{
+    checkLogin: async (isLoginCallback, notLoginCallback)=>{
         console.log("check login");
         try {
-            AsyncStorage.getItem('account').then(isLoginCallback);
+            localStore.getValue('account').then(account=>{
+                if (account === null){
+                    notLoginCallback();
+                } else {
+                    isLoginCallback(account);
+                }
+            })
         } catch (e){
             notLoginCallback(e);
         }
     },
-    fff: ()=>{
-        alert("ccc");
-    }
+
+    setLogin: (account)=>{
+        localStore.setValue('account', account);
+    },
+
+
 };
 
 export default commonHelper;
