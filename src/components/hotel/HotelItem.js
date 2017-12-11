@@ -5,18 +5,20 @@ import {
     Text,
     View,
     Image,
+
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import icLocation from '../../../src/assets/img/icLocation.png'
 
 
+
 export default class HotelItem extends Component<{}>
 {
 
-
-    render()
+        render()
     {
         return (
+           
             <View style={styles.container}>
                 <Image
                     resizeMode={"stretch"}

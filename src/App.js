@@ -5,6 +5,7 @@ import Login from './screens/Login'
 import Register from './screens/Register'
 import Loading from "./screens/Loading";
 import HotelList from "./screens/HotelList";
+import RestaurantList from './screens/RestaurantList';
 
 
 const MainScreenStack = StackNavigator({
@@ -18,7 +19,7 @@ const MainScreenStack = StackNavigator({
     //     screen: Login,
     // },
     Home: {
-        screen: HotelList,
+        screen: RestaurantList,
     },
     HotelList:{
         screen: HotelList,
