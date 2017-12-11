@@ -32,3 +32,5 @@ const commonReducer = (state=default_state, action) => {
             return state;
     }
 };
+
+export default commonReducer;
