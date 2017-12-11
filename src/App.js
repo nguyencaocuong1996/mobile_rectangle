@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import store from './redux/Store';
 import Home from './screens/Home'
 import {StackNavigator} from 'react-navigation'
 import Login from './screens/Login'
@@ -32,10 +34,9 @@ const MainScreenStack = StackNavigator({
 export default class App extends Component<{}> {
     render() {
         return (
-
+            <Provider store={store}>
                 <MainScreenStack />
-
-
+            </Provider>
         );
     }
 }

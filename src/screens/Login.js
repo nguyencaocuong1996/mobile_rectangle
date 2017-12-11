@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import { Container, Header, Form, Content, Button } from 'native-base';
-import OpacityHeader from '../components/core/OpacityHeader';
-import MyInput from '../components/core/InputWithIconAndUnderline';
+import {OpacityHeader, GreenButton, InputWithIconAndUnderline as MyInput} from '../components/core';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import GreenButton from '../components/core/GreenButton';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
 import {common as apiCommon} from '../api';
+import {connect} from 'react-redux';
+import {common as commonAction} from '../redux/actions';
 
-export default class Login extends Component<{}>
+
+class Login extends Component<{}>
 {
 
     static navigationOptions = ({navigation})=>{
@@ -22,16 +23,19 @@ export default class Login extends Component<{}>
         this.state = {
             username: null,
             password: null,
+            isLogin: false,
         }
     }
 
     _login(){
+
         apiCommon.login(this.state,(response)=>{
-            alert("success", response.data);
-            console.log(response);
+            this.props.login(response.data);
+            this.props.navigation.navigate('Home');
         }, (error=>{
             alert("Login fail");
-            console.log(error.response);
+            console.log(error);
+            this.setState({isLogin:false})
         }))
     }
 
@@ -67,6 +71,18 @@ export default class Login extends Component<{}>
         );
     }
 }
+
+function mapStateToProps(state){
+    return {
+        account: state.common.account,
+    }
+}
+
+const mapActionToProps = {
+    login: commonAction.login,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(Login);
 
 const styles = StyleSheet.create({
     container:{

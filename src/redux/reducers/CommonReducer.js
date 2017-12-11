@@ -11,8 +11,9 @@ const default_state = {
 };
 
 const commonReducer = (state=default_state, action) => {
-    switch (action){
+    switch (action.type){
         case snippets.login:
+            console.log("reducer action", action);
             return {
                 ...state,
                 account:{

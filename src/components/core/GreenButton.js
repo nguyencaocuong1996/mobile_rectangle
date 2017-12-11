@@ -8,7 +8,11 @@ export default class GreenButton extends Component<{}> {
     }
     render() {
         return (
-            <TouchableOpacity style={styles.container} onPress={()=>this.props.onPress()}>
+            <TouchableOpacity
+                style={styles.container}
+                onPress={()=>this.props.onPress()}
+                disabled={this.props.disabled}
+            >
                 <Image style={styles.image} source={imgGreenButton} />
                 <Text style={styles.text}>{this.props.text}</Text>
             </TouchableOpacity>

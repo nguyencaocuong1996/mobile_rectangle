@@ -19,7 +19,6 @@ export default class Login extends Component<{}> {
 
     render() {
         let iconStyle = !this.state.isFocus ? styles.icon : [styles.icon, styles.iconFocus];
-        let isPassword = this.props.secureTextEntry || false;
         return (
             <StyleProvider style={getTheme(myTheme)}>
                 <Item style={styles.wrapper}>
@@ -30,7 +29,7 @@ export default class Login extends Component<{}> {
                            onFocus={this._toggleFocus.bind(this)}
                            onBlur={this._toggleFocus.bind(this)}
                            onChangeText={(text)=>this.props.onChangeText(text)}
-                           secureTextEntry={isPassword}
+                           secureTextEntry={this.props.secureTextEntry}
                     />
                 </Item>
             </StyleProvider>
