@@ -7,6 +7,8 @@ import {
     Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import icLocation from '../../../src/assets/img/icLocation.png'
+
 
 export default class HotelItem extends Component<{}>
 {
@@ -23,12 +25,24 @@ export default class HotelItem extends Component<{}>
 
                 <View style={styles.text}>
                     <Text style={styles.titleText}>{this.props.title}</Text>
-
                         <View style={styles.viewAddress}>
-                        <Text style={styles.addressText}>{this.props.address}</Text>
+                            <Image
+                                source = {icLocation}
+                                resizeMode = {"contain"}
+                                style = {styles.icLocation}
+                            />
+                            <Text style={styles.addressText}>{this.props.address}</Text>
                         </View>
                         <View style={styles.viewService}>
-                        <Text style={styles.servicesText}>{this.props.service}</Text>
+                            <View style={styles.viewServiceItem}>
+                                <Text style={styles.servicesText}>{this.props.service1}</Text>
+                            </View>
+                            <View style={styles.viewServiceItem}>
+                                <Text style={styles.servicesText}>{this.props.service2}</Text>
+                            </View>
+                            <View style={styles.viewServiceItem}>
+                                <Text style={styles.servicesText}>{this.props.service3}</Text>
+                            </View>
                         </View>
 
                 </View>
@@ -58,6 +72,12 @@ const styles = StyleSheet.create({
         width: undefined,
         //alignSelf: 'stretch',
     },
+    icLocation: {
+        //flex: 1,
+        height: 14,
+        width: 20,
+        //alignSelf: 'stretch',
+    },
     text: {
         //position: 'relat',
         top: 0, left: 0, right: 0, bottom: 0,
@@ -76,6 +96,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     viewAddress:{
+        marginTop: 8,
         flexDirection: 'row',
     },
     addressText: {
@@ -83,16 +104,26 @@ const styles = StyleSheet.create({
       fontSize: 15,
 
     },
-    viewService1: {
+    viewService: {
         flexDirection: 'row',
-        backgroundColor: 'yellow',
-
+        
+    },
+    viewServiceItem: {
+        flexDirection: 'row',
+        backgroundColor: 'black',
+        borderRadius: 10,
+        marginTop: 8,
+        marginLeft: 10,
+        width: 70,
+        height: 30,
+        justifyContent: 'center',
 
     },
     servicesText: {
-        alignSelf:'center',
-        color: 'red',
-
+        color: 'white',
+        alignSelf: 'center'
+        
+        
         //backgroundColor: '#000',
         //borderRadius: 5
     },
