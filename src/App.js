@@ -19,7 +19,7 @@ const MainScreenStack = StackNavigator({
     //     screen: Login,
     // },
     Home: {
-        screen: RestaurantList,
+        screen: HotelList,
     },
     HotelList:{
         screen: HotelList,
