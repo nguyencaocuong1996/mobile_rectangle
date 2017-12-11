@@ -35,7 +35,7 @@ export default class Login extends Component<{}>
                         <MyInput icon={'envelope-o'} placeholder={'EMAIL'}/>
                         <MyInput icon={'unlock'} placeholder={'PASSWORD'}/>
                         <View style={styles.space} />
-                        <GreenButton text={'Sign In'}/>
+                        <GreenButton text={'Sign In'} onPress={()=>alert("login")}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
                         <Text style={styles.txtSignUp}>Don't have an account?</Text>

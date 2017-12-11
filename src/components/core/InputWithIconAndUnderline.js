@@ -28,6 +28,7 @@ export default class Login extends Component<{}> {
                            placeholderTextColor={'#fff'}
                            onFocus={this._toggleFocus.bind(this)}
                            onBlur={this._toggleFocus.bind(this)}
+                           onChangeText={(text)=>this.props.onChangeText(text)}
                     />
                 </Item>
             </StyleProvider>

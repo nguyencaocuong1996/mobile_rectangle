@@ -1643,6 +1643,13 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+follow-redirects@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-0.0.7.tgz#34b90bab2a911aa347571da90f22bd36ecd8a919"
+  dependencies:
+    debug "^2.2.0"
+    stream-consume "^0.1.0"
+
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -2954,9 +2961,9 @@ native-base-shoutem-theme@0.2.1:
     lodash "^4.10.1"
     prop-types "^15.5.10"
 
-native-base@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.3.3.tgz#de35234cf9cf8d24b5ce5e1720f8330dd5f3c96a"
+native-base@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/native-base/-/native-base-2.3.5.tgz#3a9104a71ccc1b48e99d1939abdcab9d6cd71b45"
   dependencies:
     blueimp-md5 "^2.5.0"
     clamp "^1.0.1"
@@ -3434,6 +3441,12 @@ react-devtools-core@^2.5.0:
   dependencies:
     shell-quote "^1.6.1"
     ws "^2.0.3"
+
+react-native-axios@^0.17.1:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/react-native-axios/-/react-native-axios-0.17.1.tgz#44292950aa07ceee2e4bd349106ff773bef81f8f"
+  dependencies:
+    follow-redirects "0.0.7"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
@@ -4078,6 +4091,10 @@ statuses@~1.2.1:
 stream-buffers@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/stream-buffers/-/stream-buffers-2.2.0.tgz#91d5f5130d1cef96dcfa7f726945188741d09ee4"
+
+stream-consume@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/stream-consume/-/stream-consume-0.1.0.tgz#a41ead1a6d6081ceb79f65b061901b6d8f3d1d0f"
 
 stream-counter@~0.2.0:
   version "0.2.0"

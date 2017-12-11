@@ -5,6 +5,7 @@ import GreenButton from '../components/core/GreenButton';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
 import {InputWithIconAndUnderline as MyInput, OpacityHeader} from '../components/core';
+import {common as apiCommon} from '../api';
 
 export default class Register extends Component<{}>
 {
@@ -12,6 +13,31 @@ export default class Register extends Component<{}>
     static navigationOptions = ({navigation}) => ({
         header: <OpacityHeader navigation={navigation}/>,
     });
+
+    constructor(props){
+        super(props);
+        this.state = {
+            email: null,
+            password: null,
+            first_name: null,
+            last_name: null,
+            phone: null,
+        };
+
+    }
+
+    _doGet = ()=>{
+        console.log("state", this.state);
+        // let {email, password, first_name, last_name, phone} = this.state;
+
+        apiCommon.register(this.state, (response)=>{
+            alert("success");
+            console.log(response);
+        }, (error)=>{
+            alert("err");
+            console.log(error.response);
+        })
+    };
 
     render()
     {
@@ -29,14 +55,29 @@ export default class Register extends Component<{}>
                         </Text>
                     </View>
                     <Form style={styles.form}>
-                        <MyInput icon={'user'} placeholder={'FULL NAME'}/>
-                        <MyInput icon={'envelope-o'} placeholder={'EMAIL'}/>
-                        <MyInput icon={'unlock'} placeholder={'PASSWORD'}/>
-                        <MyInput icon={'unlock'} placeholder={'RE-PASSWORD'}/>
-                        <MyInput icon={'globe'} placeholder={'LOCATION'}/>
-                        <MyInput icon={'phone'} placeholder={'PHONE'}/>
+                        <MyInput icon={'envelope-o'}
+                                 placeholder={'EMAIL'}
+                                 onChangeText={(email)=>{this.setState({email})}}
+
+                        />
+                        <MyInput icon={'unlock'}
+                                 placeholder={'PASSWORD'}
+                                 onChangeText={(password)=>{this.setState({password})}}
+                        />
+                        <MyInput icon={'user'}
+                                 placeholder={'FIRST NAME'}
+                                 onChangeText={(first_name)=>{this.setState({first_name})}}
+                        />
+                        <MyInput icon={'user'}
+                                 placeholder={'LAST NAME'}
+                                 onChangeText={(last_name)=>{this.setState({last_name})}}
+                        />
+                        <MyInput icon={'phone'}
+                                 placeholder={'PHONE'}
+                                 onChangeText={(phone)=>{this.setState({phone})}}
+                        />
                         <View style={styles.space} />
-                        <GreenButton text={'Sign Up'}/>
+                        <GreenButton text={'Sign Up'} onPress={this._doGet.bind(this)}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
                         <Text style={styles.txtSignUp}>Have an account?</Text>
