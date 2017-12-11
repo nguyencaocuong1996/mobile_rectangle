@@ -1,4 +1,7 @@
-import api from './core';
+import core from './core';
+
+
+api = core();
 
 const register = ({email, password, first_name, last_name, phone}, r, e) =>{
     api.post('/customer/create/', {data:{
@@ -10,11 +13,11 @@ const register = ({email, password, first_name, last_name, phone}, r, e) =>{
     }},r,e);
 };
 
-const login = ({email, password}, r, e) => {
-    api.post('/customer/login/', {
-        email,
+const login = ({username, password}, r, e) => {
+    api.post('/customer/login/', {data: {
+        username,
         password
-    }, r, e);
+    }}, r, e);
 };
 
 export default {

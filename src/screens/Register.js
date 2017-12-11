@@ -63,6 +63,7 @@ export default class Register extends Component<{}>
                         <MyInput icon={'unlock'}
                                  placeholder={'PASSWORD'}
                                  onChangeText={(password)=>{this.setState({password})}}
+                                 secureTextEntry={true}
                         />
                         <MyInput icon={'user'}
                                  placeholder={'FIRST NAME'}

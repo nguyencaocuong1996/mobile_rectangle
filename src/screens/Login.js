@@ -6,6 +6,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import GreenButton from '../components/core/GreenButton';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
+import {common as apiCommon} from '../api';
 
 export default class Login extends Component<{}>
 {
@@ -15,6 +16,24 @@ export default class Login extends Component<{}>
             header: <OpacityHeader navigation={navigation} backScreen={'Home'}/>,
         }
     };
+
+    constructor(props){
+        super(props);
+        this.state = {
+            username: null,
+            password: null,
+        }
+    }
+
+    _login(){
+        apiCommon.login(this.state,(response)=>{
+            alert("success", response.data);
+            console.log(response);
+        }, (error=>{
+            alert("Login fail");
+            console.log(error.response);
+        }))
+    }
 
     render()
     {
@@ -32,10 +51,10 @@ export default class Login extends Component<{}>
                         </Text>
                     </View>
                     <Form style={styles.form}>
-                        <MyInput icon={'envelope-o'} placeholder={'EMAIL'}/>
-                        <MyInput icon={'unlock'} placeholder={'PASSWORD'}/>
+                        <MyInput icon={'envelope-o'} placeholder={'EMAIL'} onChangeText={(email)=>this.setState({username: email})}/>
+                        <MyInput secureTextEntry={true} icon={'unlock'} placeholder={'PASSWORD'} onChangeText={(password)=>this.setState({password})}/>
                         <View style={styles.space} />
-                        <GreenButton text={'Sign In'} onPress={()=>alert("login")}/>
+                        <GreenButton text={'Sign In'} onPress={()=>this._login()}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
                         <Text style={styles.txtSignUp}>Don't have an account?</Text>
