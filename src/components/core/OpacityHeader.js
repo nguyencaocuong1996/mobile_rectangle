@@ -7,7 +7,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 export default class OpacityHeader extends Component<{}>{
     constructor(props){
         super(props);
-        console.log(props.navigation);
+        // console.log(props.navigation);
     }
 
     _goBack = ()=>{
@@ -20,7 +20,6 @@ export default class OpacityHeader extends Component<{}>{
 
     render(){
         let backColor = !this.props.backColor ? '#fff' : this.props.backColor;
-        let backScreen = !this.props.backScreen ? 'Home': this.props.backScreen;
         return (
             <StyleProvider style={getTheme(myTheme)}>
                 <View style={styles.container}>

@@ -38,7 +38,7 @@ const localStore = {
     },
 
     remove: async (key)=>{
-        await AsyncStorage.removeItem(key, (error)=>{
+        return await AsyncStorage.removeItem(key, (error)=>{
             console.log(error);
         });
     }

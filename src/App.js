@@ -6,28 +6,30 @@ import {StackNavigator} from 'react-navigation'
 import Login from './screens/Login'
 import Register from './screens/Register'
 import Loading from "./screens/Loading";
+import Tutorial from "./screens/Tutorial";
 import HotelList from "./screens/HotelList";
 import RestaurantList from './screens/RestaurantList';
 
 
 const MainScreenStack = StackNavigator({
-
     Loading: {
         screen: Loading
     },
-    //
-    // Login: {
-    //     screen: Login,
-    // },
-    // Register: {
-    //     screen: Register,
-    // },
-    // HotelList:{
-    //     screen: HotelList,
-    // },
-    // Home: {
-    //     screen: Home,
-    // },
+    Tutorial: {
+        screen: Tutorial
+    },
+    Login: {
+        screen: Login,
+    },
+    Register: {
+        screen: Register,
+    },
+    HotelList:{
+        screen: HotelList,
+    },
+    Home: {
+        screen: Home,
+    },
 
 });
 

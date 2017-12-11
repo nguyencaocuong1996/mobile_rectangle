@@ -13,6 +13,8 @@ import HotelImg from '../assets/img/home-item-bg-hotel.jpg';
 import RestaurantImg from '../assets/img/home-item-bg-restaurant.jpg';
 import EventImg from '../assets/img/home-item-bg-event.jpg';
 import {Button} from "native-base";
+import {common as commonHelper} from '../helpers';
+
 
 export default class Home extends Component<{}>
 {
@@ -21,13 +23,19 @@ export default class Home extends Component<{}>
         let default_ops = {
             title: 'FooCo',
             tabBarVisible: true,
-            headerRight: <HeaderLoginButton navigation={navigation} />
+            headerLeft: null,
         };
+        default_ops.headerRight = commonHelper.isLogin() ? null : <HeaderLoginButton navigation={navigation} />;
         if (navigation.state.params !== undefined){
             default_ops.title = navigation.state.params.title;
         }
         return default_ops;
     };
+
+    constructor(props){
+        super(props);
+        console.log(commonHelper.account());
+    }
 
 
     _keyExtractor = (item, index)=>{

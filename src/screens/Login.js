@@ -4,10 +4,9 @@ import {OpacityHeader, GreenButton, InputWithIconAndUnderline as MyInput} from '
 import {Image, StyleSheet, Text, TouchableOpacity, View, AsyncStorage} from 'react-native';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
-import {common as apiCommon} from '../api';
+import {common as commonApi} from '../api';
 import {connect} from 'react-redux';
-import {common as commonAction} from '../redux/actions';
-
+import {common as commonHelper} from '../helpers';
 
 class Login extends Component<{}>
 {
@@ -23,19 +22,29 @@ class Login extends Component<{}>
         this.state = {
             username: null,
             password: null,
-            isLogin: false,
+            doingLogin: false,
         };
     }
 
     _login(){
-        apiCommon.login(this.state, async (response)=>{
-            this.props.login(response.data);
-            this.props.navigation.navigate('Home');
-            await AsyncStorage.setItem('account', JSON.stringify(response.data));
+        this.setState({doingLogin: true});
+        commonApi.login(this.state, (response)=>{
+            let account = response.data;
+            try {
+                commonHelper.login(account);
+                alert("Login success!");
+                this.props.navigation.navigate('Home');
+                this.setState({doingLogin:false});
+            } catch (e){
+                alert("Login error!", e);
+                console.log("login Error", e);
+                this.setState({doingLogin:false});
+            }
+
         }, (error=>{
-            alert("Login fail");
-            console.log(error);
-            this.setState({isLogin:false})
+            alert("Login fail!");
+            console.log("Login fail", error);
+            this.setState({doingLogin:false});
         }))
     }
 
@@ -63,7 +72,7 @@ class Login extends Component<{}>
                                  placeholder={'PASSWORD'}
                                  onChangeText={(password)=>this.setState({password})}/>
                         <View style={styles.space} />
-                        <GreenButton text={'Sign In'} onPress={()=>this._login()}/>
+                        <GreenButton disabled={this.state.doingLogin} text={'Sign In'} onPress={()=>this._login()}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
                         <Text style={styles.txtSignUp}>Don't have an account?</Text>
@@ -83,11 +92,7 @@ function mapStateToProps(state){
     }
 }
 
-const mapActionToProps = {
-    login: commonAction.login,
-};
-
-export default connect(mapStateToProps, mapActionToProps)(Login);
+export default connect(mapStateToProps)(Login);
 
 const styles = StyleSheet.create({
     container:{
