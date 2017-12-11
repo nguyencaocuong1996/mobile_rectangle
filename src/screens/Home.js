@@ -4,19 +4,29 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput, FlatList,
+    TextInput,
+    FlatList,
 } from 'react-native';
 import HomeItem from "../components/home/HomeItem";
-
+import HeaderLoginButton from '../components/core/HeaderLoginButton'
 import HotelImg from '../assets/img/home-item-bg-hotel.jpg';
 import RestaurantImg from '../assets/img/home-item-bg-restaurant.jpg';
 import EventImg from '../assets/img/home-item-bg-event.jpg';
-import settings from '../config';
+import {Button} from "native-base";
 
 export default class Home extends Component<{}>
 {
-    static navigationOptions = {
-        title: 'FooCo',
+
+    static navigationOptions = ({navigation})=>{
+        let default_ops = {
+            title: 'FooCo',
+            tabBarVisible: true,
+            headerRight: <HeaderLoginButton navigation={navigation} />
+        };
+        if (navigation.state.params !== undefined){
+            default_ops.title = navigation.state.params.title;
+        }
+        return default_ops;
     };
 
 

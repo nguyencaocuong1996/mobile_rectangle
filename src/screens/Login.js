@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Container, Header, Form, Content, Button } from 'native-base';
+import OpacityHeader from '../components/core/OpacityHeader';
 import MyInput from '../components/core/InputWithIconAndUnderline';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import GreenButton from '../components/core/GreenButton';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
@@ -9,8 +10,10 @@ import iconFooco from '../assets/img/icAtTut1.png';
 export default class Login extends Component<{}>
 {
 
-    static navigationOptions = {
-        header: null,
+    static navigationOptions = ({navigation})=>{
+        return {
+            header: <OpacityHeader navigation={navigation} backScreen={'Home'}/>,
+        }
     };
 
     render()
@@ -36,7 +39,9 @@ export default class Login extends Component<{}>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
                         <Text style={styles.txtSignUp}>Don't have an account?</Text>
-                        <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Sign Up now</Text>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Register')}>
+                            <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Sign Up now</Text>
+                        </TouchableOpacity>
                     </View>
                 </Content>
             </Container>
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     txtSignUpColor: {
-        color: '#438553',
+        color: '#00ff37',
     }
 
 });
