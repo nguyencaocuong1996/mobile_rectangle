@@ -1,5 +1,5 @@
 
-const snippets = {
+export const snippets = {
     login: 'LOGIN',
     logout: 'LOGOUT'
 };
