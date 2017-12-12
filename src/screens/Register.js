@@ -6,6 +6,8 @@ import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
 import {InputWithIconAndUnderline as MyInput, OpacityHeader} from '../components/core';
 import {common as apiCommon} from '../api';
+import {common as commonHelper} from '../helpers';
+
 
 export default class Register extends Component<{}>
 {
@@ -26,17 +28,17 @@ export default class Register extends Component<{}>
 
     }
 
-    _doGet = ()=>{
+    _register = ()=>{
         console.log("state", this.state);
-        // let {email, password, first_name, last_name, phone} = this.state;
-
         apiCommon.register(this.state, (response)=>{
-            alert("success");
+            alert("Register success!");
             console.log(response);
+            this.props.navigation.navigate('Login');
+
         }, (error)=>{
-            alert("err");
+            alert("Register error!");
             console.log(error.response);
-        })
+        });
     };
 
     render()
@@ -78,7 +80,7 @@ export default class Register extends Component<{}>
                                  onChangeText={(phone)=>{this.setState({phone})}}
                         />
                         <View style={styles.space} />
-                        <GreenButton text={'Sign Up'} onPress={this._doGet.bind(this)}/>
+                        <GreenButton text={'Sign Up'} onPress={this._register.bind(this)}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
                         <Text style={styles.txtSignUp}>Have an account?</Text>

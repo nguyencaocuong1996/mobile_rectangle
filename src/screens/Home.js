@@ -14,6 +14,7 @@ import RestaurantImg from '../assets/img/home-item-bg-restaurant.jpg';
 import EventImg from '../assets/img/home-item-bg-event.jpg';
 import {Button} from "native-base";
 import {common as commonHelper} from '../helpers';
+import HeaderLogoutButton from '../components/core/HeaderLogoutButton';
 
 
 export default class Home extends Component<{}>
@@ -25,7 +26,7 @@ export default class Home extends Component<{}>
             tabBarVisible: true,
             headerLeft: null,
         };
-        default_ops.headerRight = commonHelper.isLogin() ? null : <HeaderLoginButton navigation={navigation} />;
+        default_ops.headerRight = commonHelper.isLogin() ? <HeaderLogoutButton navigation={navigation} /> : <HeaderLoginButton navigation={navigation} />;
         if (navigation.state.params !== undefined){
             default_ops.title = navigation.state.params.title;
         }

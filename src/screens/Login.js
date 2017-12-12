@@ -33,6 +33,7 @@ class Login extends Component<{}>
             try {
                 commonHelper.login(account);
                 alert("Login success!");
+                console.log("navigate", this.props.navigation);
                 this.props.navigation.navigate('Home');
                 this.setState({doingLogin:false});
             } catch (e){
