@@ -46,23 +46,21 @@ export default class HotelListCarousel extends Component<{}>
 
 
     _renderItem = ({item}) => {
-        console.log(item.title);
-        // console.log(this.__carousel.currentIndex);
         const listStar = [];
-        for (let i=1; i<5; i++){
+        for (let i=1; i<item.star; i++){
             listStar.push({i});
         }
         return (
             <View style={styles.slide}>
                 <View style={styles.slideInnerContainer}>
                     <View style={styles.imageWrapper}>
-                        <Image style={styles.itemImage} source={{uri: 'http://localhost:8000/media/image/hotel/Screen_Shot_2017-12-14_at_13.41.22.png'}} />
+                        <Image style={styles.itemImage} source={{uri: item.image}} />
                     </View>
                     <View style={styles.infoWrapper}>
                         <View style={styles.infoTop}>
                             <View style={styles.infoView}>
                                 {/*<Icon style={styles.iconStyle} active name={'home'}/>*/}
-                                <Text style={styles.title}>{ item.title }</Text>
+                                <Text style={styles.title}>{ item.name }</Text>
                             </View>
                             <View style={[styles.infoView, {justifyContent: 'center', alignItems: 'center'}]}>
                                 {this.__renderStar(5)}
@@ -73,12 +71,12 @@ export default class HotelListCarousel extends Component<{}>
                             </View>
                             <View style={styles.infoView}>
                                 <Icon style={[styles.iconStyle, {marginLeft: 10}]} active name={'money'}/>
-                                <Text numberOfLines={1}> 500,000</Text>
+                                <Text numberOfLines={1}> {item.price} </Text>
                             </View>
                         </View>
                         <View style={styles.breakLine} />
                         <View style={styles.infoBottom}>
-                            <Text style={styles.txtDescription}>{ item.title }</Text>
+                            <Text style={styles.txtDescription}>{ item.description }</Text>
                         </View>
                     </View>
 
@@ -88,7 +86,8 @@ export default class HotelListCarousel extends Component<{}>
     };
 
     __echo(index){
-        console.log(index);
+        let hotel = this.props.listHotel[index];
+        this.props.updateMapRegion(hotel);
     }
 
     __toggleCarousel(){
@@ -104,7 +103,7 @@ export default class HotelListCarousel extends Component<{}>
                 <View style={styles.container}>
                     {!this.state.isHide ?
                         <Carousel
-                            data={listItem}
+                            data={this.props.listHotel}
                             renderItem={this._renderItem}
                             sliderWidth={sliderWidth}
                             itemWidth={itemWidth}
@@ -126,7 +125,9 @@ export default class HotelListCarousel extends Component<{}>
 }
 
 
-
+HotelListCarousel.defaultProps = {
+    listHotel: []
+};
 
 
 const styles = StyleSheet.create({

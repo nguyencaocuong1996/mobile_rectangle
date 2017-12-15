@@ -1,4 +1,7 @@
 import axios from 'react-native-axios';
+import {Platform} from 'react-native';
+
+const base_url = Platform.OS === 'android' ? 'http://10.0.2.2:8000/api/' : 'http://localhost:8000/api/';
 
 const default_config = {
     headers:null,
@@ -6,7 +9,7 @@ const default_config = {
     baseURL:null};
 
 let getInstance = (config=default_config) => {
-    config.baseURL = config.baseURL || 'http://localhost:8000/api/';
+    config.baseURL = config.baseURL || base_url;
     return axios.create(config);
 };
 

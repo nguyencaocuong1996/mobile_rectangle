@@ -2,25 +2,19 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     View,
-    Dimensions, Text
+    Dimensions, Text, Image
 } from 'react-native';
-import HotelItem from "../components/hotel/HotelItem";
-
-import HotelImg from '../assets/img/ivHotel.jpg';
-import imgHotel1 from '../assets/img/Cassabella.jpg';
-import imgHotel2 from '../assets/img/kimminh.jpg';
 import icLocation from '../assets/img/icLocation.png';
 import MapView from 'react-native-maps';
 import ListHotelCarousel from '../components/hotel/HotelListCarousel';
-
+import {hotel as hotelApi} from '../api';
 
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-console.log(ASPECT_RATIO);
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
-const LATITUDE_DELTA = 0.0922;
+const LATITUDE = 10.870139;
+const LONGITUDE = 106.778219;
+const LATITUDE_DELTA = 0.001;
 const LONGITUDE_DELTA = LATITUDE_DELTA;
 let id = 0;
 
@@ -44,10 +38,29 @@ export default class HotelMap extends Component<{}>
             markers: [
 
             ],
+            listHotel: [],
+
         };
 
         this.onMapPress = this.onMapPress.bind(this);
     }
+
+
+    componentDidMount(){
+        console.log("Aaaa");
+        hotelApi.getAll((r)=>{
+            this.setState({
+                listHotel: r.data
+            });
+            let first_hotel = r.data[0];
+            console.log(first_hotel);
+            this.__setStateRegion(first_hotel.lat, first_hotel.long);
+        }, (e)=>{
+            console.log(e);
+            alert("Load error");
+        })
+    }
+
 
     onMapPress(e) {
         this.setState({
@@ -61,37 +74,47 @@ export default class HotelMap extends Component<{}>
         });
     }
 
+    __setStateRegion = (lat, long) => {
+        let region = {
+            ...this.state.region,
+            latitude: lat,
+            longitude: long,
+        };
+        this.setState({
+            region
+        });
+        this.__map.animateToRegion(region, 200);
+    };
 
-    _renderItem ({item, index}) {
-        return (
-            <View style={styles.slide}>
-                <Text style={styles.title}>{ item.title }</Text>
-            </View>
-        );
-    }
-
+    __updateRegion = (hotel)=>{
+        this.__setStateRegion(hotel.lat, hotel.long);
+    };
 
     render() {
         return (
             <View style={styles.container}>
                 <MapView
-                    showsUserLocation={true}
+                    // showsUserLocation={true}
                     provider={this.props.provider}
                     style={styles.map}
                     initialRegion={this.state.region}
                     onPress={this.onMapPress}
+                    ref={(map)=>{this.__map=map;}}
                 >
-                    {this.state.markers.map(marker => (
+                    {this.state.listHotel.map(hotel => (
                         <MapView.Marker
-                            title={marker.key}
+                            title={hotel.name}
                             image={icLocation}
-                            key={marker.key}
-                            coordinate={marker.coordinate}
+                            key={hotel.name}
+                            coordinate={{latitude: hotel.lat, longitude: hotel.long}}
                         />
                     ))}
                 </MapView>
                 <View style={styles.listCarousel}>
-                    <ListHotelCarousel/>
+                    <ListHotelCarousel
+                        listHotel={this.state.listHotel}
+                        updateMapRegion={this.__updateRegion.bind(this)}
+                    />
                 </View>
 
             </View>
@@ -142,33 +165,3 @@ const styles = StyleSheet.create({
     },
 });
 
-const listItem = [
-    {
-        img: HotelImg,
-        imgLocation: icLocation,
-        title: "Khách sạn Mường Thanh",
-        address: "94/16 Trịnh Hoài Đức, Vũng Tàu",
-        service1: "Massa",
-        service2: "Pool",
-        service3: "Breakfast"
-    },
-    {
-        img: imgHotel1,
-        imgLocation: icLocation,
-        title: "Khách sạn Alacate",
-        address: "72 Nam Cao, TP Hồ Chí Minh",
-        service1: "Buffet",
-        service2: "Pool",
-        service3: "Breakfast",
-        left: false,
-    },
-    {
-        img: imgHotel2,
-        imgLocation: icLocation,
-        title: "Khách sạn Hoàng Đế ",
-        address: "21 Phạm Văn Đồng, Đà Nẵng",
-        service1: "Massa",
-        service2: "Cafe",
-        service3: "Breakfast"
-    },
-];
