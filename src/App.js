@@ -12,11 +12,12 @@ import RestaurantList from './screens/RestaurantList';
 import {common as commonHelper} from './helpers';
 import HotelMap from './screens/HotelMap';
 import HotelListCarousel from "./components/hotel/HotelListCarousel";
+import AddHotel from "./screens/AddHotel";
 
 
 const MainScreenStack = StackNavigator({
     Loading: {
-        screen: HotelListCarousel
+        screen: AddHotel
     },
     Tutorial: {
         screen: Tutorial

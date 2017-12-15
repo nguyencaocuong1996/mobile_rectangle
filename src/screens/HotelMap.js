@@ -11,7 +11,7 @@ import imgHotel1 from '../assets/img/Cassabella.jpg';
 import imgHotel2 from '../assets/img/kimminh.jpg';
 import icLocation from '../assets/img/icLocation.png';
 import MapView from 'react-native-maps';
-import Carousel from "react-native-snap-carousel";
+import ListHotelCarousel from '../components/hotel/HotelListCarousel';
 
 
 const { width, height } = Dimensions.get('window');
@@ -90,15 +90,10 @@ export default class HotelMap extends Component<{}>
                         />
                     ))}
                 </MapView>
-                <View>
-                    <Carousel
-                        ref={(c) => { this._carousel = c; }}
-                        data={listItem}
-                        renderItem={this._renderItem}
-                        sliderWidth={500}
-                        itemWidth={400}
-                    />
+                <View style={styles.listCarousel}>
+                    <ListHotelCarousel/>
                 </View>
+
             </View>
         );
     }
@@ -109,13 +104,20 @@ HotelMap.propTypes = {
 };
 
 const styles = StyleSheet.create({
+    listCarousel: {
+        position: 'absolute',
+        height: 400,
+        left: 0, right: 0,
+    },
     container: {
         ...StyleSheet.absoluteFillObject,
+        flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     map: {
         ...StyleSheet.absoluteFillObject,
+        flex: 1,
     },
     bubble: {
         backgroundColor: 'rgba(255,255,255,0.7)',
