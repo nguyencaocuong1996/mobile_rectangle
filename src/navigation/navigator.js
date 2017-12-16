@@ -7,6 +7,7 @@ import commonHelper from "../helpers/commonHelper";
 import RestaurantList from "../screens/RestaurantList";
 import Register from "../screens/Register";
 import Loading from "../screens/Loading";
+import Tutorial from "../screens/Tutorial";
 
 
 const hotel = TabNavigator({
@@ -29,12 +30,12 @@ const restaurant = TabNavigator({
 
 
 export default StackNavigator({
-    Loading: {
-        screen: Loading
-    },
-    // Tutorial: {
-    //     screen: Tutorial
+    // Loading: {
+    //     screen: Loading
     // },
+    Tutorial: {
+        screen: Tutorial
+    },
     TabNav: {
         screen: TabNavigator({
             Home: {

@@ -10,6 +10,7 @@ const commonHelper = {
                 if (account === null){
                     notLoginCallback();
                 } else {
+                    commonHelper.reduxLogin(account);
                     isLoginCallback(account);
                 }
             })
