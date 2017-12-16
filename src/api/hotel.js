@@ -1,7 +1,15 @@
-import core from './core';
+import core, {default_config} from './core';
+import {common as commonHelper} from '../helpers';
 
+let config = default_config;
+if (commonHelper.isLogin()){
+    const account = commonHelper.account();
+    config.headers = {
+        Authorization: 'Token ' + account.token,
+    }
+}
 
-api = core();
+const api = core(config);
 
 const add = ({name, address, star, price, description}, r, e) =>{
     api.post('customer/create/', {data:{
@@ -14,11 +22,7 @@ const add = ({name, address, star, price, description}, r, e) =>{
 };
 
 const getList = (r, e) => {
-    api.get('hotel/', r, e, {
-        headers: {
-            Authorization: 'Token 79e60238fe252fcd2774040d03000c09f3ec7fba'
-        }
-    });
+    api.get('hotel/', r, e);
 };
 
 const getAll = (r, e)=>{

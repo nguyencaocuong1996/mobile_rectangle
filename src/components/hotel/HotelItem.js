@@ -15,8 +15,17 @@ import icLocation from '../../../src/assets/img/icLocation.png'
 export default class HotelItem extends Component<{}>
 {
 
-        render()
-    {
+    constructor(props){
+        super(props);
+    }
+
+    __renderService(services){
+        return services.map((service, index)=>{
+
+        })
+    }
+
+    render() {
         return (
            
             <View style={styles.container}>
@@ -36,15 +45,7 @@ export default class HotelItem extends Component<{}>
                             <Text style={styles.addressText}>{this.props.address}</Text>
                         </View>
                         <View style={styles.viewService}>
-                            <View style={styles.viewServiceItem}>
-                                <Text style={styles.servicesText}>{this.props.service1}</Text>
-                            </View>
-                            <View style={styles.viewServiceItem}>
-                                <Text style={styles.servicesText}>{this.props.service2}</Text>
-                            </View>
-                            <View style={styles.viewServiceItem}>
-                                <Text style={styles.servicesText}>{this.props.service3}</Text>
-                            </View>
+                            {this.__renderService(this.props.item.services)}
                         </View>
 
                 </View>

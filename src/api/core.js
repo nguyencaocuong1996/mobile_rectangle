@@ -3,7 +3,7 @@ import {Platform} from 'react-native';
 
 const base_url = Platform.OS === 'android' ? 'http://10.0.2.2:8000/api/' : 'http://localhost:8000/api/';
 
-const default_config = {
+export const default_config = {
     headers:null,
     timeout:5000,
     baseURL:null};

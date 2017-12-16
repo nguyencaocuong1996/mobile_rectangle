@@ -6,15 +6,9 @@ import {
     View,
     TextInput, FlatList,
 } from 'react-native';
-import HotelItem from "../components/hotel/HotelItem";
+import {HotelItem} from "../components/hotel";
+import {hotel as hotelApi} from '../api';
 
-import HotelImg from '../assets/img/ivHotel.jpg';
-import imgHotel1 from '../assets/img/Cassabella.jpg'
-import imgHotel2 from '../assets/img/kimminh.jpg'
-import RestaurantImg from '../assets/img/home-item-bg-restaurant.jpg';
-import EventImg from '../assets/img/home-item-bg-event.jpg';
-import icLocation from '../assets/img/icLocation.png'
-import settings from '../config';
 
 export default class HotelList extends Component<{}>
 {
@@ -22,23 +16,30 @@ export default class HotelList extends Component<{}>
         title: 'List Hotel',
     };
 
+    constructor(props){
+        super(props);
+        this.state = {
+            listHotel: []
+        }
+    }
+
+
+    componentDidMount(){
+        hotelApi.getAll((response)=>{
+
+        }, error=>{
+            console.log(error);
+        })
+    }
+
 
     _keyExtractor = (item, index)=>{
         return index;
     };
 
     _renderItem = ({item}) => {
-        console.log("name", item.title);
         return (
-            <HotelItem isLeft={item.left}
-                      imgSrc={item.img}
-                      title={item.title}
-                      address={item.address}
-                       service1={item.service1}
-                       service2={item.service2}
-                       service3={item.service3}
-                       imgLocation = {item.icLocation}
-            />
+            <HotelItem item={item}/>
         )
     };
 
@@ -108,34 +109,3 @@ const styles = StyleSheet.create({
 
 
 });
-
-const listItem = [
-    {
-        img: HotelImg,
-        imgLocation: icLocation,
-        title: "Khách sạn Mường Thanh",
-        address: "94/16 Trịnh Hoài Đức, Vũng Tàu",
-        service1: "Massa",
-        service2: "Pool",
-        service3: "Breakfast"
-    },
-    {
-        img: imgHotel1,
-        imgLocation: icLocation,
-        title: "Khách sạn Alacate",
-        address: "72 Nam Cao, TP Hồ Chí Minh",
-        service1: "Buffet",
-        service2: "Pool",
-        service3: "Breakfast",
-        left: false,
-    },
-    {
-        img: imgHotel2,
-        imgLocation: icLocation,
-        title: "Khách sạn Hoàng Đế ",
-        address: "21 Phạm Văn Đồng, Đà Nẵng",
-        service1: "Massa",
-        service2: "Cafe",
-        service3: "Breakfast"
-    },
-];
