@@ -25,6 +25,16 @@ const getAll = (r, e)=>{
     api.get('hotel/all', r ,e);
 };
 
+const getAround = ({lat, long, radius}, r , e) =>{
+    api.get('hotel/around', r, e, {
+        params: {
+            lat,
+            long,
+            radius
+        }
+    });
+};
+
 
 export default {
     add,

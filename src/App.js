@@ -17,7 +17,7 @@ import AddHotel from "./screens/AddHotel";
 
 const MainScreenStack = StackNavigator({
     Loading: {
-        screen: HotelMap
+        screen: HotelListCarousel
     },
     Tutorial: {
         screen: Tutorial

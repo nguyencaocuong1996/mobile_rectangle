@@ -44,6 +44,15 @@ export default class HotelListCarousel extends Component<{}>
         })
     }
 
+    __renderService(services){
+        return services.map((service, index)=>{
+            return (
+                <View key={index} style={styles.serviceWrapper}>
+                    <Text numberOfLines={1} style={styles.txtService}> service </Text>
+                </View>
+            );
+        })
+    }
 
     _renderItem = ({item}) => {
         const listStar = [];
@@ -62,16 +71,19 @@ export default class HotelListCarousel extends Component<{}>
                                 {/*<Icon style={styles.iconStyle} active name={'home'}/>*/}
                                 <Text style={styles.title}>{ item.name }</Text>
                             </View>
-                            <View style={[styles.infoView, {justifyContent: 'center', alignItems: 'center'}]}>
-                                {this.__renderStar(5)}
+                            <View style={[styles.infoView, ]}>
+                                {this.__renderStar(item.star)}
                             </View>
                             <View style={styles.infoView}>
-                                <Icon style={[styles.iconStyle, {marginLeft: 10}]} active name={'map-marker'}/>
+                                <Icon style={[styles.iconStyle, ]} active name={'map-marker'}/>
                                 <Text style={styles.txtAddress} numberOfLines={1}> {item.address}</Text>
                             </View>
                             <View style={styles.infoView}>
-                                <Icon style={[styles.iconStyle, {marginLeft: 10}]} active name={'money'}/>
+                                <Icon style={[styles.iconStyle, ]} active name={'money'}/>
                                 <Text numberOfLines={1}> {item.price} </Text>
+                            </View>
+                            <View style={styles.infoView}>
+                                {this.__renderService(item.services)}
                             </View>
                         </View>
                         <View style={styles.breakLine} />
@@ -85,7 +97,7 @@ export default class HotelListCarousel extends Component<{}>
         )
     };
 
-    __echo(index){
+    __onSnapToItem(index){
         let hotel = this.props.listHotel[index];
         this.props.updateMapRegion(hotel);
     }
@@ -109,7 +121,7 @@ export default class HotelListCarousel extends Component<{}>
                             itemWidth={itemWidth}
                             ref={(c)=>{this.__carousel = c;}}
                             containerCustomStyle={styles.carousel}
-                            onSnapToItem={this.__echo.bind(this)}
+                            onSnapToItem={this.__onSnapToItem.bind(this)}
                         /> : null
                     }
 
@@ -126,7 +138,63 @@ export default class HotelListCarousel extends Component<{}>
 
 
 HotelListCarousel.defaultProps = {
-    listHotel: []
+    listHotel: [
+        {
+            "id": 1,
+            "name": "Nông lâm",
+            "phone": "01564654",
+            "address": "dasd asd 4as54d",
+            "lat": 10.871981,
+            "long": 106.792598,
+            "image": "http://localhost:8000/media/image/hotel/Screen_Shot_2017-12-14_at_13.41.22.png",
+            "star": 3.0,
+            "price": 1500000.0,
+            "description": "asdas das dasd ads",
+            "services": [
+                "ser 1",
+                "ser 2",
+                "ser 3",
+                "ser 1",
+                "ser 2",
+                "ser 3"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Công nghệ thông tin",
+            "phone": "921873981273",
+            "address": "alsdj lasdj lkasjd",
+            "lat": 10.87026,
+            "long": 106.802914,
+            "image": "http://localhost:8000/media/image/hotel/Screen_Shot_2017-12-14_at_23.56.34.png",
+            "star": 3.0,
+            "price": 15000000.0,
+            "description": "adakjsdh kjasdk ashdk asdk",
+            "services": [
+                "ser 1",
+                "ser 2",
+                "ser 3"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Kinh tế luật",
+            "phone": "12783687162",
+            "address": "ajsd kjahdj haksjdhkja sh",
+            "lat": 10.870139,
+            "long": 106.778219,
+            "image": "http://localhost:8000/media/image/hotel/2017-02-02-16-41-58.jpg",
+            "star": 5.0,
+            "price": 20000000.0,
+            "description": "asjdkakj ha dad sad as d",
+            "services": [
+                "ser 1",
+                "ser 2",
+                "ser 3"
+            ]
+        }
+    ],
+    updateMapRegion: ()=>null,
 };
 
 
@@ -146,7 +214,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     iconStar: {
-        marginLeft: 5,
+        marginRight: 5,
     },
     slideInnerContainer: {
         width: '100%',
@@ -154,8 +222,8 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: 'gray',
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
     },
     imageWrapper: {
         width: 150,
@@ -172,6 +240,7 @@ const styles = StyleSheet.create({
         // borderColor: 'pink',
         // borderWidth: 1,
         padding: 3,
+        paddingLeft: 10,
 
     },
     infoView: {
@@ -225,56 +294,15 @@ const styles = StyleSheet.create({
     },
     txtAddress: {
         fontSize: 10,
+    },
+    serviceWrapper: {
+        borderRadius: 10,
+        marginRight: 5,
+        backgroundColor: '#000',
+        overflow: 'hidden',
+    },
+    txtService: {
+        color: '#fff',
     }
 
-
 });
-
-const listItem = [
-    {
-        // img: HotelImg,
-        // imgLocation: icLocation,
-        title: "Khách sạn Mường Thanh",
-        address: "94/16 Trịnh Hoài Đức, Vũng Tàu",
-        service1: "Massa",
-        service2: "Pool",
-        service3: "Breakfast"
-    },
-    {
-        // img: HotelImg,
-        // imgLocation: icLocation,
-        title: "Khách sạn Mường Thanh",
-        address: "94/16 Trịnh Hoài Đức, Vũng Tàu",
-        service1: "Massa",
-        service2: "Pool",
-        service3: "Breakfast"
-    },
-    {
-        // img: HotelImg,
-        // imgLocation: icLocation,
-        title: "Khách sạn Mường Thanh",
-        address: "94/16 Trịnh Hoài Đức, Vũng Tàu",
-        service1: "Massa",
-        service2: "Pool",
-        service3: "Breakfast"
-    },
-    {
-        // img: imgHotel1,
-        // imgLocation: icLocation,
-        title: "Khách sạn Alacate",
-        address: "72 Nam Cao, TP Hồ Chí Minh",
-        service1: "Buffet",
-        service2: "Pool",
-        service3: "Breakfast",
-        left: false,
-    },
-    {
-        // img: imgHotel2,
-        // imgLocation: icLocation,
-        title: "Khách sạn Hoàng Đế ",
-        address: "21 Phạm Văn Đồng, Đà Nẵng",
-        service1: "Massa",
-        service2: "Cafe",
-        service3: "Breakfast"
-    },
-];

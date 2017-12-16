@@ -14,7 +14,7 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 10.870139;
 const LONGITUDE = 106.778219;
-const LATITUDE_DELTA = 0.001;
+const LATITUDE_DELTA = 0.01;
 const LONGITUDE_DELTA = LATITUDE_DELTA;
 let id = 0;
 
@@ -35,9 +35,6 @@ export default class HotelMap extends Component<{}>
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
             },
-            markers: [
-
-            ],
             listHotel: [],
 
         };
@@ -47,13 +44,11 @@ export default class HotelMap extends Component<{}>
 
 
     componentDidMount(){
-        console.log("Aaaa");
         hotelApi.getAll((r)=>{
             this.setState({
                 listHotel: r.data
             });
             let first_hotel = r.data[0];
-            console.log(first_hotel);
             this.__setStateRegion(first_hotel.lat, first_hotel.long);
         }, (e)=>{
             console.log(e);
@@ -90,6 +85,21 @@ export default class HotelMap extends Component<{}>
         this.__setStateRegion(hotel.lat, hotel.long);
     };
 
+    __renderMaker = (hotel)=>{
+        return (
+            <MapView.Marker
+                title={hotel.name}
+                key={hotel.name}
+                coordinate={{latitude: hotel.lat, longitude: hotel.long}}
+            >
+                <Image
+                    source={icLocation}
+                    style={{width: 30, height: 80}}
+                />
+            </MapView.Marker>
+        );
+    };
+
     render() {
         return (
             <View style={styles.container}>
@@ -97,18 +107,11 @@ export default class HotelMap extends Component<{}>
                     // showsUserLocation={true}
                     provider={this.props.provider}
                     style={styles.map}
-                    initialRegion={this.state.region}
-                    onPress={this.onMapPress}
+                    // initialRegion={this.state.region}
+                    // onPress={this.onMapPress}
                     ref={(map)=>{this.__map=map;}}
                 >
-                    {this.state.listHotel.map(hotel => (
-                        <MapView.Marker
-                            title={hotel.name}
-                            image={icLocation}
-                            key={hotel.name}
-                            coordinate={{latitude: hotel.lat, longitude: hotel.long}}
-                        />
-                    ))}
+                    {this.state.listHotel.map(hotel => this.__renderMaker(hotel))}
                 </MapView>
                 <View style={styles.listCarousel}>
                     <ListHotelCarousel
