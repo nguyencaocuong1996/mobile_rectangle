@@ -1,14 +1,24 @@
-import Home from '../screens/Home'
 import {StackNavigator, TabNavigator} from 'react-navigation'
-import Login from '../screens/Login'
-import HotelList from "../screens/HotelList";
-import HotelMap from "../screens/HotelMap";
-import commonHelper from "../helpers/commonHelper";
-import RestaurantList from "../screens/RestaurantList";
-import Register from "../screens/Register";
-import Loading from "../screens/Loading";
-import Tutorial from "../screens/Tutorial";
+import {
+    Login,
+    Register,
 
+    Tutorial,
+
+    Home,
+
+    HotelList,
+    HotelMap,
+    HotelDetail,
+    AddHotel,
+
+    RestaurantList,
+    RestaurantMap,
+    RestaurantDetail,
+    AddRestaurant,
+
+} from '../screens';
+import {common as commonHelper} from '../helpers';
 
 const hotel = TabNavigator({
     HotelNormalList: {
@@ -21,10 +31,10 @@ const hotel = TabNavigator({
 
 const restaurant = TabNavigator({
     RestaurantNormalList: {
-        screen: HotelList
+        screen: RestaurantList
     },
     RestaurantMapList: {
-        screen: HotelList
+        screen: RestaurantMap
     },
 });
 
