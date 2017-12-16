@@ -7,21 +7,10 @@ const default_state = {
 
 const hotelReducer = (state=default_state, action) => {
     switch (action.type){
-        case snippets.getAll:
+        case snippets.setData:
             return {
                 ...state,
-                account:{
-                    id: action.id,
-                    name: action.name,
-                    token: action.token,
-                    email: action.email,
-                }
-            };
-
-        case snippets.logout:
-            return {
-                ...state,
-                account: default_state.account
+                listHotel: action.data,
             };
         default:
             return state;

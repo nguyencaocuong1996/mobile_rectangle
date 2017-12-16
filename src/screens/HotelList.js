@@ -7,10 +7,11 @@ import {
     TextInput, FlatList,
 } from 'react-native';
 import {HotelItem} from "../components/hotel";
-import {hotel as hotelApi} from '../api';
+import {connect} from 'react-redux';
+import {hotel as hotelAction} from '../redux/actions';
 
 
-export default class HotelList extends Component<{}>
+class HotelList extends Component<{}>
 {
     static navigationOptions = {
         title: 'List Hotel',
@@ -18,18 +19,10 @@ export default class HotelList extends Component<{}>
 
     constructor(props){
         super(props);
-        this.state = {
-            listHotel: []
-        }
     }
 
-
     componentDidMount(){
-        hotelApi.getAll((response)=>{
-
-        }, error=>{
-            console.log(error);
-        })
+        this.props.getAll();
     }
 
 
@@ -46,7 +39,6 @@ export default class HotelList extends Component<{}>
 
     render()
     {
-        console.log(listItem);
         return (
             <View style={styles.container}>
                 <View style={styles.searchSection}>
@@ -59,7 +51,7 @@ export default class HotelList extends Component<{}>
                 </View>
                 <View style={styles.menuSection}>
                     <FlatList
-                        data = {listItem}
+                        data = {this.props.listHotel}
                         renderItem = {this._renderItem}
                         keyExtractor={this._keyExtractor}
                     />
@@ -69,6 +61,17 @@ export default class HotelList extends Component<{}>
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        listHotel: state.hotel.listHotel,
+    };
+};
+
+const mapActionToProps = {
+    getAll: hotelAction.getAll,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(HotelList);
 
 const styles = StyleSheet.create({
     container: {

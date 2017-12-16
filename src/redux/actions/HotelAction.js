@@ -1,13 +1,25 @@
+import {hotel as hotelApi} from '../../api';
 
 export const snippets = {
-    getAll: 'GET_ALL',
-    logout: 'LOGOUT'
+    setData: 'SET_DATA',
 };
 
-export default {
-    getAll: ()=>{
+const hotelAction = {
+    setData: (data)=>{
         return {
-            type: snippets.getAll,
-        }
+            type: snippets.setData,
+            data,
+        };
+    },
+    getAll: ()=>{
+        return (dispatch=>{
+            hotelApi.getAll((response)=>{
+                dispatch(hotelAction.setData(response.data));
+            }, (error)=>{
+                console.log("GET LIST ALL HOTEL ERROR", error);
+            });
+        });
     }
-}
+};
+
+export default hotelAction;
