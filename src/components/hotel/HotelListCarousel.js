@@ -127,7 +127,8 @@ export default class HotelListCarousel extends Component<{}>
 
                     <TouchableOpacity style={styles.toggleButton} onPress={()=>{this.__toggleCarousel();}}>
                         <Text>
-                            {this.state.isHide ? 'Show' : 'Hide'}
+                            { this.state.isHide && <Icon name={'eye'} style={{fontSize: 20}} /> }
+                            { !this.state.isHide && <Icon name={'eye-slash'} style={{fontSize: 20}} /> }
                         </Text>
                     </TouchableOpacity>
                 </View>

@@ -29,24 +29,13 @@ class Login extends Component<{}>
     _login(){
         this.setState({doingLogin: true});
         commonApi.login(this.state, (response)=>{
-            let account = response.data;
-            try {
-                commonHelper.login(account);
-                alert("Login success!");
-                console.log("navigate", this.props.navigation);
-                this.props.navigation.navigate('Home');
-                this.setState({doingLogin:false});
-            } catch (e){
-                alert("Login error!", e);
-                console.log("login Error", e);
-                this.setState({doingLogin:false});
-            }
-
+            alert("Login success!");
+            this.props.navigation.navigate('Home');
+            this.setState({doingLogin:false});
         }, (error=>{
             alert("Login fail!");
-            console.log("Login fail", error);
             this.setState({doingLogin:false});
-        }))
+        }));
     }
 
     render()

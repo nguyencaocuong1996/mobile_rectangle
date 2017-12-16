@@ -1,10 +1,11 @@
 import core from './core';
+import commonHelper from "../helpers/commonHelper";
 
 
 api = core();
 
 const register = ({email, password, first_name, last_name, phone}, r, e) =>{
-    api.post('/customer/create/', {data:{
+    api.post('customer/create/', {data:{
         email,
         password,
         first_name,
@@ -13,11 +14,16 @@ const register = ({email, password, first_name, last_name, phone}, r, e) =>{
     }},r,e);
 };
 
-const login = ({username, password}, r, e) => {
-    api.post('/customer/login/', {data: {
+const login = ({username, password}, successCallback, errorCallback) => {
+    let success = (response)=>{
+        let account = response.data;
+        commonHelper.login(account);
+        successCallback(response);
+    };
+    api.post('customer/login/', success, errorCallback, {data: {
         username,
         password
-    }}, r, e);
+    }});
 };
 
 export default {

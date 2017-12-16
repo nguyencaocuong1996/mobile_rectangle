@@ -10,7 +10,7 @@ export default class HeaderLogoutButton extends Component<{}> {
 
     _logout(){
         commonHelper.logout();
-        this.props.navigation.navigate('Hotel');
+        this.props.navigation.navigate('Login');
     }
 
     render() {
