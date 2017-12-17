@@ -15,6 +15,7 @@ import getTheme from '../../native-base-theme/components';
 import myTheme from '../themes/fontAwsome';
 import ServiceItem from "../components/home/ServiceItem";
 import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
+import commonHelper from "../helpers/commonHelper";
 
 
 const services = {
@@ -33,7 +34,8 @@ class MyServices extends Component<{}>
         this.state = {
             service: services.hotel,
             listService: [],
-        }
+        };
+        this.account = commonHelper.account();
     }
 
     componentDidMount(){
@@ -92,16 +94,24 @@ class MyServices extends Component<{}>
                     <View style={styles.headerSection}>
                         <Image style={styles.customerImage} source={img} />
                         <View style={styles.basicInfo}>
-                            <Text style={{
+                            <Text numberOfLines={1} style={{
                                 fontSize: 18,
                                 fontWeight: 'bold',
-                            }}>VinGroup</Text>
-                            <Text style={[styles.txtShadow2, {marginTop: 10}]}>Register at 12/12/2017</Text>
+                            }}>{this.account.name}</Text>
+
+                            <View style={[{flexDirection: 'row'}, {marginTop: 5}]}>
+                                <Text style={[styles.txtShadow2, ]}>Your ID: </Text>
+                                <Text>{this.account.id}</Text>
+                            </View>
+                            <View style={[{flexDirection: 'row'}, {marginTop: 5}]}>
+                                <Text style={[styles.txtShadow2, ]}>Register at: </Text>
+                                <Text>12/12/2017</Text>
+                            </View>
+
                         </View>
-                        <View style={styles.moreInfo}>
-                            <Text style={[styles.txtShadow2, {marginTop: 0}]}>abc</Text>
-                            <Text style={[{marginTop: 10}, ]}>def</Text>
-                        </View>
+                        {/*<View style={styles.moreInfo}>*/}
+
+                        {/*</View>*/}
                     </View>
                     <View style={styles.navSection}>
                         <TouchableOpacity style={[styles.navButton,]}>
@@ -185,14 +195,14 @@ const styles = StyleSheet.create({
     },
     basicInfo: {
         marginLeft: 10,
-        flex: 4,
-        paddingTop: 20,
+        flex: 7,
+        paddingTop: 5,
     },
-    moreInfo: {
-        marginLeft: 30,
-        flex: 3,
-        paddingTop: 20,
-    },
+    // moreInfo: {
+    //     marginLeft: 30,
+    //     flex: 3,
+    //     paddingTop: 5,
+    // },
     navSection:{
         height: 30,
         flexDirection: 'row',
