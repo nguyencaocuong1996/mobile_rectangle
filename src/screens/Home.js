@@ -118,13 +118,13 @@ const styles = StyleSheet.create({
 const listItem = [
     {
         img: HotelImg,
-        title: "Khách sạn",
+        title: "Hotel",
         description: "des 1",
         screen: 'Hotel',
     },
     {
         img: RestaurantImg,
-        title: "Nhà hàng",
+        title: "Restaurant",
         description: "des 2",
         left: false,
         screen: 'RestaurantList',

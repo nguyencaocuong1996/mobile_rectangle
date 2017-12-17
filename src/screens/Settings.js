@@ -4,18 +4,15 @@ import {
     View,
     FlatList, Text, Image
 } from 'react-native';
-import {OpacityHeader} from "../components/core/index";
 import SettingSection from "../components/setting/SettingSection";
-import getTheme from '../../native-base-theme/components';
-import myTheme from '../themes/fontAwsome';
-import { Item, Input, Icon, StyleProvider } from 'native-base';
 import commonHelper from "../helpers/commonHelper";
+import avatar2 from '../assets/img/home-item-bg-hotel.jpg';
+
 
 export default class Settings extends Component<{}>
 {
 
     static navigationOptions = ({navigation}) => ({
-        // header: <OpacityHeader navigation={navigation}/>,
         title: 'Settings'
     });
 
@@ -34,15 +31,13 @@ export default class Settings extends Component<{}>
     render()
     {
         return (
-            <StyleProvider style={getTheme(myTheme)}>
-                <View style={styles.container}>
-                    <FlatList
-                        data={listSection(commonHelper.account(), this.props.navigation)}
-                        renderItem={this.__renderItem}
-                        keyExtractor={this.__keyExtractor}
-                    />
-                </View>
-            </StyleProvider>
+            <View style={styles.container}>
+                <FlatList
+                    data={listSection(commonHelper.account(), this.props.navigation)}
+                    renderItem={this.__renderItem}
+                    keyExtractor={this.__keyExtractor}
+                />
+            </View>
         );
     }
 }
@@ -68,8 +63,6 @@ const styles = StyleSheet.create({
     }
 
 });
-
-import avatar2 from '../assets/img/home-item-bg-hotel.jpg';
 
 const accountHeader = (account)=>{
     return (

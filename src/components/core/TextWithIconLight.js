@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Item, Input, Icon, StyleProvider} from 'native-base';
+import {Item, Input, Icon} from 'native-base';
 import {StyleSheet, Text, View} from 'react-native';
-import getTheme from '../../../native-base-theme/components';
-import myTheme from '../../themes/fontAwsome';
 
 
 export default class TextWithIconLight extends Component<{}> {
@@ -12,12 +10,10 @@ export default class TextWithIconLight extends Component<{}> {
 
     render() {
         return (
-            <StyleProvider style={getTheme(myTheme)}>
-                <View style={styles.wrapper}>
-                    <Icon style={styles.icon} name={this.props.iconName} />
-                    <Text numberOfLines={this.props.numberOfLines} style={styles.txt}>{this.props.text}</Text>
-                </View>
-            </StyleProvider>
+            <View style={styles.wrapper}>
+                <Icon style={styles.icon} name={this.props.iconName} />
+                <Text numberOfLines={this.props.numberOfLines} style={styles.txt}>{this.props.text}</Text>
+            </View>
         )
     }
 }

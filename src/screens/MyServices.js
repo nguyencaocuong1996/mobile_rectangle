@@ -10,9 +10,7 @@ import {
 import {FloatAddButton} from "../components/core";
 import {connect} from 'react-redux';
 import img from '../assets/img/home-item-bg-restaurant.jpg';
-import {Button, Icon, StyleProvider} from "native-base";
-import getTheme from '../../native-base-theme/components';
-import myTheme from '../themes/fontAwsome';
+import {Button, Icon} from "native-base";
 import ServiceItem from "../components/home/ServiceItem";
 import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
 import commonHelper from "../helpers/commonHelper";
@@ -100,7 +98,6 @@ class MyServices extends Component<{}>
     {
         const listService = this.__getListService(this.state.service);
         return (
-            <StyleProvider style={getTheme(myTheme)}>
                 <View style={styles.container}>
                     <View style={styles.headerSection}>
                         <Image style={styles.customerImage} source={img} />
@@ -151,7 +148,6 @@ class MyServices extends Component<{}>
                     </View>
                     <FloatAddButton onPress={this.addService.bind(this)} />
                 </View>
-            </StyleProvider>
         );
     }
 }

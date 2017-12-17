@@ -7,7 +7,7 @@ import {
     Dimensions, TouchableOpacity,
 } from 'react-native';
 import Carousel from "react-native-snap-carousel";
-import { Item, Input, Icon, StyleProvider } from 'native-base';
+import { Item, Input, Icon } from 'native-base';
 import getTheme from '../../../native-base-theme/components';
 import myTheme from '../../themes/fontAwsome';
 
@@ -111,7 +111,6 @@ export default class HotelListCarousel extends Component<{}>
     render()
     {
         return (
-            <StyleProvider style={getTheme(myTheme)}>
                 <View style={styles.container}>
                     {!this.state.isHide ?
                         <Carousel
@@ -132,7 +131,6 @@ export default class HotelListCarousel extends Component<{}>
                         </Text>
                     </TouchableOpacity>
                 </View>
-            </StyleProvider>
         );
     }
 }

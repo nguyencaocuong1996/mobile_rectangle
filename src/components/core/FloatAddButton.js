@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Icon, StyleProvider, Button} from 'native-base';
+import {Icon, Button} from 'native-base';
 import {StyleSheet} from 'react-native';
-import getTheme from '../../../native-base-theme/components';
-import myTheme from '../../themes/fontAwsome';
 
 
 export default class FloatAddButton extends Component<{}> {
@@ -12,11 +10,9 @@ export default class FloatAddButton extends Component<{}> {
 
     render() {
         return (
-            <StyleProvider style={getTheme(myTheme)}>
                 <Button style={styles.addButton} onPress={()=>this.props.onPress()}>
                     <Icon name={'plus'} />
                 </Button>
-            </StyleProvider>
         )
     }
 }

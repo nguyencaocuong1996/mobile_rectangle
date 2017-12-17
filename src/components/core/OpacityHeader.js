@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {Icon, StyleProvider} from 'native-base';
-import getTheme from '../../../native-base-theme/components';
-import myTheme from '../../themes/fontAwsome';
+import {Icon} from 'native-base';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 export default class OpacityHeader extends Component<{}>{
@@ -21,14 +19,11 @@ export default class OpacityHeader extends Component<{}>{
     render(){
         let backColor = !this.props.backColor ? '#fff' : this.props.backColor;
         return (
-            <StyleProvider style={getTheme(myTheme)}>
                 <View style={styles.container}>
                     <TouchableOpacity onPress={()=>this._goBack()}>
                         <Icon name={'chevron-left'} style={[styles.icon, {color: backColor}]}/>
                     </TouchableOpacity>
                 </View>
-            </StyleProvider>
-
         )
     }
 }
