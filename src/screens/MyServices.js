@@ -13,6 +13,7 @@ import img from '../assets/img/home-item-bg-restaurant.jpg';
 import {Button, Icon, StyleProvider} from "native-base";
 import getTheme from '../../native-base-theme/components';
 import myTheme from '../themes/fontAwsome';
+import ServiceItem from "../components/home/ServiceItem";
 
 
 class MyServices extends Component<{}>
@@ -36,7 +37,7 @@ class MyServices extends Component<{}>
 
     _renderItem = ({item}) => {
         return (
-            <HotelItem item={item}/>
+            <ServiceItem item={item}/>
         )
     };
 
@@ -77,11 +78,11 @@ class MyServices extends Component<{}>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.listSection}>
-                        {/*<FlatList*/}
-                        {/*data = {this.props.listService}*/}
-                        {/*renderItem = {this._renderItem}*/}
-                        {/*keyExtractor={this._keyExtractor}*/}
-                        {/*/>*/}
+                        <FlatList
+                        data = {this.props.listService}
+                        renderItem = {this._renderItem}
+                        keyExtractor={this._keyExtractor}
+                        />
                     </View>
                     <FloatAddButton />
                 </View>
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
         paddingLeft: 30,
     },
     listSection: {
-
+        flex: 1,
     },
     navButton: {
         padding: 10,

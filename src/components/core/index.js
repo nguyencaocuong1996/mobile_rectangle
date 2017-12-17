@@ -4,6 +4,7 @@ import HeaderLoginButton from './HeaderLoginButton';
 import InputWithIconAndUnderline from './InputWithIconAndUnderline';
 import OpacityHeader from './OpacityHeader';
 import FloatAddButton from "./FloatAddButton";
+import TextWithIconLight from "./TextWithIconLight";
 
 const core = {
     //Button
@@ -16,6 +17,9 @@ const core = {
 
     //Header
     OpacityHeader,
+
+    //Text
+    TextWithIconLight,
 };
 
 
