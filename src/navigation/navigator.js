@@ -1,4 +1,4 @@
-import {StackNavigator, TabNavigator} from 'react-navigation'
+import {StackNavigator, TabNavigator} from 'react-navigation';
 import {
     Login,
     Register,
@@ -40,9 +40,9 @@ const restaurant = TabNavigator({
 
 
 export default StackNavigator({
-    // Loading: {
-    //     screen: Loading
-    // },
+    Loading: {
+        screen: AddHotel
+    },
     Tutorial: {
         screen: Tutorial
     },

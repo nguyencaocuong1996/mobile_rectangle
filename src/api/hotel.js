@@ -43,6 +43,13 @@ const getAround = ({lat, long, radius}, r , e) =>{
     });
 };
 
+const getByService = ({id}, r, e) => {
+    api.get('hotel/by-service', r, e, {
+        params: {
+            id,
+        }
+    });
+};
 
 export default {
     add,
