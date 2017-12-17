@@ -19,6 +19,7 @@ import {
 
 } from '../screens';
 import {common as commonHelper} from '../helpers';
+import MyServices from "../screens/MyServices";
 
 const hotel = TabNavigator({
     HotelNormalList: {
@@ -41,7 +42,7 @@ const restaurant = TabNavigator({
 
 export default StackNavigator({
     Loading: {
-        screen: AddHotel
+        screen: MyServices
     },
     Tutorial: {
         screen: Tutorial
