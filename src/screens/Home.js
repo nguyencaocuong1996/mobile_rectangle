@@ -35,7 +35,6 @@ export default class Home extends Component<{}>
 
     constructor(props){
         super(props);
-        console.log(commonHelper.account());
     }
 
 
@@ -46,19 +45,13 @@ export default class Home extends Component<{}>
     _renderItem = ({item}) => {
         console.log("name", item.title);
         return (
-            <HomeItem isLeft={item.left}
-                      imgSrc={item.img}
-                      title={item.title}
-                      description={item.description}
-                      navigation={this.props.navigation}
-            />
+            <HomeItem item={item} navigation={this.props.navigation}/>
         )
     };
 
 
     render()
     {
-        console.log(listItem);
         return (
             <View style={styles.container}>
                 <View style={styles.searchSection}>
@@ -127,16 +120,19 @@ const listItem = [
         img: HotelImg,
         title: "Khách sạn",
         description: "des 1",
+        screen: 'HotelList',
     },
     {
         img: RestaurantImg,
         title: "Nhà hàng",
         description: "des 2",
         left: false,
+        screen: 'RestaurantList',
     },
     {
         img: EventImg,
         title: "Event",
         description: "des 3",
+        screen: 'RestaurantList',
     },
 ];

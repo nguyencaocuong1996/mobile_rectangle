@@ -84,6 +84,12 @@ export default StackNavigator({
     },
     AddRestaurant: {
         screen: AddRestaurant,
+    },
+    HotelList: {
+        screen: HotelList,
+    },
+    RestaurantList: {
+        screen: RestaurantList
     }
 
 });

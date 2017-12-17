@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     View,
-    Image,
+    Image, TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -13,26 +13,28 @@ export default class HomeItem extends Component<{}>
     render()
     {
         return (
-            <View style={styles.container}>
-                <Image
-                    resizeMode={"stretch"}
-                    source={this.props.imgSrc}
-                    style={styles.image}/>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate(this.props.item.screen)}>
+                <View style={styles.container}>
+                    <Image
+                        resizeMode={"stretch"}
+                        source={this.props.item.img}
+                        style={styles.image}/>
 
-                <View style={styles.text}>
-                    <Text style={styles.titleText}>{this.props.title}</Text>
-                    <Text style={styles.descriptionText}>{this.props.description}</Text>
-                </View>
+                    <View style={styles.text}>
+                        <Text style={styles.titleText}>{this.props.item.title}</Text>
+                        <Text style={styles.descriptionText}>{this.props.item.description}</Text>
+                    </View>
 
-                {/*<LinearGradient*/}
+                    {/*<LinearGradient*/}
                     {/*// start={this.props.isLeft ? { x: 1, y: 1 } : { x: 0, y: 1 }}*/}
                     {/*// end={!this.props.isLeft ? { x: 1, y: 1 } : { x: 0, y: 1 }}*/}
                     {/*colors={['transparent', '#8952a3']}*/}
                     {/*style={this.props.isLeft ? styles.text : [styles.text, styles.textRight]}>*/}
                     {/*<Text style={styles.titleText}>{this.props.title}</Text>*/}
                     {/*<Text style={styles.descriptionText}>{this.props.description}</Text>*/}
-                {/*</LinearGradient>*/}
-            </View>
+                    {/*</LinearGradient>*/}
+                </View>
+            </TouchableOpacity>
         );
     }
 }
