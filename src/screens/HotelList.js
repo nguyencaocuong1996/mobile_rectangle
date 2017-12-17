@@ -6,21 +6,24 @@ import {
     View,
     TextInput, FlatList,
 } from 'react-native';
-import HotelItem from "../components/hotel/HotelItem";
+import {HotelItem} from "../components/hotel";
+import {connect} from 'react-redux';
+import {hotel as hotelAction} from '../redux/actions';
 
-import HotelImg from '../assets/img/ivHotel.jpg';
-import imgHotel1 from '../assets/img/Cassabella.jpg'
-import imgHotel2 from '../assets/img/kimminh.jpg'
-import RestaurantImg from '../assets/img/home-item-bg-restaurant.jpg';
-import EventImg from '../assets/img/home-item-bg-event.jpg';
-import icLocation from '../assets/img/icLocation.png'
-import settings from '../config';
 
-export default class HotelList extends Component<{}>
+class HotelList extends Component<{}>
 {
     static navigationOptions = {
         title: 'List Hotel',
     };
+
+    constructor(props){
+        super(props);
+    }
+
+    componentDidMount(){
+        this.props.getAll();
+    }
 
 
     _keyExtractor = (item, index)=>{
@@ -28,24 +31,14 @@ export default class HotelList extends Component<{}>
     };
 
     _renderItem = ({item}) => {
-        console.log("name", item.title);
         return (
-            <HotelItem isLeft={item.left}
-                      imgSrc={item.img}
-                      title={item.title}
-                      address={item.address}
-                       service1={item.service1}
-                       service2={item.service2}
-                       service3={item.service3}
-                       imgLocation = {item.icLocation}
-            />
+            <HotelItem item={item}/>
         )
     };
 
 
     render()
     {
-        console.log(listItem);
         return (
             <View style={styles.container}>
                 <View style={styles.searchSection}>
@@ -58,7 +51,7 @@ export default class HotelList extends Component<{}>
                 </View>
                 <View style={styles.menuSection}>
                     <FlatList
-                        data = {listItem}
+                        data = {this.props.listHotel}
                         renderItem = {this._renderItem}
                         keyExtractor={this._keyExtractor}
                     />
@@ -68,6 +61,17 @@ export default class HotelList extends Component<{}>
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        listHotel: state.hotel.listHotel,
+    };
+};
+
+const mapActionToProps = {
+    getAll: hotelAction.getAll,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(HotelList);
 
 const styles = StyleSheet.create({
     container: {
@@ -108,34 +112,3 @@ const styles = StyleSheet.create({
 
 
 });
-
-const listItem = [
-    {
-        img: HotelImg,
-        imgLocation: icLocation,
-        title: "Khách sạn Mường Thanh",
-        address: "94/16 Trịnh Hoài Đức, Vũng Tàu",
-        service1: "Massa",
-        service2: "Pool",
-        service3: "Breakfast"
-    },
-    {
-        img: imgHotel1,
-        imgLocation: icLocation,
-        title: "Khách sạn Alacate",
-        address: "72 Nam Cao, TP Hồ Chí Minh",
-        service1: "Buffet",
-        service2: "Pool",
-        service3: "Breakfast",
-        left: false,
-    },
-    {
-        img: imgHotel2,
-        imgLocation: icLocation,
-        title: "Khách sạn Hoàng Đế ",
-        address: "21 Phạm Văn Đồng, Đà Nẵng",
-        service1: "Massa",
-        service2: "Cafe",
-        service3: "Breakfast"
-    },
-];

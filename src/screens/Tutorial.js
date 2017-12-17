@@ -31,11 +31,10 @@ class Loading extends Component<{}>
 
     constructor(props){
         super(props);
-        // commonHelper.setLogin({id: 11, email: 'asdasd'});
         commonHelper.checkLogin((account)=>{
-            console.log("islogin ", account);
+            this.props.navigation.navigate('Home');
         }, (error)=>{
-            console.log("not login", error);
+            console.log("Check login error", error);
         });
     }
 

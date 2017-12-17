@@ -15,41 +15,44 @@ import icLocation from '../../../src/assets/img/icLocation.png'
 export default class HotelItem extends Component<{}>
 {
 
-        render()
-    {
+    constructor(props){
+        super(props);
+    }
+
+    __renderService(services){
+        return services.map((service, index)=>{
+            return (
+                <View key={index} style={styles.viewServiceItem}>
+                    <Text style={styles.servicesText}>{service}</Text>
+                </View>
+            );
+        })
+    }
+
+    render() {
         return (
            
             <View style={styles.container}>
                 <Image
                     resizeMode={"stretch"}
-                    source={this.props.imgSrc}
+                    source={{uri: this.props.item.image}}
                     style={styles.image}/>
 
                 <View style={styles.text}>
-                    <Text style={styles.titleText}>{this.props.title}</Text>
+                    <Text style={styles.titleText}>{this.props.item.name}</Text>
                         <View style={styles.viewAddress}>
                             <Image
                                 source = {icLocation}
                                 resizeMode = {"contain"}
                                 style = {styles.icLocation}
                             />
-                            <Text style={styles.addressText}>{this.props.address}</Text>
+                            <Text style={styles.addressText}>{this.props.item.address}</Text>
                         </View>
                         <View style={styles.viewService}>
-                            <View style={styles.viewServiceItem}>
-                                <Text style={styles.servicesText}>{this.props.service1}</Text>
-                            </View>
-                            <View style={styles.viewServiceItem}>
-                                <Text style={styles.servicesText}>{this.props.service2}</Text>
-                            </View>
-                            <View style={styles.viewServiceItem}>
-                                <Text style={styles.servicesText}>{this.props.service3}</Text>
-                            </View>
+                            {this.__renderService(this.props.item.services)}
                         </View>
 
                 </View>
-
-
             </View>
         );
     }

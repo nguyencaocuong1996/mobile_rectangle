@@ -4,11 +4,11 @@ import {OpacityHeader, GreenButton, InputWithIconAndUnderline as MyInput} from '
 import {Image, StyleSheet, Text, TouchableOpacity, View, AsyncStorage} from 'react-native';
 import bgImage from '../assets/img/bgTutorial1.png';
 import iconFooco from '../assets/img/icAtTut1.png';
-import {common as commonApi} from '../api';
+import {common as commonApi, hotel as hotelApi} from '../api';
 import {connect} from 'react-redux';
 import {common as commonHelper} from '../helpers';
 
-class Login extends Component<{}>
+class AddHotel extends Component<{}>
 {
 
     static navigationOptions = ({navigation})=>{
@@ -20,22 +20,26 @@ class Login extends Component<{}>
     constructor(props){
         super(props);
         this.state = {
-            username: null,
-            password: null,
-            doingLogin: false,
+            name: null,
+            address: null,
+            star: 0,
+            price: 0,
+            description: null,
+            isAdding: false,
         };
     }
 
-    _login(){
-        this.setState({doingLogin: true});
-        commonApi.login(this.state, (response)=>{
-            alert("Login success!");
-            this.props.navigation.navigate('Home');
-            this.setState({doingLogin:false});
-        }, (error=>{
-            alert("Login fail!");
-            this.setState({doingLogin:false});
-        }));
+    componentDidMount(){
+        hotelApi.getAll((res)=>{
+            console.log(res);
+        }, (e)=>{
+            console.log(e);
+        })
+    }
+
+    _add(){
+        this.setState({isAdding: true});
+
     }
 
     render()
@@ -45,7 +49,7 @@ class Login extends Component<{}>
                 <Image source={bgImage} style={styles.bgImage} />
                 <Content style={styles.content}>
                     <Text style={styles.txtHeader}>
-                        WELCOME BACK
+                        ADD YOUR HOTEL
                     </Text>
                     <View style={styles.iconWrap}>
                         <Image source={iconFooco} style={styles.icon}/>
@@ -54,20 +58,28 @@ class Login extends Component<{}>
                         </Text>
                     </View>
                     <Form style={styles.form}>
-                        <MyInput icon={'envelope-o'}
-                                 placeholder={'EMAIL'}
+                        <MyInput icon={'h-square'}
+                                 placeholder={'HOTEL NAME'}
                                  onChangeText={(email)=>this.setState({username: email})}/>
-                        <MyInput secureTextEntry={true}
-                                 icon={'unlock'}
-                                 placeholder={'PASSWORD'}
-                                 onChangeText={(password)=>this.setState({password})}/>
+                        <MyInput icon={'map-marker'}
+                                 placeholder={'HOTEL ADDRESS'}
+                                 onChangeText={(email)=>this.setState({username: email})}/>
+                        <MyInput icon={'star'}
+                                 placeholder={'STAR'}
+                                 onChangeText={(email)=>this.setState({username: email})}/>
+                        <MyInput icon={'money'}
+                                 placeholder={'PRICE'}
+                                 onChangeText={(email)=>this.setState({username: email})}/>
+                        <MyInput icon={'align-center'}
+                                 placeholder={'DESCRIPTION'}
+                                 onChangeText={(email)=>this.setState({username: email})}/>
                         <View style={styles.space} />
-                        <GreenButton disabled={this.state.doingLogin} text={'Sign In'} onPress={()=>this._login()}/>
+                        <GreenButton disabled={this.state.doingLogin} text={'ADD'} onPress={()=>this._add()}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
-                        <Text style={styles.txtSignUp}>Don't have an account?</Text>
+                        {/*<Text style={styles.txtSignUp}>Don't have an account?</Text>*/}
                         <TouchableOpacity onPress={()=>this.props.navigation.navigate('Register')}>
-                            <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Sign Up now</Text>
+                            <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Manage your Hotel?</Text>
                         </TouchableOpacity>
                     </View>
                 </Content>
@@ -82,7 +94,7 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(AddHotel);
 
 const styles = StyleSheet.create({
     container:{

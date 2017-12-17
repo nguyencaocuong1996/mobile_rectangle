@@ -5,7 +5,7 @@ export const snippets = {
 };
 
 export default {
-    login: ({id, token, name, email})=> ({
+    login: ({id, token, name, email}) => ({
         type: snippets.login,
         id: id,
         token: token,

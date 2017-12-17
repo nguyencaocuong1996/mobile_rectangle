@@ -23,19 +23,18 @@ class Loading extends Component<{}>
         super(props);
         // commonHelper.setLogin({id: 11, email: 'asdasd'});
         commonHelper.checkLogin((account)=>{
-            commonHelper.reduxLogin(account);
             this.props.navigation.navigate('Home');
         }, (error)=>{
             console.log("not login", error);
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Tutorial');
         });
     }
 
     render()
     {
         return (
-            <View>
-                <Text>adlasdklaj</Text>
+            <View style={styles.container}>
+                <Text style={styles.txt}>FOOCO</Text>
             </View>
 
         );
@@ -51,5 +50,12 @@ export default connect(mapStateToProps, {login: commonAction.login})(Loading);
 
 
 const styles = StyleSheet.create({
-
+    container: {
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+    },
+    txt:{
+        fontSize: 30,
+        color: '#ff0060'
+    }
 });
