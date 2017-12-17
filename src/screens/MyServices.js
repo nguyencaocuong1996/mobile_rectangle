@@ -84,6 +84,17 @@ class MyServices extends Component<{}>
         )
     };
 
+    addService(){
+        switch(this.state.service){
+            case services.hotel:
+                this.props.navigation.navigate('AddHotel');
+                break;
+            case services.restaurant:
+                this.props.navigation.navigate('AddRestaurant');
+                break;
+        }
+
+    }
 
     render()
     {
@@ -138,7 +149,7 @@ class MyServices extends Component<{}>
                         keyExtractor={this._keyExtractor}
                         />
                     </View>
-                    <FloatAddButton />
+                    <FloatAddButton onPress={this.addService.bind(this)} />
                 </View>
             </StyleProvider>
         );

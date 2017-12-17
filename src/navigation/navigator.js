@@ -79,5 +79,11 @@ export default StackNavigator({
     Register: {
         screen: Register,
     },
+    AddHotel: {
+        screen: AddHotel,
+    },
+    AddRestaurant: {
+        screen: AddRestaurant,
+    }
 
 });
