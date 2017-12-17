@@ -47,7 +47,7 @@ class Loading extends Component<{}>
                     <Image source={IcTut1} style={styles.icTut1}/>
                     <Text style={styles.appName}>FooCo</Text>
                     <Text style={styles.txtDescription}>asdasdashdjkh</Text>
-                    <TouchableOpacity style={styles.cancelButton}>
+                    <TouchableOpacity style={styles.cancelButton} onPress={()=>this.props.navigation.navigate('Home')}>
                         <Text style={styles.cancelText}>Cancel</Text>
                     </TouchableOpacity>
 

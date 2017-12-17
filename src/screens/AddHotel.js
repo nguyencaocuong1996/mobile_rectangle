@@ -30,11 +30,6 @@ class AddHotel extends Component<{}>
     }
 
     componentDidMount(){
-        hotelApi.getAll((res)=>{
-            console.log(res);
-        }, (e)=>{
-            console.log(e);
-        })
     }
 
     _add(){

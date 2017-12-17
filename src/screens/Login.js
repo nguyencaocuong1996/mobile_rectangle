@@ -24,6 +24,7 @@ class Login extends Component<{}>
             password: null,
             doingLogin: false,
         };
+        console.log("load login");
     }
 
     _login(){

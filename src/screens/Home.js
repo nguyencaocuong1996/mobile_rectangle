@@ -120,7 +120,7 @@ const listItem = [
         img: HotelImg,
         title: "Khách sạn",
         description: "des 1",
-        screen: 'HotelList',
+        screen: 'Hotel',
     },
     {
         img: RestaurantImg,

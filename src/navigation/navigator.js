@@ -2,7 +2,7 @@ import {StackNavigator, TabNavigator} from 'react-navigation';
 import {
     Login,
     Register,
-
+    Settings,
     Tutorial,
 
     Home,
@@ -26,7 +26,7 @@ const hotel = TabNavigator({
         screen: HotelList
     },
     HotelMapList: {
-        screen: HotelList
+        screen: HotelMap
     },
 });
 
@@ -42,8 +42,9 @@ const restaurant = TabNavigator({
 
 export default StackNavigator({
     // Loading: {
-    //     screen: MyServices
+    //     screen: Settings
     // },
+
     Tutorial: {
         screen: Tutorial
     },
@@ -55,14 +56,14 @@ export default StackNavigator({
                     tabBarVisible: commonHelper.isLogin(),
                 })
             },
-            Hotel: {
-                screen: hotel
+            MyFavorite: {
+                screen: MyServices
             },
             MyService: {
                 screen: MyServices
             },
             Settings: {
-                screen: RestaurantList
+                screen: Settings
             }
         }, {
             tabBarPosition: 'bottom',
@@ -71,6 +72,7 @@ export default StackNavigator({
                 // activeTintColor: '#e91e63',
                 tabBarVisible: true,
             },
+            lazyLoad: true,
         }),
     },
     Login: {
@@ -85,11 +87,14 @@ export default StackNavigator({
     AddRestaurant: {
         screen: AddRestaurant,
     },
-    HotelList: {
-        screen: HotelList,
+    Hotel: {
+        screen: hotel,
     },
-    RestaurantList: {
-        screen: RestaurantList
-    }
+    Restaurant: {
+        screen: restaurant
+    },
 
+
+}, {
+    lazyLoad: true,
 });
