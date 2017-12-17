@@ -45,9 +45,10 @@ const getByService = ({id}, r, e) => {
 };
 
 const getListMyRestaurant = (r, e)=>{
+    const token = commonHelper.getAccessToken();
     api.get('restaurant/me/', r, e, {
         headers:{
-            'Authorization': 'Token 79e60238fe252fcd2774040d03000c09f3ec7fba',
+            'Authorization': 'Token '.concat(token),
         }
     })
 };

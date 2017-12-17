@@ -1,7 +1,7 @@
 import localStore from './localStoreHelper';
 import reduxStore from '../redux/Store';
 import commonAction from '../redux/actions/CommonAction';
-
+import _ from 'lodash';
 
 const commonHelper = {
     checkLogin: async (isLoginCallback, notLoginCallback)=>{
@@ -41,6 +41,17 @@ const commonHelper = {
     },
     account: ()=>{
         return reduxStore.getState().common.account;
+    },
+    getAccessToken(){
+        return commonHelper.account().token;
+    },
+    formatTimeToHM(time){
+        let times = _.split(time, ':');
+        return times[0] + ':' + times[1];
+    },
+    formatDate(date){
+        let obj = new Date(date);
+        return obj.toLocaleDateString();
     }
 };
 

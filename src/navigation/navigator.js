@@ -41,9 +41,9 @@ const restaurant = TabNavigator({
 
 
 export default StackNavigator({
-    Loading: {
-        screen: MyServices
-    },
+    // Loading: {
+    //     screen: MyServices
+    // },
     Tutorial: {
         screen: Tutorial
     },
@@ -58,8 +58,8 @@ export default StackNavigator({
             Hotel: {
                 screen: hotel
             },
-            Restaurant: {
-                screen: restaurant
+            MyService: {
+                screen: MyServices
             },
             Settings: {
                 screen: RestaurantList

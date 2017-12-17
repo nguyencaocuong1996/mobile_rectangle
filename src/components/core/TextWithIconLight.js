@@ -29,6 +29,7 @@ TextWithIconLight.defaultProps = {
 
 const styles = StyleSheet.create({
     wrapper:{
+        marginBottom: 5,
         flexDirection: 'row',
     },
     icon: {
