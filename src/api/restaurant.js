@@ -1,15 +1,8 @@
 import core, {default_config} from './core';
 import {common as commonHelper} from '../helpers';
 
-let config = default_config;
-// if (commonHelper.isLogin()){
-//     const account = commonHelper.account();
-//     config.headers = {
-//         Authorization: 'Token ' + account.token,
-//     }
-// }
 
-const api = core(config);
+const api = core(default_config);
 
 const add = ({name, address, star, price, description}, r, e) =>{
     api.post('customer/create/', {data:{
@@ -51,8 +44,8 @@ const getByService = ({id}, r, e) => {
     });
 };
 
-const getListMyHotel = (r, e)=>{
-    api.get('hotel/me/', r, e, {
+const getListMyRestaurant = (r, e)=>{
+    api.get('restaurant/me/', r, e, {
         headers:{
             'Authorization': 'Token 79e60238fe252fcd2774040d03000c09f3ec7fba',
         }
@@ -63,5 +56,5 @@ export default {
     add,
     getList,
     getAll,
-    getListMyHotel,
+    getListMyRestaurant,
 }

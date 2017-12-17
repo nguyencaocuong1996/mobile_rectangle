@@ -1,20 +1,26 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
-    TextInput, FlatList, Image, TouchableOpacity,
+    FlatList,
+    Image,
+    TouchableOpacity,
 } from 'react-native';
 import {FloatAddButton} from "../components/core";
 import {connect} from 'react-redux';
-import {common as commonAction} from '../redux/actions';
 import img from '../assets/img/home-item-bg-restaurant.jpg';
 import {Button, Icon, StyleProvider} from "native-base";
 import getTheme from '../../native-base-theme/components';
 import myTheme from '../themes/fontAwsome';
 import ServiceItem from "../components/home/ServiceItem";
+import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
 
+
+const services = {
+    hotel: 'hotel',
+    restaurant: 'restaurant',
+};
 
 class MyServices extends Component<{}>
 {
@@ -24,12 +30,47 @@ class MyServices extends Component<{}>
 
     constructor(props){
         super(props);
+        this.state = {
+            service: services.hotel,
+            listService: [],
+        }
     }
 
     componentDidMount(){
-        // this.props.getAll();
+        this.props.getListMyHotel();
+        this.props.getListMyRestaurant();
     }
 
+    __chooseService(type){
+        switch (type){
+            case services.hotel:
+                this.setState({
+                    service: services.hotel,
+                });
+                break;
+            case services.restaurant:
+                this.setState({
+                    service: services.restaurant,
+                });
+                break;
+            default:
+                this.setState({
+                    service: services.hotel,
+                });
+                break;
+        }
+    }
+
+    __getListService(type){
+        switch (type){
+            case services.hotel:
+                return this.props.listMyHotel;
+            case services.restaurant:
+                return this.props.listMyRestaurant;
+            default:
+                return this.props.listMyHotel;
+        }
+    }
 
     _keyExtractor = (item, index)=>{
         return index;
@@ -44,6 +85,7 @@ class MyServices extends Component<{}>
 
     render()
     {
+        const listService = this.__getListService(this.state.service);
         return (
             <StyleProvider style={getTheme(myTheme)}>
                 <View style={styles.container}>
@@ -69,17 +111,19 @@ class MyServices extends Component<{}>
                             <Text style={[styles.navItem,]}>A-Z</Text>
                         </TouchableOpacity>
                         <View style={styles.breakNavButton}/>
-                        <TouchableOpacity style={[styles.navButton,]}>
-                            <Text style={[styles.navItem,]}>Recent</Text>
+                        <TouchableOpacity style={[styles.navButton,]} onPress={()=>this.__chooseService(services.hotel)}>
+                            {this.state.service===services.hotel && <Text style={[styles.navItem, styles.txtBold]}>Hotel</Text>}
+                            {this.state.service!==services.hotel && <Text style={[styles.navItem,]}>Hotel</Text>}
                         </TouchableOpacity>
                         <View style={styles.breakNavButton}/>
-                        <TouchableOpacity style={[styles.navButton,]}>
-                            <Text style={[styles.navItem,]}>Hidden</Text>
+                        <TouchableOpacity style={[styles.navButton,]} onPress={()=>this.__chooseService(services.restaurant)}>
+                            {this.state.service===services.restaurant && <Text style={[styles.navItem, styles.txtBold]}>Restaurant</Text>}
+                            {this.state.service!==services.restaurant && <Text style={[styles.navItem,]}>Restaurant</Text>}
                         </TouchableOpacity>
                     </View>
                     <View style={styles.listSection}>
                         <FlatList
-                        data = {this.props.listService}
+                        data = {listService}
                         renderItem = {this._renderItem}
                         keyExtractor={this._keyExtractor}
                         />
@@ -93,17 +137,22 @@ class MyServices extends Component<{}>
 
 const mapStateToProps = (state) => {
     return {
-        listService: state.common.listService,
+        listMyHotel: state.hotel.listMyHotel,
+        listMyRestaurant: state.restaurant.listMyRestaurant,
     };
 };
 
 const mapActionToProps = {
-    getAllService: commonAction.getAllService,
+    getListMyHotel: hotelAction.getListMyHotel,
+    getListMyRestaurant: restaurantAction.getListMyRestaurant,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(MyServices);
 
 const styles = StyleSheet.create({
+    txtBold: {
+        fontWeight: 'bold',
+    },
     container: {
         flex: 1,
         backgroundColor: "#fff",

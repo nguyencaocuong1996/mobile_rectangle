@@ -3,10 +3,14 @@ import {Platform} from 'react-native';
 
 const base_url = Platform.OS === 'android' ? 'http://10.0.2.2:8000/api/' : 'http://localhost:8000/api/';
 
+const token = 'Token '.concat('79e60238fe252fcd2774040d03000c09f3ec7fba');
+
 export const default_config = {
-    headers:null,
+    // headers:null,
     timeout:5000,
-    baseURL:null};
+    baseURL:null,
+    headers: null,
+};
 
 let getInstance = (config=default_config) => {
     config.baseURL = config.baseURL || base_url;
@@ -24,6 +28,7 @@ const core = (config=default_config)=>({
     },
     get: (path, successCallback, errorCallback, {params={}, headers={}} = {}) => {
         getInstance(config).request({
+            method: 'GET',
             url: path,
             params,
             headers,

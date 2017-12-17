@@ -18,17 +18,17 @@ export default class ServiceItem extends Component<{}>
         return (
             <View style={styles.container}>
                 <Image
-                    resizeMode={"stretch"}
-                    source={image}
+                    // resizeMode={"stretch"}
+                    source={{uri: this.props.item.image}}
                     style={styles.image}/>
                 <View style={styles.infoWrapper}>
                     <Text style={styles.txtName}>{this.props.item.name}</Text>
                     <View style={styles.clockAndPhone}>
-                        <TextWithIconLight iconName={'clock-o'} text={this.props.item.openTime}/>
+                        <TextWithIconLight iconName={'clock-o'} text={this.props.item.openAt + ' - ' + this.props.item.closeAt}/>
                         <TextWithIconLight iconName={'phone'} text={this.props.item.phone}/>
                     </View>
                     <TextWithIconLight iconName={'home'} text={this.props.item.address}/>
-                    <Text style={styles.txtCreateAt}>asdasdasdsad</Text>
+                    <Text style={styles.txtCreateAt}>{this.props.item.createdAt}</Text>
                 </View>
 
             </View>
@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
     image: {
         height: 128,
         width: 128,
-        borderRadius: 64,
-        flex: 35,
+        borderRadius: 128/2,
     },
     infoWrapper: {
         flexDirection: 'column',
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         // borderWidth: 1,
         // borderColor: 'red',
-        flex: 70
+        // flex: 70
     },
     txtCreateAt: {
         marginTop: 15,
