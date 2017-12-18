@@ -9,12 +9,13 @@ import {
 import {HotelItem} from "../components/hotel";
 import {connect} from 'react-redux';
 import {hotel as hotelAction} from '../redux/actions';
+import GradientSection from "../components/core/GradientSection";
 
 
-class HotelList extends Component<{}>
+class MyFavorite extends Component<{}>
 {
     static navigationOptions = {
-        title: 'List Hotel',
+        title: 'Favorite',
     };
 
     constructor(props){
@@ -41,21 +42,7 @@ class HotelList extends Component<{}>
     {
         return (
             <View style={styles.container}>
-                <View style={styles.searchSection}>
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder={"🔍 Search services"}
-                        // onChangeText={(text) => this.setState({text})}
-                        // value={this.state.text}
-                    />
-                </View>
-                <View style={styles.menuSection}>
-                    <FlatList
-                        data = {this.props.listHotel}
-                        renderItem = {this._renderItem}
-                        keyExtractor={this._keyExtractor}
-                    />
-                </View>
+                <GradientSection/>
             </View>
         );
     }
@@ -71,7 +58,7 @@ const mapActionToProps = {
     getAll: hotelAction.getAll,
 };
 
-export default connect(mapStateToProps, mapActionToProps)(HotelList);
+export default connect(mapStateToProps, mapActionToProps)(MyFavorite);
 
 const styles = StyleSheet.create({
     container: {

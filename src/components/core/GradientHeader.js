@@ -9,6 +9,7 @@ export default class GradientHeader extends Component<{}>{
     }
 
     _goBack = ()=>{
+        // alert("aa");
         if(this.props.backScreen){
             this.props.navigation.navigate(this.props.backScreen);
         } else {
@@ -17,7 +18,6 @@ export default class GradientHeader extends Component<{}>{
     };
 
     render(){
-        let backColor = !this.props.backColor ? '#fff' : this.props.backColor;
         return (
             <LinearGradient
                 startPoint={{x: 0, y: 1}} endPoint={{x: 1, y: 1}}
@@ -26,7 +26,7 @@ export default class GradientHeader extends Component<{}>{
                 style={styles.linearGradient}>
                 <Text style={styles.title}>{this.props.title}</Text>
                 {this.props.showBackButton && <TouchableOpacity style={styles.buttonBack} onPress={()=>this._goBack()}>
-                    <Icon name={'chevron-left'} style={[styles.icon, {color: backColor}]}/>
+                    <Icon name={'chevron-left'} style={[styles.icon, {color: this.props.backColor}]}/>
                 </TouchableOpacity>}
                 {this.props.children}
             </LinearGradient>
@@ -36,7 +36,9 @@ export default class GradientHeader extends Component<{}>{
 
 GradientHeader.defaultProps = {
     title: "",
-    showBackButton: true
+    showBackButton: true,
+    backColor: '#fff',
+    backScreen: 'Home',
 };
 
 const styles = StyleSheet.create({

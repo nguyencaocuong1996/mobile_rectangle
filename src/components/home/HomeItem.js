@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     Image, TouchableOpacity,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 export default class HomeItem extends Component<{}>
 {
@@ -23,15 +21,6 @@ export default class HomeItem extends Component<{}>
                     <View style={styles.text}>
                         <Text style={styles.titleText}>{this.props.item.title}</Text>
                     </View>
-
-                    {/*<LinearGradient*/}
-                    {/*// start={this.props.isLeft ? { x: 1, y: 1 } : { x: 0, y: 1 }}*/}
-                    {/*// end={!this.props.isLeft ? { x: 1, y: 1 } : { x: 0, y: 1 }}*/}
-                    {/*colors={['transparent', '#8952a3']}*/}
-                    {/*style={this.props.isLeft ? styles.text : [styles.text, styles.textRight]}>*/}
-                    {/*<Text style={styles.titleText}>{this.props.title}</Text>*/}
-                    {/*<Text style={styles.descriptionText}>{this.props.description}</Text>*/}
-                    {/*</LinearGradient>*/}
                 </View>
             </TouchableOpacity>
         );

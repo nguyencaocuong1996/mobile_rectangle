@@ -22,26 +22,20 @@ import GradientSection from "../components/core/GradientSection";
 
 export default class Home extends Component<{}>
 {
-
-    static navigationOptions = ({navigation})=>{
-        let isLogin = commonHelper.isLogin();
-        let default_ops = {
+    static navigationOptions = ({navigation})=> {
+        const isLogin = commonHelper.isLogin();
+        return {
             title: 'FooCo',
-            tabBarVisible: true,
+            tabBarVisible: isLogin,
             headerLeft: null,
             header: (
                 <GradientHeader title={'FOOCO'} showBackButton={false}>
-                    {isLogin && <HeaderLogoutButton navigation={navigation} />}
-                    {!isLogin && <HeaderLoginButton navigation={navigation} />}
+                    {isLogin && <HeaderLogoutButton navigation={navigation}/>}
+                    {!isLogin && <HeaderLoginButton navigation={navigation}/>}
                 </GradientHeader>
             )
         };
-        if (navigation.state.params !== undefined){
-            default_ops.title = navigation.state.params.title;
-        }
-        return default_ops;
     };
-
     constructor(props){
         super(props);
     }
@@ -69,6 +63,7 @@ export default class Home extends Component<{}>
                         placeholder={"🔍 Search services"}
                         // onChangeText={(text) => this.setState({text})}
                         // value={this.state.text}
+                        underlineColorAndroid={'rgba(0,0,0,0)'}
                     />
                 </View>
                 <View style={styles.menuSection}>
@@ -95,6 +90,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: 'row',
         height: 50,
+        width: '90%',
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -117,6 +113,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     searchInput: {
+        width: '100%',
         height: 50,
         // borderColor: '#d1d1d1',
         // borderWidth: 1,

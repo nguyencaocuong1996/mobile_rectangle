@@ -13,7 +13,7 @@ export default class Settings extends Component<{}>
 {
 
     static navigationOptions = ({navigation}) => ({
-        title: 'Settings'
+        title: 'More...'
     });
 
     constructor(props){

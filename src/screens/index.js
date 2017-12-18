@@ -15,6 +15,8 @@ import RestaurantList from './RestaurantList';
 import RestaurantMap from './RestaurantMap';
 import RestaurantDetail from './RestaurantDetail';
 import Settings from './Settings';
+import MyFavorite from "./MyFavorite";
+import MyServices from "./MyServices";
 
 
 
@@ -32,4 +34,6 @@ module.exports = {
     RestaurantMap,
     RestaurantDetail,
     Settings,
+    MyFavorite,
+    MyServices,
 };

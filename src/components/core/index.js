@@ -7,16 +7,20 @@ import FloatAddButton from "./FloatAddButton";
 import TextWithIconLight from "./TextWithIconLight";
 import GradientSection from "./GradientSection";
 import ButtonWithIcon from "./ButtonWithIcon";
+import GradientHeader from "./GradientHeader";
+import HeaderLogoutButton from "./HeaderLogoutButton";
 
 const core = {
     //container
     GradientSection,
+    GradientHeader,
 
     //Button
     GreenButton,
     HeaderLoginButton,
     FloatAddButton,
     ButtonWithIcon,
+    HeaderLogoutButton,
 
     //Input
     InputWithIconAndUnderline,

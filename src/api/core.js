@@ -1,8 +1,8 @@
 import axios from 'react-native-axios';
 import {Platform} from 'react-native';
 
-const base_url = Platform.OS === 'android' ? 'http://10.0.2.2:8000/api/' : 'http://localhost:8000/api/';
-
+// const base_url = Platform.OS === 'android' ? 'http://10.0.2.2:8000/api/' : 'http://localhost:8000/api/';
+const base_url = 'http://localhost:8000/api/';
 const token = 'Token '.concat('79e60238fe252fcd2774040d03000c09f3ec7fba');
 
 export const default_config = {

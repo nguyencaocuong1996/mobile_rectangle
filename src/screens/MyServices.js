@@ -24,7 +24,7 @@ const services = {
 class MyServices extends Component<{}>
 {
     static navigationOptions = {
-        title: 'My services',
+        title: 'Me',
     };
 
     constructor(props){
