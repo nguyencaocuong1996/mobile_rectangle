@@ -15,6 +15,7 @@ import EventImg from '../assets/img/home-item-bg-event.jpg';
 import {Button} from "native-base";
 import {common as commonHelper} from '../helpers';
 import HeaderLogoutButton from '../components/core/HeaderLogoutButton';
+import LinearGradient from "react-native-linear-gradient";
 
 
 export default class Home extends Component<{}>

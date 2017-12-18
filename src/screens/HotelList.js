@@ -9,12 +9,16 @@ import {
 import {HotelItem} from "../components/hotel";
 import {connect} from 'react-redux';
 import {hotel as hotelAction} from '../redux/actions';
+import GradientHeader from "../components/core/GradientHeader";
+import GradientSection from "../components/core/GradientSection";
+import {HotelFilterSection} from "../components/hotel/index";
 
 
 class HotelList extends Component<{}>
 {
     static navigationOptions = {
         title: 'List Hotel',
+        header: <GradientHeader title={'List Hotel'} />
     };
 
     constructor(props){
@@ -41,14 +45,8 @@ class HotelList extends Component<{}>
     {
         return (
             <View style={styles.container}>
-                <View style={styles.searchSection}>
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder={"🔍 Search services"}
-                        // onChangeText={(text) => this.setState({text})}
-                        // value={this.state.text}
-                    />
-                </View>
+                <GradientSection height={130} />
+                <HotelFilterSection style={{position: 'absolute', top: 60,}} />
                 <View style={styles.menuSection}>
                     <FlatList
                         data = {this.props.listHotel}
@@ -76,6 +74,7 @@ export default connect(mapStateToProps, mapActionToProps)(HotelList);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#fff',
     },
     searchSection: {
         flex:1,
@@ -96,10 +95,15 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     menuSection: {
-        flex:7,
+        borderColor: 'red',
+        borderWidth: 1,
+        marginTop: 50,
+        flex:5,
         flexDirection: 'column',
         padding: 5,
         backgroundColor: '#fff',
+        paddingLeft: '5%',
+        paddingRight: '5%',
     },
     searchInput: {
         height: 40,

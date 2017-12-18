@@ -41,9 +41,9 @@ const restaurant = TabNavigator({
 
 
 export default StackNavigator({
-    // Loading: {
-    //     screen: Settings
-    // },
+    Loading: {
+        screen: HotelList
+    },
 
     Tutorial: {
         screen: Tutorial

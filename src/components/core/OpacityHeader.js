@@ -19,11 +19,11 @@ export default class OpacityHeader extends Component<{}>{
     render(){
         let backColor = !this.props.backColor ? '#fff' : this.props.backColor;
         return (
-                <View style={styles.container}>
-                    <TouchableOpacity onPress={()=>this._goBack()}>
-                        <Icon name={'chevron-left'} style={[styles.icon, {color: backColor}]}/>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={()=>this._goBack()}>
+                    <Icon name={'chevron-left'} style={[styles.icon, {color: backColor}]}/>
+                </TouchableOpacity>
+            </View>
         )
     }
 }
