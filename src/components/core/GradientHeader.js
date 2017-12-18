@@ -25,9 +25,10 @@ export default class GradientHeader extends Component<{}>{
                 colors={['#57A6F7', '#5BB4F9', '#63C7FA', '#66CDF9']}
                 style={styles.linearGradient}>
                 <Text style={styles.title}>{this.props.title}</Text>
-                <TouchableOpacity style={styles.buttonBack} onPress={()=>this._goBack()}>
+                {this.props.showBackButton && <TouchableOpacity style={styles.buttonBack} onPress={()=>this._goBack()}>
                     <Icon name={'chevron-left'} style={[styles.icon, {color: backColor}]}/>
-                </TouchableOpacity>
+                </TouchableOpacity>}
+                {this.props.children}
             </LinearGradient>
         )
     }
@@ -35,6 +36,7 @@ export default class GradientHeader extends Component<{}>{
 
 GradientHeader.defaultProps = {
     title: "",
+    showBackButton: true
 };
 
 const styles = StyleSheet.create({

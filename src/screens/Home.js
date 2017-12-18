@@ -16,18 +16,26 @@ import {Button} from "native-base";
 import {common as commonHelper} from '../helpers';
 import HeaderLogoutButton from '../components/core/HeaderLogoutButton';
 import LinearGradient from "react-native-linear-gradient";
+import GradientHeader from "../components/core/GradientHeader";
+import GradientSection from "../components/core/GradientSection";
 
 
 export default class Home extends Component<{}>
 {
 
     static navigationOptions = ({navigation})=>{
+        let isLogin = commonHelper.isLogin();
         let default_ops = {
             title: 'FooCo',
             tabBarVisible: true,
             headerLeft: null,
+            header: (
+                <GradientHeader title={'FOOCO'} showBackButton={false}>
+                    {isLogin && <HeaderLogoutButton navigation={navigation} />}
+                    {!isLogin && <HeaderLoginButton navigation={navigation} />}
+                </GradientHeader>
+            )
         };
-        default_ops.headerRight = commonHelper.isLogin() ? <HeaderLogoutButton navigation={navigation} /> : <HeaderLoginButton navigation={navigation} />;
         if (navigation.state.params !== undefined){
             default_ops.title = navigation.state.params.title;
         }
@@ -44,7 +52,6 @@ export default class Home extends Component<{}>
     };
 
     _renderItem = ({item}) => {
-        console.log("name", item.title);
         return (
             <HomeItem item={item} navigation={this.props.navigation}/>
         )
@@ -55,6 +62,7 @@ export default class Home extends Component<{}>
     {
         return (
             <View style={styles.container}>
+                <GradientSection height={80}/>
                 <View style={styles.searchSection}>
                     <TextInput
                         style={styles.searchInput}
@@ -81,13 +89,16 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     searchSection: {
+        position: 'absolute',
+        top: 50,
+        alignSelf: 'center',
         flex:1,
         flexDirection: 'row',
         height: 50,
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-
+        borderRadius: 20,
         shadowColor: '#9c9c9c',
         shadowOffset: {
             width: 0,
@@ -103,14 +114,17 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: 5,
         backgroundColor: '#fff',
+        marginTop: 30,
     },
     searchInput: {
-        height: 40,
-        borderColor: '#d1d1d1',
-        borderWidth: 1,
+        height: 50,
+        // borderColor: '#d1d1d1',
+        // borderWidth: 1,
         minWidth: 350,
-        borderRadius: 20,
+        borderRadius: 25,
         textAlign: 'center',
+        position: 'absolute',
+        backgroundColor: '#fff',
     }
 
 

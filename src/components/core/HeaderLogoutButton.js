@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {common as commonHelper} from '../../helpers';
+import {Icon} from "native-base";
 
 
 export default class HeaderLogoutButton extends Component<{}> {
@@ -16,7 +17,7 @@ export default class HeaderLogoutButton extends Component<{}> {
     render() {
         return (
             <TouchableOpacity style={styles.container} onPress={()=>this._logout()}>
-                <Text style={styles.text}>Logout</Text>
+                <Icon style={styles.text} name={'sign-out'}/>
             </TouchableOpacity>
         )
     }
@@ -24,11 +25,14 @@ export default class HeaderLogoutButton extends Component<{}> {
 
 const styles = StyleSheet.create({
     container: {
-        marginRight: 20,
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        right:20,
+        top: 20,
     },
     text: {
-        color: '#3274F6',
-        fontSize: 17,
+        color: '#fff',
+        fontSize: 22,
         fontWeight: 'bold',
     }
 });

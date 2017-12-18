@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Icon} from "native-base";
 
 export default class HeaderLoginButton extends Component<{}> {
     constructor(props){
@@ -8,7 +9,7 @@ export default class HeaderLoginButton extends Component<{}> {
     render() {
         return (
             <TouchableOpacity style={styles.container} onPress={()=>this.props.navigation.navigate('Login')}>
-                <Text style={styles.text}>Login</Text>
+                <Icon style={styles.text} name={'sign-in'}/>
             </TouchableOpacity>
         )
     }
@@ -16,11 +17,14 @@ export default class HeaderLoginButton extends Component<{}> {
 
 const styles = StyleSheet.create({
     container: {
-        marginRight: 20,
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        right:20,
+        top: 20,
     },
     text: {
-        color: '#3274F6',
-        fontSize: 17,
+        color: '#fff',
+        fontSize: 30,
         fontWeight: 'bold',
     }
 });
