@@ -35,7 +35,10 @@ export default class GradientHeader extends Component<{}>{
 }
 
 GradientHeader.defaultProps = {
-    title: ""
+    title: "",
+    navigation: {
+        goBack: ()=>null,
+    }
 };
 
 const styles = StyleSheet.create({
@@ -43,8 +46,8 @@ const styles = StyleSheet.create({
         height: 60,
         paddingLeft: 15,
         paddingRight: 15,
-        borderWidth: 1,
-        borderColor: 'red',
+        // borderWidth: 1,
+        // borderColor: 'red',
     },
     title:{
         color: '#9BD5F8',

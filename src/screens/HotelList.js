@@ -47,7 +47,7 @@ class HotelList extends Component<{}>
             <View style={styles.container}>
                 <GradientSection height={130} />
                 <HotelFilterSection style={{position: 'absolute', top: 60,}} />
-                <View style={styles.menuSection}>
+                <View style={styles.listSection}>
                     <FlatList
                         data = {this.props.listHotel}
                         renderItem = {this._renderItem}
@@ -94,16 +94,16 @@ const styles = StyleSheet.create({
         elevation: 10,
         marginBottom: 10,
     },
-    menuSection: {
-        borderColor: 'red',
-        borderWidth: 1,
+    listSection: {
+        // borderColor: 'red',
+        // borderWidth: 1,
         marginTop: 50,
         flex:5,
         flexDirection: 'column',
         padding: 5,
         backgroundColor: '#fff',
-        paddingLeft: '5%',
-        paddingRight: '5%',
+        paddingLeft: '2%',
+        paddingRight: '2%',
     },
     searchInput: {
         height: 40,

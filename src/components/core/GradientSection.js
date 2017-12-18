@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     linearGradient: {
         paddingLeft: 15,
         paddingRight: 15,
-        borderWidth: 1,
-        borderColor: 'red',
+        // borderWidth: 1,
+        // borderColor: 'red',
     },
     buttonBack:{
         top: 20,
