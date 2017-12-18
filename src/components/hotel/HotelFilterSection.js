@@ -20,6 +20,7 @@ class HotelFilterSection extends Component<{}>
             star: 3,
             fromPrice: undefined,
             toPrice: undefined,
+            service: undefined,
         }
     }
 
@@ -43,17 +44,43 @@ class HotelFilterSection extends Component<{}>
         })
     };
 
+    __onServiceChange = (service)=>{
+        this.setState({
+            service,
+        })
+    };
+
+
     render()
     {
-        let fromPriceActive = this.state.fromPrice ? styles.pricePickerActive : null;
-        let fromPriceItemActive = this.state.fromPrice ? styles.priceItemActive : null;
-        let toPriceActive = this.state.toPrice ? styles.pricePickerActive : null;
-        let toPriceItemActive = this.state.toPrice ? styles.priceItemActive : null;
+        let fromPriceActive = this.state.fromPrice ? styles.pickerActive : null;
+        let fromPriceItemActive = this.state.fromPrice ? styles.pickerItemActive : null;
+        let toPriceActive = this.state.toPrice ? styles.pickerActive : null;
+        let toPriceItemActive = this.state.toPrice ? styles.pickerItemActive : null;
+        const serviceActive = this.state.service ? styles.pickerActive: null;
+        const serviceItemActive = this.state.service ? styles.pickerItemActive: null;
         return (
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.viewWrapper}>
 
                     <ButtonWithIcon iconName={'map-marker'} text={'Nearby'}/>
+                    <View style={[styles.pickerWrapper, {marginLeft: -20,}]}>
+                        <Icon style={[styles.icon]} name={'bed'} />
+                        <Picker
+                            mode="dropdown"
+                            placeholder="Dịch vụ"
+                            note={false}
+                            selectedValue={this.state.service}
+                            onValueChange={this.__onServiceChange.bind(this)}
+                            itemStyle={[styles.pricePickerItem, serviceItemActive]}
+                            textStyle={[styles.pricePickerItem, serviceItemActive]}
+                            style={[styles.pricePicker, serviceActive]}
+                        >
+                            {pickerServiceItems.map(item=>{
+                                return <Item key={item.value} label={item.label} value={item.value} />
+                            })}
+                        </Picker>
+                    </View>
                     <StarRating
                         disabled={false}
                         maxStars={5}
@@ -64,7 +91,7 @@ class HotelFilterSection extends Component<{}>
                     />
                 </View>
                 <View style={[styles.viewWrapper, {marginTop: 20,}]}>
-                    <View style={[styles.pricePickerWrapper]}>
+                    <View style={[styles.pickerWrapper]}>
                         <Icon style={[styles.icon]} name={'check-square-o'} />
                         <Picker
                             mode="dropdown"
@@ -81,8 +108,8 @@ class HotelFilterSection extends Component<{}>
                             })}
                         </Picker>
                     </View>
-                    <View style={[styles.pricePickerWrapper, {marginRight: 120,}]}>
-                        <Icon style={[styles.icon]} name={'check-square-o'} />
+                    <View style={[styles.pickerWrapper, {marginRight: 154,}]}>
+                        <Icon style={[styles.icon]} name={'check-square'} />
                         <Picker
                             mode="dropdown"
                             placeholder="Đến"
@@ -118,6 +145,12 @@ const pickerToPriceItems = [
     { label: '1.5 triệu', value: 1500000 },
     { label: '2 triệu', value: 2000000 },
 ];
+const pickerServiceItems = [
+    { label: 'Dịch vụ', value: 0 },
+    { label: 'Ăn', value: 500000 },
+    { label: 'Ngủ', value: 1000000 },
+    { label: 'Nghỉ', value: 1500000 },
+];
 
 HotelFilterSection.defaultProps = {
     style: {
@@ -148,11 +181,11 @@ const styles = StyleSheet.create({
         top: -3,
         width: (Platform.OS === 'ios') ? undefined : 120,
     },
-    pricePickerActive: {
+    pickerActive: {
         borderBottomColor: '#000',
         borderBottomWidth: 1,
     },
-    priceItemActive: {
+    pickerItemActive: {
         color: '#323232',
     },
     container: {
@@ -176,7 +209,7 @@ const styles = StyleSheet.create({
         // borderWidth:1,
         // borderColor: 'red',
     },
-    pricePickerWrapper: {
+    pickerWrapper: {
         flexDirection: 'row',
         // borderWidth: 1,
         // borderColor: 'black',

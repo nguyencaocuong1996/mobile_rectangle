@@ -6,7 +6,6 @@ import LinearGradient from "react-native-linear-gradient";
 export default class GradientHeader extends Component<{}>{
     constructor(props){
         super(props);
-        // console.log(props.navigation);
     }
 
     _goBack = ()=>{
@@ -36,9 +35,6 @@ export default class GradientHeader extends Component<{}>{
 
 GradientHeader.defaultProps = {
     title: "",
-    navigation: {
-        goBack: ()=>null,
-    }
 };
 
 const styles = StyleSheet.create({

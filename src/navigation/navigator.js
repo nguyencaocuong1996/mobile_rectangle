@@ -1,3 +1,4 @@
+import React from 'react';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 import {
     Login,
@@ -20,19 +21,59 @@ import {
 } from '../screens';
 import {common as commonHelper} from '../helpers';
 import MyServices from "../screens/MyServices";
+import {Icon} from 'native-base';
+import {StyleSheet, Text} from 'react-native';
+
+const styles = StyleSheet.create({
+    tabBarIcon: {
+       fontSize:20,
+        marginBottom: 10,
+    },
+    tabBarLabel: {
+        fontSize: 15,
+        marginBottom: 5,
+    }
+
+});
 
 const hotel = TabNavigator({
     HotelNormalList: {
-        screen: HotelList
+        screen: HotelList,
+        navigationOptions: ({ navigation }) => ({
+            title: "Filter",
+            tabBarIcon: ({ tintColor }) => {
+                return <Icon style={[styles.tabBarIcon, {color: tintColor}]} name={'search'} />
+            },
+            tabBarLabel: ({tintColor}) => {
+                return <Text style={[styles.tabBarLabel, {color: tintColor}]}>Filter</Text>;
+            }
+        })
     },
     HotelMapList: {
-        screen: HotelMap
+        screen: HotelList,
+        navigationOptions: ({ navigation }) => ({
+            title: "Maps",
+            tabBarIcon: ({ tintColor }) => {
+                return <Icon style={[styles.tabBarIcon, {color: tintColor}]} name={'map-marker'} />
+            },
+            tabBarLabel: ({tintColor}) => {
+                return <Text style={[styles.tabBarLabel, {color: tintColor}]}>Maps</Text>;
+            }
+        })
     },
+},{
+    tabBarOptions: {
+        activeBackgroundColor: 'transparent',
+        inactiveBackgroundColor: 'transparent',
+        activeTintColor: '#A3D2FA',
+        inactiveTintColor: '#a8a8a8',
+        showIcon: true,
+    }
 });
 
 const restaurant = TabNavigator({
     RestaurantNormalList: {
-        screen: RestaurantList
+        screen: RestaurantList,
     },
     RestaurantMapList: {
         screen: RestaurantMap
@@ -41,9 +82,9 @@ const restaurant = TabNavigator({
 
 
 export default StackNavigator({
-    Loading: {
-        screen: HotelList
-    },
+    // Loading: {
+    //     screen: HotelList
+    // },
 
     Tutorial: {
         screen: Tutorial

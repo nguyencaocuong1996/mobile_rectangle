@@ -16,9 +16,10 @@ import {HotelFilterSection} from "../components/hotel/index";
 
 class HotelList extends Component<{}>
 {
-    static navigationOptions = {
-        title: 'List Hotel',
-        header: <GradientHeader title={'List Hotel'} />
+    static navigationOptions = ({navigation})=>{
+        return {
+            header: <GradientHeader navigation={navigation} backScreen={'Home'} />
+        }
     };
 
     constructor(props){
@@ -45,7 +46,11 @@ class HotelList extends Component<{}>
     {
         return (
             <View style={styles.container}>
-                <GradientSection height={130} />
+                <GradientSection height={130}>
+                    <Text style={styles.titleText}>
+                        Looking for Hotel?
+                    </Text>
+                </GradientSection>
                 <HotelFilterSection style={{position: 'absolute', top: 60,}} />
                 <View style={styles.listSection}>
                     <FlatList
@@ -75,6 +80,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+    titleText: {
+        fontSize: 20,
+        color: '#F7FBFE',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        alignSelf: 'center',
     },
     searchSection: {
         flex:1,

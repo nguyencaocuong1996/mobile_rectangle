@@ -22,7 +22,7 @@ let id = 0;
 export default class HotelMap extends Component<{}>
 {
     static navigationOptions = {
-        title: 'List Hotel',
+        title: 'Maps',
     };
 
     constructor(props) {
