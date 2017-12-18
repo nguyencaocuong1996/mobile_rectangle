@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Icon, Button} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import ButtonGradientToggle from "./ButtonGradientToggle";
 
 
 export default class FloatAddButton extends Component<{}> {
@@ -10,9 +11,15 @@ export default class FloatAddButton extends Component<{}> {
 
     render() {
         return (
-                <Button style={styles.addButton} onPress={()=>this.props.onPress()}>
-                    <Icon name={'plus'} />
-                </Button>
+            <View style={styles.addButton}>
+                <ButtonGradientToggle
+                    width={50}
+                    height={50}
+                    isHighlight={true}
+                    onPress={()=>this.props.onPress()}>
+                    <Icon style={{marginTop: 10, color: '#fff'}} name={'plus'} />
+                </ButtonGradientToggle>
+            </View>
         )
     }
 }
@@ -23,11 +30,13 @@ FloatAddButton.defaultProps = {
 
 const styles = StyleSheet.create({
     addButton:{
+        // borderWidth: 1,
         width:50,
         height: 50,
         borderRadius: 25,
         position: 'absolute',
-        bottom: 100,
+        bottom: 50,
         right: 30,
+        justifyContent: 'flex-start',
     },
 });

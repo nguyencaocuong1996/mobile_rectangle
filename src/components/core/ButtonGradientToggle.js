@@ -6,9 +6,9 @@ export default class ButtonGradientToggle extends Component<{}> {
     constructor(props){
         super(props);
         this.styleWrapper = {
-            width: this.props.width,
-            height: this.props.height,
-            borderRadius: this.props.height / 2,
+            width: props.width,
+            height: props.height,
+            borderRadius: props.height / 2,
         }
     }
 
@@ -25,6 +25,7 @@ export default class ButtonGradientToggle extends Component<{}> {
                     disabled={this.props.disabled}
                     style={styles.touchable}
                 >
+                    {this.props.children}
                     <Text style={[styles.text, textHighlightStyle]}>{this.props.text}</Text>
                 </TouchableOpacity>
             </View>
@@ -50,7 +51,7 @@ export default class ButtonGradientToggle extends Component<{}> {
 }
 
 ButtonGradientToggle.defaultProps = {
-    buttonWidth: 100,
+    width: 100,
     height: 40,
     disabled: false,
     isHighlight: false,
@@ -66,9 +67,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     linearGradient: {
-        minWidth: 100,
+        // minWidth: 100,
         height: 40,
         borderRadius: 20,
+        // borderWidth: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     container:{
         minWidth: 100,
