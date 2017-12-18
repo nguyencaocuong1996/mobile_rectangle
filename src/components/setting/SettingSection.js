@@ -6,6 +6,7 @@ import {
     Image, TouchableOpacity,
 } from 'react-native';
 import {Icon} from 'native-base';
+import {MenuItemWithTextUnderline} from "../core";
 
 export default class SettingSection extends Component<{}>
 {
@@ -18,14 +19,17 @@ export default class SettingSection extends Component<{}>
 
     __renderItem = ()=>{
         return this.listItem.map((item, index)=>{
+            let showUnderLine = true;
+            if (index===this.listItem.length-1){
+                showUnderLine = false;
+            }
             return(
-                <TouchableOpacity key={index} onPress={()=>item.action()}>
-                    <View style={styles.item}>
-                        <Text style={styles.txtItem}>{item.title}</Text>
-                        <Icon style={styles.itemIcon} name={'angle-right'} />
-                    </View>
-                </TouchableOpacity>
-
+                <MenuItemWithTextUnderline
+                    key={index}
+                    iconName={item.iconName}
+                    title={item.title}
+                    onPress={item.action}
+                    showUnderLine={showUnderLine}/>
             );
         })
     };
@@ -37,9 +41,7 @@ export default class SettingSection extends Component<{}>
                 <Text style={styles.txtTitle}>
                     {this.title}
                 </Text>
-                <View style={styles.headerSection}>
-                    {this.header && this.header}
-                </View>
+                {this.header && <View style={styles.headerSection}>{this.header}</View>}
                 <View style={styles.itemSection}>
                     {this.__renderItem()}
                 </View>
@@ -59,6 +61,7 @@ SettingSection.defaultProps = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingBottom: 10,
     },
     txtTitle: {
         padding: 10,
@@ -70,7 +73,10 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     itemSection: {
-        marginTop: 10,
+        // marginTop: 10,
+        padding: 10,
+        paddingRight: 50,
+        // borderWidth: 1,
     },
     item: {
         flexDirection: 'row',

@@ -32,9 +32,9 @@ const mainTabStack = TabNavigator({
     MyService: {
         screen: MyServices,
         navigationOptions: ({ navigation }) => {
-            const title = 'Me';
+            const title = 'Services';
             return {
-                ...getNavigationOptions(navigation, {title, tabBarIconName: 'user'})
+                ...getNavigationOptions(navigation, {title, tabBarIconName: 'tags'})
             };
         },
     },

@@ -9,6 +9,7 @@ import GradientSection from "./GradientSection";
 import ButtonWithIcon from "./ButtonWithIcon";
 import GradientHeader from "./GradientHeader";
 import HeaderLogoutButton from "./HeaderLogoutButton";
+import MenuItemWithTextUnderline from "./MenuItemWithTextUnderline";
 
 const core = {
     //container
@@ -21,6 +22,7 @@ const core = {
     FloatAddButton,
     ButtonWithIcon,
     HeaderLogoutButton,
+    MenuItemWithTextUnderline,
 
     //Input
     InputWithIconAndUnderline,
