@@ -14,7 +14,9 @@ import {Button, Icon} from "native-base";
 import ServiceItem from "../components/home/ServiceItem";
 import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
 import commonHelper from "../helpers/commonHelper";
-
+import GradientSection from "../components/core/GradientSection";
+import HotelIcon from '../assets/img/HotelIcon.png';
+import RestaurantIcon from '../assets/img/RestaurantIcon.png';
 
 const services = {
     hotel: 'hotel',
@@ -23,10 +25,6 @@ const services = {
 
 class MyServices extends Component<{}>
 {
-    static navigationOptions = {
-        title: 'Me',
-    };
-
     constructor(props){
         super(props);
         this.state = {
@@ -72,6 +70,17 @@ class MyServices extends Component<{}>
         }
     }
 
+    __getCurrentIconImage(){
+        switch (this.state.service){
+            case services.hotel:
+                return HotelIcon;
+            case services.restaurant:
+                return RestaurantIcon;
+            default:
+                return HotelIcon;
+        }
+    }
+
     _keyExtractor = (item, index)=>{
         return index;
     };
@@ -99,6 +108,11 @@ class MyServices extends Component<{}>
         const listService = this.__getListService(this.state.service);
         return (
                 <View style={styles.container}>
+                    <GradientSection height={120}>
+                        <View style={styles.iconSection}>
+                            <Image resizeMode={'stretch'} style={styles.iconImage} source={this.__getCurrentIconImage()} />
+                        </View>
+                    </GradientSection>
                     <View style={styles.headerSection}>
                         <Image style={styles.customerImage} source={img} />
                         <View style={styles.basicInfo}>
@@ -167,6 +181,21 @@ const mapActionToProps = {
 export default connect(mapStateToProps, mapActionToProps)(MyServices);
 
 const styles = StyleSheet.create({
+    iconSection: {
+        width: 160,
+        height: 160,
+        borderRadius: 80,
+        backgroundColor: '#fff',
+        position: 'absolute',
+        alignSelf: 'center',
+        bottom: -80,
+    },
+    iconImage: {
+        width: 60,
+        height: 60,
+        alignSelf: 'center',
+        marginTop: 10,
+    },
     txtBold: {
         fontWeight: 'bold',
     },

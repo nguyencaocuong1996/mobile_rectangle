@@ -19,7 +19,7 @@ export default StackNavigator({
     // },
 
     Tutorial: {
-        screen: Settings,
+        screen: Tutorial,
     },
     TabNav: {
         screen: mainTabStack,
