@@ -7,7 +7,7 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native';
-import {FloatAddButton} from "../components/core";
+import {FloatAddButton, ButtonGradientToggle} from "../components/core";
 import {connect} from 'react-redux';
 import img from '../assets/img/home-item-bg-restaurant.jpg';
 import {Button, Icon} from "native-base";
@@ -113,6 +113,7 @@ class MyServices extends Component<{}>
                             <Image resizeMode={'stretch'} style={styles.iconImage} source={this.__getCurrentIconImage()} />
                         </View>
                     </GradientSection>
+                    <ButtonGradientToggle text={"aaaa"} />
                     <View style={styles.headerSection}>
                         <Image style={styles.customerImage} source={img} />
                         <View style={styles.basicInfo}>

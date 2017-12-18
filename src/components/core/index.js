@@ -10,6 +10,7 @@ import ButtonWithIcon from "./ButtonWithIcon";
 import GradientHeader from "./GradientHeader";
 import HeaderLogoutButton from "./HeaderLogoutButton";
 import MenuItemWithTextUnderline from "./MenuItemWithTextUnderline";
+import ButtonGradientToggle from "./ButtonGradientToggle";
 
 const core = {
     //container
@@ -23,6 +24,7 @@ const core = {
     ButtonWithIcon,
     HeaderLogoutButton,
     MenuItemWithTextUnderline,
+    ButtonGradientToggle,
 
     //Input
     InputWithIconAndUnderline,
