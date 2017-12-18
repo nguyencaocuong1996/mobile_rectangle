@@ -11,11 +11,13 @@ import GradientHeader from "./GradientHeader";
 import HeaderLogoutButton from "./HeaderLogoutButton";
 import MenuItemWithTextUnderline from "./MenuItemWithTextUnderline";
 import ButtonGradientToggle from "./ButtonGradientToggle";
+import SwitchMenuNavigation from "./SwitchMenuNavigation";
 
 const core = {
     //container
     GradientSection,
     GradientHeader,
+    SwitchMenuNavigation,
 
     //Button
     GreenButton,

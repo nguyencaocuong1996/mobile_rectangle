@@ -17,6 +17,7 @@ import commonHelper from "../helpers/commonHelper";
 import GradientSection from "../components/core/GradientSection";
 import HotelIcon from '../assets/img/HotelIcon.png';
 import RestaurantIcon from '../assets/img/RestaurantIcon.png';
+import SwitchMenuNavigation from "../components/core/SwitchMenuNavigation";
 
 const services = {
     hotel: 'hotel',
@@ -106,6 +107,7 @@ class MyServices extends Component<{}>
     render()
     {
         const listService = this.__getListService(this.state.service);
+        const buttons = getSwitchButtons(this);
         return (
                 <View style={styles.container}>
                     <GradientSection height={120}>
@@ -113,46 +115,8 @@ class MyServices extends Component<{}>
                             <Image resizeMode={'stretch'} style={styles.iconImage} source={this.__getCurrentIconImage()} />
                         </View>
                     </GradientSection>
-                    <ButtonGradientToggle text={"aaaa"} />
-                    <View style={styles.headerSection}>
-                        <Image style={styles.customerImage} source={img} />
-                        <View style={styles.basicInfo}>
-                            <Text numberOfLines={1} style={{
-                                fontSize: 18,
-                                fontWeight: 'bold',
-                            }}>{this.account.name}</Text>
-
-                            <View style={[{flexDirection: 'row'}, {marginTop: 5}]}>
-                                <Text style={[styles.txtShadow2, ]}>Your ID: </Text>
-                                <Text>{this.account.id}</Text>
-                            </View>
-                            <View style={[{flexDirection: 'row'}, {marginTop: 5}]}>
-                                <Text style={[styles.txtShadow2, ]}>Register at: </Text>
-                                <Text>12/12/2017</Text>
-                            </View>
-
-                        </View>
-                        {/*<View style={styles.moreInfo}>*/}
-
-                        {/*</View>*/}
-                    </View>
-                    <View style={styles.navSection}>
-                        <TouchableOpacity style={[styles.navButton,]}>
-                            <Text style={[styles.navItem,]}>Show</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.navButton,]}>
-                            <Text style={[styles.navItem,]}>A-Z</Text>
-                        </TouchableOpacity>
-                        <View style={styles.breakNavButton}/>
-                        <TouchableOpacity style={[styles.navButton,]} onPress={()=>this.__chooseService(services.hotel)}>
-                            {this.state.service===services.hotel && <Text style={[styles.navItem, styles.txtBold]}>Hotel</Text>}
-                            {this.state.service!==services.hotel && <Text style={[styles.navItem,]}>Hotel</Text>}
-                        </TouchableOpacity>
-                        <View style={styles.breakNavButton}/>
-                        <TouchableOpacity style={[styles.navButton,]} onPress={()=>this.__chooseService(services.restaurant)}>
-                            {this.state.service===services.restaurant && <Text style={[styles.navItem, styles.txtBold]}>Restaurant</Text>}
-                            {this.state.service!==services.restaurant && <Text style={[styles.navItem,]}>Restaurant</Text>}
-                        </TouchableOpacity>
+                    <View style={styles.menuWrapper}>
+                        <SwitchMenuNavigation buttons={buttons}/>
                     </View>
                     <View style={styles.listSection}>
                         <FlatList
@@ -182,6 +146,11 @@ const mapActionToProps = {
 export default connect(mapStateToProps, mapActionToProps)(MyServices);
 
 const styles = StyleSheet.create({
+    menuWrapper: {
+        marginTop: 20,
+        justifyContent: 'center',
+        alignSelf: 'center',
+    },
     iconSection: {
         width: 160,
         height: 160,
@@ -267,3 +236,15 @@ const styles = StyleSheet.create({
 
 
 });
+
+const getSwitchButtons = (instance)=>{
+    return [
+        {
+            text: 'Hotel',
+            action: ()=>{instance.__chooseService(services.hotel)}
+        }, {
+            text: 'Restaurant',
+            action: ()=>{instance.__chooseService(services.restaurant)}
+        },
+    ];
+};

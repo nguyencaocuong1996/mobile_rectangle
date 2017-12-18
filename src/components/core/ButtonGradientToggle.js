@@ -17,13 +17,15 @@ export default class ButtonGradientToggle extends Component<{}> {
     };
 
     __renderRawButton(){
+        const textHighlightStyle = this.props.isHighlight ? {color: '#fff'} : null;
         return (
             <View style={[styles.container, this.styleWrapper]}>
                 <TouchableOpacity
                     onPress={this.__onPress.bind(this)}
                     disabled={this.props.disabled}
+                    style={styles.touchable}
                 >
-                    <Text style={styles.text}>{this.props.text}</Text>
+                    <Text style={[styles.text, textHighlightStyle]}>{this.props.text}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -48,14 +50,21 @@ export default class ButtonGradientToggle extends Component<{}> {
 }
 
 ButtonGradientToggle.defaultProps = {
-    width: 100,
+    buttonWidth: 100,
     height: 40,
     disabled: false,
     isHighlight: false,
+    onPress: ()=>null,
 };
 
 
 const styles = StyleSheet.create({
+    touchable: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     linearGradient: {
         minWidth: 100,
         height: 40,
@@ -68,7 +77,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'transparent',
-        borderWidth: 1,
+        // borderWidth: 1,
     },
     text: {
         color: '#D3DAE1',
