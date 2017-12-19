@@ -3,11 +3,9 @@ import {
     StyleSheet,
     Text,
     View,
-    FlatList,
     Image,
-    TouchableOpacity,
+    TouchableOpacity, ScrollView,
 } from 'react-native';
-import {FloatAddButton} from "../components/core";
 import {connect} from 'react-redux';
 import {Button, Icon} from "native-base";
 import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
@@ -15,6 +13,9 @@ import commonHelper from "../helpers/commonHelper";
 import SwitchMenuNavigation from "../components/core/SwitchMenuNavigation";
 import TextWithIconLight from "../components/core/TextWithIconLight";
 import FloatButton from "../components/core/FloatButton";
+import {ReviewSection} from "../components/common";
+import iconDecoration from '../assets/img/iconDecorationTextDetail.png';
+
 
 const tabs = {
     detail: 'detail',
@@ -65,18 +66,58 @@ class HotelDetail extends Component<{}>
     }
 
     __tabDetail = ()=>{
+        const styles = StyleSheet.create({
+            container: {
+                width: '100%',
+                // borderWidth: 1,
+                marginBottom: 35,
+            },
+            decorationWrapper:{
+                width: 300,
+                height: 40,
+                justifyContent: 'center',
+                alignSelf: 'center',
+                // borderWidth: 1,
+            },
+            iconDecoration: {
+                alignSelf: 'center',
+            },
+            contentWrapper: {
+                marginTop: 10,
+                // borderWidth: 1,
+            }
+        });
         return (
-            <Text>
-                detail
-            </Text>
+            <View style={styles.container}>
+                <View style={styles.decorationWrapper}>
+                    <Image style={styles.iconDecoration} source={iconDecoration}/>
+                </View>
+                <ScrollView style={styles.contentWrapper}>
+                    <Text>
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                    </Text>
+                </ScrollView>
+            </View>
         )
     };
 
     __tabReview = ()=>{
         return (
-            <Text>
-                review
-            </Text>
+            <ReviewSection />
         )
     };
 
@@ -186,6 +227,9 @@ const styles = StyleSheet.create({
     },
     contentTab:{
         padding: 10,
+        flex: 1,
+        // borderWidth: 10,
+        marginBottom: 40,
     },
     icon: {
         fontSize: 20,
