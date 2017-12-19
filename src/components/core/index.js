@@ -13,6 +13,7 @@ import MenuItemWithTextUnderline from "./MenuItemWithTextUnderline";
 import ButtonGradientToggle from "./ButtonGradientToggle";
 import SwitchMenuNavigation from "./SwitchMenuNavigation";
 import NestedIcon from "./NestedIcon";
+import FloatButton from "./FloatButton";
 
 const core = {
     //container
@@ -26,6 +27,7 @@ const core = {
     //Button
     GreenButton,
     HeaderLoginButton,
+    FloatButton,
     FloatAddButton,
     ButtonWithIcon,
     HeaderLogoutButton,
