@@ -21,7 +21,7 @@ export default StackNavigator({
     // },
 
     Tutorial: {
-        screen: Explore,
+        screen: Tutorial,
 
     },
     TabNav: {

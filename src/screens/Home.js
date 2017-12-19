@@ -5,7 +5,7 @@ import {
     Text,
     View,
     TextInput,
-    FlatList,
+    FlatList, TouchableOpacity,
 } from 'react-native';
 import HomeItem from "../components/home/HomeItem";
 import HeaderLoginButton from '../components/core/HeaderLoginButton'
@@ -56,7 +56,13 @@ export default class Home extends Component<{}>
     {
         return (
             <View style={styles.container}>
-                <GradientSection height={80}/>
+                <GradientSection height={80}>
+                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Explore')}}>
+                        <Text style={styles.txtExplore}>
+                            Where should I go?
+                        </Text>
+                    </TouchableOpacity>
+                </GradientSection>
                 <View style={styles.searchSection}>
                     <TextInput
                         style={styles.searchInput}
@@ -82,6 +88,13 @@ export default class Home extends Component<{}>
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    txtExplore: {
+        fontSize: 20,
+        color: '#F7FBFE',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        alignSelf: 'center',
     },
     searchSection: {
         position: 'absolute',

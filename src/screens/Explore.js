@@ -44,7 +44,11 @@ class Explore extends Component<{}>
     {
         return (
             <View style={styles.container}>
-                <GradientSection height={40}/>
+                <GradientSection height={40}>
+                    <Text style={styles.txtHeader}>
+                        Recommend for you.
+                    </Text>
+                </GradientSection>
                 <ScrollView>
                     <View style={[styles.viewWrapper, styles.hotelSection]}>
                         <ExploreCarouselSlider
@@ -115,6 +119,13 @@ const styles = StyleSheet.create({
         position:'absolute', bottom: 20,
         borderColor: 'blue',
 
+    },
+    txtHeader: {
+        fontSize: 20,
+        color: '#F7FBFE',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        alignSelf: 'center',
     },
     container: {
         flex: 1,
