@@ -1,76 +1,39 @@
-import {StackNavigator, TabNavigator} from 'react-navigation';
+import React from 'react';
+import {StackNavigator} from 'react-navigation';
+import {Icon} from 'native-base';
+import hotelTabStack from "./HotelStack";
+import restaurantTabStack from "./RestaurantStack";
+import mainTabStack from "./MainStack";
 import {
+    Tutorial,
     Login,
     Register,
-
-    Tutorial,
-
-    Home,
-
-    HotelList,
-    HotelMap,
-    HotelDetail,
     AddHotel,
-
-    RestaurantList,
-    RestaurantMap,
-    RestaurantDetail,
     AddRestaurant,
-
+    Explore,
 } from '../screens';
-import {common as commonHelper} from '../helpers';
-
-const hotel = TabNavigator({
-    HotelNormalList: {
-        screen: HotelList
-    },
-    HotelMapList: {
-        screen: HotelList
-    },
-});
-
-const restaurant = TabNavigator({
-    RestaurantNormalList: {
-        screen: RestaurantList
-    },
-    RestaurantMapList: {
-        screen: RestaurantMap
-    },
-});
+import GradientHeader from "../components/core/GradientHeader";
 
 
 export default StackNavigator({
-    Loading: {
-        screen: AddHotel
-    },
+    // Loading: {
+    //     screen: Home
+    // },
+
     Tutorial: {
-        screen: Tutorial
+        screen: Tutorial,
+
     },
     TabNav: {
-        screen: TabNavigator({
-            Home: {
-                screen: Home,
-                navigationOptions: ({ navigation }) => ({
-                    tabBarVisible: commonHelper.isLogin(),
-                })
-            },
-            Hotel: {
-                screen: hotel
-            },
-            Restaurant: {
-                screen: restaurant
-            },
-            Settings: {
-                screen: RestaurantList
-            }
-        }, {
-            tabBarPosition: 'bottom',
-            animationEnabled: true,
-            tabBarOptions: {
-                // activeTintColor: '#e91e63',
-                tabBarVisible: true,
-            },
-        }),
+        screen: mainTabStack,
+    },
+    Explore: {
+        screen: Explore,
+        navigationOptions: ({navigation})=>{
+            return ({
+                header: <GradientHeader navigation={navigation} title={"EXPLORE"}/>
+            })
+        }
     },
     Login: {
         screen: Login,
@@ -78,5 +41,20 @@ export default StackNavigator({
     Register: {
         screen: Register,
     },
+    AddHotel: {
+        screen: AddHotel,
+    },
+    AddRestaurant: {
+        screen: AddRestaurant,
+    },
+    Hotel: {
+        screen: hotelTabStack,
+    },
+    Restaurant: {
+        screen: restaurantTabStack,
+    },
 
+
+}, {
+    lazyLoad: true,
 });

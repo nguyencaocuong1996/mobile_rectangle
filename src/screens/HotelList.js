@@ -9,12 +9,17 @@ import {
 import {HotelItem} from "../components/hotel";
 import {connect} from 'react-redux';
 import {hotel as hotelAction} from '../redux/actions';
+import GradientHeader from "../components/core/GradientHeader";
+import GradientSection from "../components/core/GradientSection";
+import {HotelFilterSection} from "../components/hotel/index";
 
 
 class HotelList extends Component<{}>
 {
-    static navigationOptions = {
-        title: 'List Hotel',
+    static navigationOptions = ({navigation})=>{
+        return {
+            header: <GradientHeader navigation={navigation} backScreen={'Home'} />
+        }
     };
 
     constructor(props){
@@ -41,15 +46,13 @@ class HotelList extends Component<{}>
     {
         return (
             <View style={styles.container}>
-                <View style={styles.searchSection}>
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder={"🔍 Search services"}
-                        // onChangeText={(text) => this.setState({text})}
-                        // value={this.state.text}
-                    />
-                </View>
-                <View style={styles.menuSection}>
+                <GradientSection height={130}>
+                    <Text style={styles.titleText}>
+                        Looking for Hotel?
+                    </Text>
+                </GradientSection>
+                <HotelFilterSection style={{position: 'absolute', top: 60,}} />
+                <View style={styles.listSection}>
                     <FlatList
                         data = {this.props.listHotel}
                         renderItem = {this._renderItem}
@@ -76,6 +79,14 @@ export default connect(mapStateToProps, mapActionToProps)(HotelList);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#fff',
+    },
+    titleText: {
+        fontSize: 20,
+        color: '#F7FBFE',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        alignSelf: 'center',
     },
     searchSection: {
         flex:1,
@@ -95,11 +106,16 @@ const styles = StyleSheet.create({
         elevation: 10,
         marginBottom: 10,
     },
-    menuSection: {
-        flex:7,
+    listSection: {
+        // borderColor: 'red',
+        // borderWidth: 1,
+        marginTop: 50,
+        flex:5,
         flexDirection: 'column',
         padding: 5,
         backgroundColor: '#fff',
+        paddingLeft: '2%',
+        paddingRight: '2%',
     },
     searchInput: {
         height: 40,

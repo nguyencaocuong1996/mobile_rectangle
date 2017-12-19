@@ -5,7 +5,7 @@ import {
     Text,
     View,
     TextInput,
-    FlatList,
+    FlatList, TouchableOpacity,
 } from 'react-native';
 import HomeItem from "../components/home/HomeItem";
 import HeaderLoginButton from '../components/core/HeaderLoginButton'
@@ -15,27 +15,29 @@ import EventImg from '../assets/img/home-item-bg-event.jpg';
 import {Button} from "native-base";
 import {common as commonHelper} from '../helpers';
 import HeaderLogoutButton from '../components/core/HeaderLogoutButton';
+import LinearGradient from "react-native-linear-gradient";
+import GradientHeader from "../components/core/GradientHeader";
+import GradientSection from "../components/core/GradientSection";
 
 
 export default class Home extends Component<{}>
 {
-
-    static navigationOptions = ({navigation})=>{
-        let default_ops = {
+    static navigationOptions = ({navigation})=> {
+        const isLogin = commonHelper.isLogin();
+        return {
             title: 'FooCo',
-            tabBarVisible: true,
+            tabBarVisible: isLogin,
             headerLeft: null,
+            header: (
+                <GradientHeader title={'FOOCO'} showBackButton={false}>
+                    {isLogin && <HeaderLogoutButton navigation={navigation}/>}
+                    {!isLogin && <HeaderLoginButton navigation={navigation}/>}
+                </GradientHeader>
+            )
         };
-        default_ops.headerRight = commonHelper.isLogin() ? <HeaderLogoutButton navigation={navigation} /> : <HeaderLoginButton navigation={navigation} />;
-        if (navigation.state.params !== undefined){
-            default_ops.title = navigation.state.params.title;
-        }
-        return default_ops;
     };
-
     constructor(props){
         super(props);
-        console.log(commonHelper.account());
     }
 
 
@@ -44,29 +46,30 @@ export default class Home extends Component<{}>
     };
 
     _renderItem = ({item}) => {
-        console.log("name", item.title);
         return (
-            <HomeItem isLeft={item.left}
-                      imgSrc={item.img}
-                      title={item.title}
-                      description={item.description}
-                      navigation={this.props.navigation}
-            />
+            <HomeItem item={item} navigation={this.props.navigation}/>
         )
     };
 
 
     render()
     {
-        console.log(listItem);
         return (
             <View style={styles.container}>
+                <GradientSection height={80}>
+                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Explore')}}>
+                        <Text style={styles.txtExplore}>
+                            Where should I go?
+                        </Text>
+                    </TouchableOpacity>
+                </GradientSection>
                 <View style={styles.searchSection}>
                     <TextInput
                         style={styles.searchInput}
                         placeholder={"🔍 Search services"}
                         // onChangeText={(text) => this.setState({text})}
                         // value={this.state.text}
+                        underlineColorAndroid={'rgba(0,0,0,0)'}
                     />
                 </View>
                 <View style={styles.menuSection}>
@@ -86,14 +89,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    txtExplore: {
+        fontSize: 20,
+        color: '#F7FBFE',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+    },
     searchSection: {
+        position: 'absolute',
+        top: 50,
+        alignSelf: 'center',
         flex:1,
         flexDirection: 'row',
         height: 50,
-        backgroundColor: '#fff',
+        width: '90%',
+        backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-
+        borderRadius: 20,
         shadowColor: '#9c9c9c',
         shadowOffset: {
             width: 0,
@@ -109,14 +123,18 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: 5,
         backgroundColor: '#fff',
+        marginTop: 30,
     },
     searchInput: {
-        height: 40,
-        borderColor: '#d1d1d1',
-        borderWidth: 1,
+        width: '100%',
+        height: 50,
+        // borderColor: '#d1d1d1',
+        // borderWidth: 1,
         minWidth: 350,
-        borderRadius: 20,
+        borderRadius: 25,
         textAlign: 'center',
+        position: 'absolute',
+        backgroundColor: '#fff',
     }
 
 
@@ -125,18 +143,21 @@ const styles = StyleSheet.create({
 const listItem = [
     {
         img: HotelImg,
-        title: "Khách sạn",
+        title: "Hotel",
         description: "des 1",
+        screen: 'Hotel',
     },
     {
         img: RestaurantImg,
-        title: "Nhà hàng",
+        title: "Restaurant",
         description: "des 2",
         left: false,
+        screen: 'RestaurantList',
     },
     {
         img: EventImg,
         title: "Event",
         description: "des 3",
+        screen: 'RestaurantList',
     },
 ];

@@ -13,7 +13,7 @@ class AddHotel extends Component<{}>
 
     static navigationOptions = ({navigation})=>{
         return {
-            header: <OpacityHeader navigation={navigation} backScreen={'Home'}/>,
+            header: <OpacityHeader navigation={navigation}/>,
         }
     };
 
@@ -30,11 +30,6 @@ class AddHotel extends Component<{}>
     }
 
     componentDidMount(){
-        hotelApi.getAll((res)=>{
-            console.log(res);
-        }, (e)=>{
-            console.log(e);
-        })
     }
 
     _add(){
@@ -78,7 +73,7 @@ class AddHotel extends Component<{}>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
                         {/*<Text style={styles.txtSignUp}>Don't have an account?</Text>*/}
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Register')}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('MyService')}>
                             <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Manage your Hotel?</Text>
                         </TouchableOpacity>
                     </View>

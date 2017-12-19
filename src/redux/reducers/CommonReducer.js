@@ -7,7 +7,27 @@ const default_state = {
         name: null,
         token: null,
         email: null,
-    }
+    },
+    listService: [
+        {
+            name: 'aasbc',
+        },
+        {
+            name: 'aasbc',
+        },
+        {
+            name: 'aasbc',
+        },
+        {
+            name: 'aasbc',
+        },
+        {
+            name: 'aasbc',
+        },
+        {
+            name: 'aasbc',
+        }
+    ]
 };
 
 const commonReducer = (state=default_state, action) => {

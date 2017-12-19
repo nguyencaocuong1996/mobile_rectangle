@@ -4,11 +4,12 @@ import {
     StyleSheet,
     Text,
     View,
-    Image,
+    Image, TouchableOpacity,
 
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import icLocation from '../../../src/assets/img/icLocation.png'
+import {Icon} from "native-base";
 
 
 
@@ -19,11 +20,21 @@ export default class HotelItem extends Component<{}>
         super(props);
     }
 
+    __renderStar(starCount){
+        let listStar = [];
+        for(let i=0; i<starCount; i++){
+            listStar.push(i)
+        }
+        return listStar.map((star)=>{
+            return <Icon key={star} style={styles.star} name={'star'} />
+        })
+    }
+
     __renderService(services){
         return services.map((service, index)=>{
             return (
                 <View key={index} style={styles.viewServiceItem}>
-                    <Text style={styles.servicesText}>{service}</Text>
+                    <Text numberOfLines={1} style={styles.servicesText}>{service}</Text>
                 </View>
             );
         })
@@ -33,26 +44,31 @@ export default class HotelItem extends Component<{}>
         return (
            
             <View style={styles.container}>
-                <Image
-                    resizeMode={"stretch"}
-                    source={{uri: this.props.item.image}}
-                    style={styles.image}/>
-
-                <View style={styles.text}>
+                <View style={styles.imageWrapper}>
+                    <Image
+                        resizeMode={"stretch"}
+                        source={{uri: this.props.item.image}}
+                        style={styles.image}/>
+                </View>
+                <View style={styles.infoWrapper}>
+                    <View style={styles.starSection}>
+                        {this.__renderStar(3)}
+                    </View>
                     <Text style={styles.titleText}>{this.props.item.name}</Text>
                         <View style={styles.viewAddress}>
-                            <Image
-                                source = {icLocation}
-                                resizeMode = {"contain"}
-                                style = {styles.icLocation}
-                            />
+                            <Icon style={styles.icon} name={'map-marker'} />
                             <Text style={styles.addressText}>{this.props.item.address}</Text>
                         </View>
                         <View style={styles.viewService}>
                             {this.__renderService(this.props.item.services)}
                         </View>
-
                 </View>
+                <TouchableOpacity style={styles.btnFavorite}>
+                    <Icon style={{fontSize: 20, color: '#aeb1b5'}} name={'heart-o'} />
+                </TouchableOpacity>
+                <Text style={styles.txtPrice}>
+                    {this.props.item.price} VNĐ
+                </Text>
             </View>
         );
     }
@@ -63,18 +79,43 @@ HotelItem.defaultProps = {
 };
 
 const styles = StyleSheet.create({
+    btnFavorite: {
+        position: 'absolute',
+        top: 20,
+        right: 20,
+    },
+    star: {
+        fontSize: 10,
+        color: "#ffe921",
+        marginRight: 5,
+    },
+    starSection:{
+        flexDirection: 'row',
+    },
     container: {
         flex: 1,
+        flexDirection: 'row',
         margin: 5,
+        marginBottom: 10,
         backgroundColor: '#fff',
-        borderRadius: 15,
+        borderRadius: 10,
         //justifyContent: 'center',
-        height: 308,
+        height: 110,
+        shadowColor: '#b6b6b6',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        // overflow: 'hidden',
+    },
+    imageWrapper: {
+        overflow: 'hidden',
+        borderTopStartRadius: 10,
+        borderBottomStartRadius: 10,
     },
     image: {
         //flex: 1,
-        height: 200,
-        width: undefined,
+        height: 110,
+        width: 120,
         //alignSelf: 'stretch',
     },
     icLocation: {
@@ -83,12 +124,11 @@ const styles = StyleSheet.create({
         width: 20,
         //alignSelf: 'stretch',
     },
-    text: {
-        //position: 'relat',
-        top: 0, left: 0, right: 0, bottom: 0,
+    infoWrapper: {
+        padding:5,
+        paddingLeft: 10,
         backgroundColor: 'transparent',
         flexDirection: 'column',
-        marginTop: 10,
         flex: 2,
 
     },
@@ -96,17 +136,19 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     titleText: {
-        color: '#000',
+        marginTop: 4,
+        color: '#64749A',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 13,
     },
     viewAddress:{
-        marginTop: 8,
+        marginTop: 3,
         flexDirection: 'row',
     },
     addressText: {
-      color: 'gray',
-      fontSize: 15,
+      color: '#aeb1b5',
+      fontSize: 12,
+        marginLeft: 5,
 
     },
     viewService: {
@@ -115,25 +157,37 @@ const styles = StyleSheet.create({
     },
     viewServiceItem: {
         flexDirection: 'row',
-        backgroundColor: 'black',
-        borderRadius: 10,
-        marginTop: 8,
-        marginLeft: 10,
-        width: 70,
-        height: 30,
+        backgroundColor: 'transparent',
+        borderRadius: 5,
+        padding: 3,
+        marginTop: 4,
+        marginRight: 10,
+        height: 24,
         justifyContent: 'center',
-
+        borderBottomWidth: 1,
+        borderBottomColor: 'black',
     },
     servicesText: {
-        color: 'white',
-        alignSelf: 'center'
+        color: '#64749A',
+        alignSelf: 'center',
+        fontSize: 11,
         
-        
-        //backgroundColor: '#000',
+        backgroundColor: 'transparent',
         //borderRadius: 5
     },
     descriptionText: {
         color: '#fff',
+    },
+    icon: {
+        color: 'gray',
+        fontSize: 14,
+    },
+    txtPrice: {
+        position: 'absolute',
+        right: 10,
+        bottom: 5,
+        color: '#60ACF8',
+        fontSize: 14,
     }
 
 });

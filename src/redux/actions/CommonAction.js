@@ -1,7 +1,7 @@
 
 export const snippets = {
     login: 'LOGIN',
-    logout: 'LOGOUT'
+    logout: 'LOGOUT',
 };
 
 export default {
@@ -14,5 +14,5 @@ export default {
     }),
     logout: ()=>({
         type: snippets.logout
-    })
+    }),
 }

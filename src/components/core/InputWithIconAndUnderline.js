@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import { Item, Input, Icon, StyleProvider } from 'native-base';
+import { Item, Input, Icon } from 'native-base';
 import {StyleSheet} from 'react-native';
-import getTheme from '../../../native-base-theme/components';
-import myTheme from '../../themes/fontAwsome';
 
 
 export default class Login extends Component<{}> {
@@ -20,19 +18,17 @@ export default class Login extends Component<{}> {
     render() {
         let iconStyle = !this.state.isFocus ? styles.icon : [styles.icon, styles.iconFocus];
         return (
-            <StyleProvider style={getTheme(myTheme)}>
-                <Item style={styles.wrapper}>
-                    <Icon active name={this.props.icon} style={iconStyle}/>
-                    <Input placeholder={this.props.placeholder}
-                           style={styles.input}
-                           placeholderTextColor={'#fff'}
-                           onFocus={this._toggleFocus.bind(this)}
-                           onBlur={this._toggleFocus.bind(this)}
-                           onChangeText={(text)=>this.props.onChangeText(text)}
-                           secureTextEntry={this.props.secureTextEntry}
-                    />
-                </Item>
-            </StyleProvider>
+            <Item style={styles.wrapper}>
+                <Icon active name={this.props.icon} style={iconStyle}/>
+                <Input placeholder={this.props.placeholder}
+                       style={styles.input}
+                       placeholderTextColor={'#fff'}
+                       onFocus={this._toggleFocus.bind(this)}
+                       onBlur={this._toggleFocus.bind(this)}
+                       onChangeText={(text)=>this.props.onChangeText(text)}
+                       secureTextEntry={this.props.secureTextEntry}
+                />
+            </Item>
         )
     }
 }
