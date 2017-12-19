@@ -50,10 +50,22 @@ export default class ExploreCarouselSlider extends Component<{}>
         this.__carousel.snapToItem(this.state.currentIndex -  this.navStep);
     };
 
+    __createInnerIcon(outer, inner, isActive=false){
+        let styles = {
+            view: {width: 30, height: 30, justifyContent: 'center', alignItems: 'center',},
+            icon: {position: 'absolute', color: '#F5F5F5',backgroundColor:'transparent', alignSelf:'center'},
+            outer: {fontSize: 31,},
+            inner: {fontSize: 20,},
+            activeStyle: isActive ? {color: '#8AC5FA'} : null,
+        };
+        return <View style={styles.view}>
+            <Icon style={[styles.icon, styles.outer, styles.activeStyle]} name={outer} />
+            <Icon style={[styles.icon, styles.inner, styles.activeStyle,]} name={inner} />
+        </View>;
+    }
+
     render()
     {
-        const canNextStyle = this.state.canNext ? styles.navIconActive : null;
-        const canPrevStyle = this.state.canPrev ? styles.navIconActive : null;
         return (
             <View style={styles.container}>
                 <View style={styles.headerSection}>
@@ -65,13 +77,13 @@ export default class ExploreCarouselSlider extends Component<{}>
                             disabled={!this.state.canPrev}
                             onPress={this.__onPrev.bind(this)}
                         >
-                            <Icon style={[styles.navIcon, canPrevStyle]} name={'arrow-circle-o-left'} />
+                            {this.__createInnerIcon('circle-thin', 'angle-left', this.state.canPrev)}
                         </TouchableOpacity>
                         <TouchableOpacity
                             disabled={!this.state.canNext}
                             onPress={this.__onNext.bind(this)}
                         >
-                            <Icon style={[styles.navIcon, canNextStyle]} name={'arrow-circle-o-right'} />
+                            {this.__createInnerIcon('circle-thin', 'angle-right', this.state.canNext)}
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -127,14 +139,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         position: 'absolute',
         right: 5,
-    },
-    navIcon: {
-        color: '#F5F5F5',
-        fontSize: 30,
-        marginRight: 3,
-    },
-    navIconActive: {
-        color: '#8AC5FA',
     },
     carousel: {
         // position:'absolute', bottom: 20,
