@@ -12,6 +12,8 @@ import {
     AddRestaurant,
     Explore,
 } from '../screens';
+import GradientHeader from "../components/core/GradientHeader";
+
 
 export default StackNavigator({
     // Loading: {
@@ -20,9 +22,18 @@ export default StackNavigator({
 
     Tutorial: {
         screen: Explore,
+
     },
     TabNav: {
         screen: mainTabStack,
+    },
+    Explore: {
+        screen: Explore,
+        navigationOptions: ({navigation})=>{
+            return ({
+                header: <GradientHeader navigation={navigation} title={"EXPLORE"}/>
+            })
+        }
     },
     Login: {
         screen: Login,

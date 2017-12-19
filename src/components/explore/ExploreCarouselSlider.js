@@ -19,6 +19,7 @@ export default class ExploreCarouselSlider extends Component<{}>
             canNext: true,
             canPrev: false,
             currentIndex: 0,
+            autoPlay: this.props.autoplay,
         };
         this.dataLength  = this.props.data.length;
         this.onSnapToItem = this.props.onSnapToItem;
@@ -27,6 +28,10 @@ export default class ExploreCarouselSlider extends Component<{}>
         this.itemWidth = this.props.itemWidth;
         this.navStep = this.props.navStep || Math.floor(this.sliderWidth / this.itemWidth);
         this.horizontalMargin = this.props.horizontalMargin;
+        this.autoplay = this.props.autoplay;
+        this.autoplayDelay = this.props.autoplayDelay;
+        this.autoplayInterval = this.props.autoplayInterval;
+        this.loop = this.props.loop;
 
     }
 
@@ -50,6 +55,7 @@ export default class ExploreCarouselSlider extends Component<{}>
     __onPrev = ()=>{
         this.__carousel.snapToItem(this.state.currentIndex -  this.navStep);
     };
+
 
     render()
     {
@@ -94,6 +100,10 @@ export default class ExploreCarouselSlider extends Component<{}>
                     activeSlideAlignment={'start'}
                     removeClippedSubviews={false}
                     onSnapToItem={this.__onSnapToItem}
+                    autoplay={this.autoplay}
+                    autoplayDelay={this.autoplayDelay}
+                    autoplayInterval={this.autoplayInterval}
+                    loop={this.loop}
                 >
                 </Carousel>
             </View>
@@ -111,6 +121,9 @@ ExploreCarouselSlider.defaultProps = {
     sliderWidth: Dimensions.get('window').width,
     horizontalMargin: 10,
     itemWidth: 110,
+    autoplay: false,
+    autoplayDelay: 5000,
+    autoplayInterval: 3000,
 };
 
 const styles = StyleSheet.create({

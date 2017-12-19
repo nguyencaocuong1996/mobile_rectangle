@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     View,
+    Dimensions,
+    ScrollView, TouchableOpacity, Text
 } from 'react-native';
 import {connect} from 'react-redux';
 import {hotel as hotelAction} from '../redux/actions';
@@ -12,7 +14,9 @@ import {
     smallItemWidth,
     swipeItemWidth,
 } from "../components/explore";
+import GradientSection from "../components/core/GradientSection";
 
+const sliderWidth = Dimensions.get('window').width;
 
 class Explore extends Component<{}>
 {
@@ -22,6 +26,9 @@ class Explore extends Component<{}>
 
     constructor(props){
         super(props);
+        this.state = {
+            autoPlay: false,
+        }
     }
 
     __renderHotel(item){
@@ -32,20 +39,60 @@ class Explore extends Component<{}>
         return <ExploreItemSwipe item={item} onPress={(a)=>alert(a.name)}/>
     }
 
+
     render()
     {
         return (
             <View style={styles.container}>
-                <ExploreCarouselSlider
-                    data={listItem}
-                    renderItem={this.__renderHotel}
-                    itemWidth={smallItemWidth}
-                />
-                <ExploreCarouselSlider
-                    data={listItem}
-                    renderItem={this.__renderEvent}
-                    itemWidth={swipeItemWidth}
-                />
+                <GradientSection height={40}/>
+                <ScrollView>
+                    <View style={[styles.viewWrapper, styles.hotelSection]}>
+                        <ExploreCarouselSlider
+                            data={listItem}
+                            renderItem={this.__renderHotel}
+                            itemWidth={smallItemWidth}
+                            sliderWidth={sliderWidth}
+                            title={'Popular Hotel'}
+                            autoplay={true}
+                            autoplayDelay={1000}
+                            autoplayInterval={3000}
+                            loop={true}
+                        />
+                    </View>
+
+                    <View style={[styles.viewWrapper,styles.restaurantSection]}>
+                        <ExploreCarouselSlider
+                            data={listItem}
+                            renderItem={this.__renderHotel}
+                            itemWidth={smallItemWidth}
+                            sliderWidth={sliderWidth}
+                            title={'Awesome Restaurant'}
+                        />
+                    </View>
+
+                    <View style={[styles.viewWrapper,styles.placeSection]}>
+                        <ExploreCarouselSlider
+                            data={listItem}
+                            renderItem={this.__renderEvent}
+                            itemWidth={swipeItemWidth}
+                            sliderWidth={sliderWidth}
+                            title={'Landscape'}
+                            autoplay={true}
+                            autoplayDelay={2000}
+                            autoplayInterval={4000}
+                            loop={true}
+                        />
+                    </View>
+                    <View style={[styles.viewWrapper,styles.placeSection]}>
+                        <ExploreCarouselSlider
+                            data={listItem}
+                            renderItem={this.__renderEvent}
+                            itemWidth={swipeItemWidth}
+                            sliderWidth={sliderWidth}
+                            title={'Event'}
+                        />
+                    </View>
+                </ScrollView>
             </View>
         );
     }
@@ -73,6 +120,21 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    viewWrapper: {
+        padding: 10,
+    },
+    hotelSection: {
+        width: '100%',
+        height: 180,
+    },
+    restaurantSection: {
+        width: '100%',
+        height: 180,
+    },
+    placeSection: {
+        width: '100%',
+        height: 150,
+    }
 
 });
 
