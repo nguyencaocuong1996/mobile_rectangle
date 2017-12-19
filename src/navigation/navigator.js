@@ -10,8 +10,8 @@ import {
     Register,
     AddHotel,
     AddRestaurant,
+    Explore,
 } from '../screens';
-import Settings from "../screens/Settings";
 
 export default StackNavigator({
     // Loading: {
@@ -19,7 +19,7 @@ export default StackNavigator({
     // },
 
     Tutorial: {
-        screen: Tutorial,
+        screen: Explore,
     },
     TabNav: {
         screen: mainTabStack,

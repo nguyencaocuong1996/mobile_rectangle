@@ -147,7 +147,8 @@ export default connect(mapStateToProps, mapActionToProps)(MyServices);
 
 const styles = StyleSheet.create({
     menuWrapper: {
-        marginTop: 20,
+        marginTop: 10,
+        marginBottom: 10,
         justifyContent: 'center',
         alignSelf: 'center',
     },
