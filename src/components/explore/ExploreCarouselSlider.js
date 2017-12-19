@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Carousel from "react-native-snap-carousel";
 import {Icon} from "native-base";
+import NestedIcon from "../core/NestedIcon";
 
 
 export default class ExploreCarouselSlider extends Component<{}>
@@ -50,20 +51,6 @@ export default class ExploreCarouselSlider extends Component<{}>
         this.__carousel.snapToItem(this.state.currentIndex -  this.navStep);
     };
 
-    __createInnerIcon(outer, inner, isActive=false){
-        let styles = {
-            view: {width: 30, height: 30, justifyContent: 'center', alignItems: 'center',},
-            icon: {position: 'absolute', color: '#F5F5F5',backgroundColor:'transparent', alignSelf:'center'},
-            outer: {fontSize: 31,},
-            inner: {fontSize: 20,},
-            activeStyle: isActive ? {color: '#8AC5FA'} : null,
-        };
-        return <View style={styles.view}>
-            <Icon style={[styles.icon, styles.outer, styles.activeStyle]} name={outer} />
-            <Icon style={[styles.icon, styles.inner, styles.activeStyle,]} name={inner} />
-        </View>;
-    }
-
     render()
     {
         return (
@@ -77,13 +64,20 @@ export default class ExploreCarouselSlider extends Component<{}>
                             disabled={!this.state.canPrev}
                             onPress={this.__onPrev.bind(this)}
                         >
-                            {this.__createInnerIcon('circle-thin', 'angle-left', this.state.canPrev)}
+                            <NestedIcon
+                                outer={'circle-thin'}
+                                inner={'angle-left'}
+                                isActive={this.state.canPrev}
+                            />
                         </TouchableOpacity>
                         <TouchableOpacity
                             disabled={!this.state.canNext}
                             onPress={this.__onNext.bind(this)}
                         >
-                            {this.__createInnerIcon('circle-thin', 'angle-right', this.state.canNext)}
+                            <NestedIcon
+                                outer={'circle-thin'}
+                                inner={'angle-right'}
+                                isActive={this.state.canNext}/>
                         </TouchableOpacity>
                     </View>
                 </View>

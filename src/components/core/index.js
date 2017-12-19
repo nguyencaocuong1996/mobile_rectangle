@@ -12,12 +12,16 @@ import HeaderLogoutButton from "./HeaderLogoutButton";
 import MenuItemWithTextUnderline from "./MenuItemWithTextUnderline";
 import ButtonGradientToggle from "./ButtonGradientToggle";
 import SwitchMenuNavigation from "./SwitchMenuNavigation";
+import NestedIcon from "./NestedIcon";
 
 const core = {
     //container
     GradientSection,
     GradientHeader,
     SwitchMenuNavigation,
+
+    //Icon
+    NestedIcon,
 
     //Button
     GreenButton,
