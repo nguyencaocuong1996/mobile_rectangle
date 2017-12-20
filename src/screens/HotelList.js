@@ -36,8 +36,11 @@ class HotelList extends Component<{}>
     };
 
     _renderItem = ({item}) => {
+        const onNav = ()=>{
+            this.props.navigation.navigate('HotelDetail', {item});
+        };
         return (
-            <HotelItem item={item}/>
+            <HotelItem item={item} onPress={onNav}/>
         )
     };
 

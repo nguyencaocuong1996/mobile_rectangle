@@ -11,7 +11,7 @@ import {
     AddHotel,
     AddRestaurant,
     Explore,
-    HotelDetail
+    HotelDetail,
 } from '../screens';
 import GradientHeader from "../components/core/GradientHeader";
 
@@ -22,7 +22,7 @@ export default StackNavigator({
     // },
 
     Tutorial: {
-        screen: HotelDetail,
+        screen: Tutorial,
 
     },
     TabNav: {
@@ -54,6 +54,9 @@ export default StackNavigator({
     Restaurant: {
         screen: restaurantTabStack,
     },
+    HotelDetail: {
+        screen: HotelDetail,
+    }
 
 
 }, {

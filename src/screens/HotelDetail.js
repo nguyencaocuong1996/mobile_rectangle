@@ -35,11 +35,11 @@ class HotelDetail extends Component<{}>
             isShowHeader: true,
         };
         this.account = commonHelper.account();
-        this.item = this.props.item;
+        let {params} = this.props.navigation.state;
+        this.item = params && params.item ? params.item : props.item;
     }
 
     componentDidMount(){
-
     }
 
     __renderStar(starCount){
@@ -97,21 +97,7 @@ class HotelDetail extends Component<{}>
                 </View>
                 <ScrollView style={styles.contentWrapper}>
                     <Text>
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
-                        djahsdkjahsdk asjd hkjashd jkashdjk ashdjk hasjkh dasjkhdjk ashdk jahsdjk hajskhd
+                        {this.item.description}
                     </Text>
                 </ScrollView>
             </View>

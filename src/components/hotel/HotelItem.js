@@ -18,6 +18,7 @@ export default class HotelItem extends Component<{}>
 
     constructor(props){
         super(props);
+        this.item = this.props.item;
     }
 
     __renderStar(starCount){
@@ -40,34 +41,44 @@ export default class HotelItem extends Component<{}>
         })
     }
 
+    __onPress = ()=>{
+        this.props.onPress(this.item);
+    };
+
     render() {
         return (
            
             <View style={styles.container}>
-                <View style={styles.imageWrapper}>
-                    <Image
-                        resizeMode={"stretch"}
-                        source={{uri: this.props.item.image}}
-                        style={styles.image}/>
-                </View>
-                <View style={styles.infoWrapper}>
-                    <View style={styles.starSection}>
-                        {this.__renderStar(3)}
+                <TouchableOpacity onPress={this.__onPress}>
+                    <View style={styles.imageWrapper}>
+                        <Image
+                            resizeMode={"stretch"}
+                            source={{uri: this.item.image}}
+                            style={styles.image}/>
                     </View>
-                    <Text style={styles.titleText}>{this.props.item.name}</Text>
-                        <View style={styles.viewAddress}>
-                            <Icon style={styles.icon} name={'map-marker'} />
-                            <Text style={styles.addressText}>{this.props.item.address}</Text>
-                        </View>
-                        <View style={styles.viewService}>
-                            {this.__renderService(this.props.item.services)}
-                        </View>
+                </TouchableOpacity>
+
+                <View style={styles.infoWrapper}>
+                        <TouchableOpacity onPress={this.__onPress}>
+                            <View style={styles.starSection}>
+                                {this.__renderStar(3)}
+                            </View>
+                            <Text style={styles.titleText}>{this.item.name}</Text>
+                                <View style={styles.viewAddress}>
+                                    <Icon style={styles.icon} name={'map-marker'} />
+                                    <Text style={styles.addressText}>{this.item.address}</Text>
+                                </View>
+                        </TouchableOpacity>
+                            <View style={styles.viewService}>
+                                {this.__renderService(this.item.services)}
+                            </View>
                 </View>
+
                 <TouchableOpacity style={styles.btnFavorite}>
                     <Icon style={{fontSize: 20, color: '#aeb1b5'}} name={'heart-o'} />
                 </TouchableOpacity>
                 <Text style={styles.txtPrice}>
-                    {this.props.item.price} VNĐ
+                    {this.item.price} VNĐ
                 </Text>
             </View>
         );
