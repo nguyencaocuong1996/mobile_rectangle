@@ -6,7 +6,10 @@ import {
     ScrollView, TouchableOpacity, Text
 } from 'react-native';
 import {connect} from 'react-redux';
-import {hotel as hotelAction} from '../redux/actions';
+import {
+    hotel as hotelAction,
+    restaurant as restaurantAction
+} from '../redux/actions';
 import {ExploreCarouselSlider} from "../components/explore";
 import {
     ExploreItemSmall,
@@ -39,6 +42,19 @@ class Explore extends Component<{}>
         return <ExploreItemSwipe item={item} onPress={(a)=>alert(a.name)}/>
     }
 
+    componentDidMount(){
+        console.log("props this", this.props);
+        if(this.props.listHotel.length === 0){
+            this.props.getAllHotel();
+        }
+        if (this.props.listRestaurant.length === 0){
+            this.props.getAllRestaurant();
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("props", nextProps);
+    }
 
     render()
     {
@@ -52,7 +68,7 @@ class Explore extends Component<{}>
                 <ScrollView>
                     <View style={[styles.viewWrapper, styles.hotelSection]}>
                         <ExploreCarouselSlider
-                            data={listItem}
+                            data={this.props.listHotel}
                             renderItem={this.__renderHotel}
                             itemWidth={smallItemWidth}
                             sliderWidth={sliderWidth}
@@ -66,7 +82,7 @@ class Explore extends Component<{}>
 
                     <View style={[styles.viewWrapper,styles.restaurantSection]}>
                         <ExploreCarouselSlider
-                            data={listItem}
+                            data={this.props.listRestaurant}
                             renderItem={this.__renderHotel}
                             itemWidth={smallItemWidth}
                             sliderWidth={sliderWidth}
@@ -76,7 +92,7 @@ class Explore extends Component<{}>
 
                     <View style={[styles.viewWrapper,styles.placeSection]}>
                         <ExploreCarouselSlider
-                            data={listItem}
+                            data={this.props.listHotel}
                             renderItem={this.__renderEvent}
                             itemWidth={swipeItemWidth}
                             sliderWidth={sliderWidth}
@@ -84,12 +100,11 @@ class Explore extends Component<{}>
                             autoplay={true}
                             autoplayDelay={2000}
                             autoplayInterval={4000}
-                            loop={true}
                         />
                     </View>
                     <View style={[styles.viewWrapper,styles.placeSection]}>
                         <ExploreCarouselSlider
-                            data={listItem}
+                            data={this.props.listRestaurant}
                             renderItem={this.__renderEvent}
                             itemWidth={swipeItemWidth}
                             sliderWidth={sliderWidth}
@@ -105,11 +120,13 @@ class Explore extends Component<{}>
 const mapStateToProps = (state) => {
     return {
         listHotel: state.hotel.listHotel,
+        listRestaurant: state.restaurant.listRestaurant,
     };
 };
 
 const mapActionToProps = {
-    getAll: hotelAction.getAll,
+    getAllHotel: hotelAction.getAll,
+    getAllRestaurant: restaurantAction.getAll,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(Explore);
