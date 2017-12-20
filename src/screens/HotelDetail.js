@@ -5,6 +5,7 @@ import {
     View,
     Image,
     TouchableOpacity, ScrollView,
+    Dimensions,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Button, Icon} from "native-base";
@@ -13,7 +14,7 @@ import commonHelper from "../helpers/commonHelper";
 import SwitchMenuNavigation from "../components/core/SwitchMenuNavigation";
 import TextWithIconLight from "../components/core/TextWithIconLight";
 import FloatButton from "../components/core/FloatButton";
-import {ReviewSection} from "../components/common";
+import {ReviewSection, DetailMapSection} from "../components/common";
 import iconDecoration from '../assets/img/iconDecorationTextDetail.png';
 
 
@@ -22,6 +23,8 @@ const tabs = {
     review: 'review',
     map: 'map',
 };
+
+const screenWidth = Dimensions.get('window').width;
 
 class HotelDetail extends Component<{}>
 {
@@ -122,10 +125,12 @@ class HotelDetail extends Component<{}>
     };
 
     __tabMap = ()=>{
+        const marker = {
+            lat: this.item.lat,
+            long: this.item.long,
+        };
         return (
-            <Text>
-                maps
-            </Text>
+            <DetailMapSection marker={marker}/>
         );
     };
 
@@ -212,7 +217,9 @@ HotelDetail.defaultProps = {
         star: 3,
         avatar: 'http://i.9mobi.vn/cf/images/2015/03/nkk/anh-avatar-dep-15.jpg',
         address: 'this is address of hotel',
-        phone: '0982348747'
+        phone: '0982348747',
+        lat: 10.871981,
+        long: 106.792598,
     }
 };
 
@@ -248,6 +255,9 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 2,
+        borderBottomStartRadius: screenWidth/6,
+        borderBottomEndRadius: screenWidth/6,
+        overflow: 'hidden',
     },
     btnToggleHeaderWrapper:{
         position: 'absolute',
