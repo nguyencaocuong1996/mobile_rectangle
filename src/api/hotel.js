@@ -18,11 +18,11 @@ const getList = (r, e) => {
 };
 
 const getAll = (r, e)=>{
-    api.get('hotel/all', r ,e);
+    api.get('hotel/all/', r ,e);
 };
 
 const getAround = ({lat, long, radius}, r , e) =>{
-    api.get('hotel/around', r, e, {
+    api.get('hotel/around/', r, e, {
         params: {
             lat,
             long,
@@ -32,7 +32,7 @@ const getAround = ({lat, long, radius}, r , e) =>{
 };
 
 const getByService = ({id}, r, e) => {
-    api.get('hotel/by-service', r, e, {
+    api.get('hotel/by-service/', r, e, {
         params: {
             id,
         }

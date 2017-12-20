@@ -3,6 +3,7 @@ import {tabBarOptionsDefault, styles, getTabBarItemOptions} from "./helper";
 import {TabNavigator} from "react-navigation";
 import {
     HotelList,
+    HotelMap
 } from '../screens';
 
 const hotelTabStack = TabNavigator({
@@ -17,7 +18,7 @@ const hotelTabStack = TabNavigator({
         },
     },
     HotelMapList: {
-        screen: HotelList,
+        screen: HotelMap,
         navigationOptions: ({ navigation }) => {
             const title = 'Maps';
             return {

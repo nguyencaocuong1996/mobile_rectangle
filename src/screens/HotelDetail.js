@@ -11,9 +11,12 @@ import {connect} from 'react-redux';
 import {Button, Icon} from "native-base";
 import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
 import commonHelper from "../helpers/commonHelper";
-import SwitchMenuNavigation from "../components/core/SwitchMenuNavigation";
-import TextWithIconLight from "../components/core/TextWithIconLight";
-import FloatButton from "../components/core/FloatButton";
+import {
+    SwitchMenuNavigation,
+    TextWithIconLight,
+    GradientHeader,
+    FloatButton,
+} from "../components/core";
 import {ReviewSection, DetailMapSection} from "../components/common";
 import iconDecoration from '../assets/img/iconDecorationTextDetail.png';
 

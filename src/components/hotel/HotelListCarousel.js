@@ -112,7 +112,7 @@ export default class HotelListCarousel extends Component<{}>
     {
         return (
                 <View style={styles.container}>
-                    {!this.state.isHide ?
+                    {!this.state.isHide &&
                         <Carousel
                             data={this.props.listHotel}
                             renderItem={this._renderItem}
@@ -121,7 +121,7 @@ export default class HotelListCarousel extends Component<{}>
                             ref={(c)=>{this.__carousel = c;}}
                             containerCustomStyle={styles.carousel}
                             onSnapToItem={this.__onSnapToItem.bind(this)}
-                        /> : null
+                        />
                     }
 
                     <TouchableOpacity style={styles.toggleButton} onPress={()=>{this.__toggleCarousel();}}>

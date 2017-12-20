@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     View,
-    Image,
+    Image, TouchableOpacity,
 } from 'react-native';
 
 import {TextWithIconLight} from '../core';
@@ -18,30 +18,44 @@ export default class ServiceItem extends Component<{}>
         super(props);
         this.time = commonHelper.formatTimeToHM(this.props.item.openAt) + '-' + commonHelper.formatTimeToHM(this.props.item.closeAt);
         this.createdAt = commonHelper.formatDate(this.props.item.createdAt);
+        this.item = this.props.item;
     }
+
+    __onPress = ()=>{
+        this.props.onPress(this.item);
+    };
+
+    componentWillReceiveProps(nextProps){
+        this.item = nextProps.item;
+    }
+
     render()
     {
         return (
-            <View style={styles.container}>
-                <Image
-                    // resizeMode={"stretch"}
-                    source={{uri: this.props.item.image}}
-                    style={styles.image}/>
-                <View style={styles.infoWrapper}>
-                    <Text style={styles.txtName}>{this.props.item.name}</Text>
-                    <TextWithIconLight iconName={'clock-o'} text={this.time}/>
-                    <TextWithIconLight iconName={'phone'} text={this.props.item.phone}/>
-                    <TextWithIconLight iconName={'home'} text={this.props.item.address}/>
-                    <Text style={styles.txtCreateAt}>Created at: {this.createdAt}</Text>
-                </View>
+            <TouchableOpacity onPress={this.__onPress}>
+                <View style={styles.container}>
+                    <Image
+                        // resizeMode={"stretch"}
+                        source={{uri: this.item.image}}
+                        style={styles.image}/>
+                    <View style={styles.infoWrapper}>
+                        <Text style={styles.txtName}>{this.item.name}</Text>
+                        <TextWithIconLight iconName={'clock-o'} text={this.time}/>
+                        <TextWithIconLight iconName={'phone'} text={this.item.phone}/>
+                        <TextWithIconLight iconName={'home'} text={this.item.address}/>
+                        <Text style={styles.txtCreateAt}>Created at: {this.createdAt}</Text>
+                    </View>
 
-            </View>
+                </View>
+            </TouchableOpacity>
+
         );
     }
 }
 
 ServiceItem.defaultProps = {
-    item: {}
+    item: {},
+    onPress: ()=>null,
 };
 
 const styles = StyleSheet.create({

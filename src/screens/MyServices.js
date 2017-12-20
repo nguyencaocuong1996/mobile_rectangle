@@ -41,27 +41,13 @@ class MyServices extends Component<{}>
     }
 
     __chooseService(type){
-        switch (type){
-            case services.hotel:
-                this.setState({
-                    service: services.hotel,
-                });
-                break;
-            case services.restaurant:
-                this.setState({
-                    service: services.restaurant,
-                });
-                break;
-            default:
-                this.setState({
-                    service: services.hotel,
-                });
-                break;
-        }
+        this.setState({
+            service: type,
+        })
     }
 
-    __getListService(type){
-        switch (type){
+    __getListService(){
+        switch (this.state.service){
             case services.hotel:
                 return this.props.listMyHotel;
             case services.restaurant:
@@ -87,9 +73,12 @@ class MyServices extends Component<{}>
     };
 
     _renderItem = ({item}) => {
+        const onNav = ()=>{
+            this.props.navigation.navigate('HotelDetail', {item})
+        };
         return (
-            <ServiceItem item={item}/>
-        )
+            <ServiceItem item={item} onPress={onNav}/>
+        );
     };
 
     addService(){
@@ -106,7 +95,8 @@ class MyServices extends Component<{}>
 
     render()
     {
-        const listService = this.__getListService(this.state.service);
+        const listService = this.__getListService();
+        console.log(listService);
         const buttons = getSwitchButtons(this);
         return (
                 <View style={styles.container}>
