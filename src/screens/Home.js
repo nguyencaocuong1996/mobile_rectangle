@@ -15,7 +15,7 @@ import EventImg from '../assets/img/home-item-bg-event.jpg';
 import {Button} from "native-base";
 import {common as commonHelper} from '../helpers';
 import HeaderLogoutButton from '../components/core/HeaderLogoutButton';
-import LinearGradient from "react-native-linear-gradient";
+import PlaceImg from '../assets/img/placeHomeImage.jpg';
 import GradientHeader from "../components/core/GradientHeader";
 import GradientSection from "../components/core/GradientSection";
 
@@ -152,6 +152,12 @@ const listItem = [
         title: "Restaurant",
         description: "des 2",
         left: false,
+        screen: 'RestaurantList',
+    },
+    {
+        img: PlaceImg,
+        title: "Place",
+        description: "des 3",
         screen: 'RestaurantList',
     },
     {

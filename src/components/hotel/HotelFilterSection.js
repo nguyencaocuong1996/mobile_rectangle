@@ -64,7 +64,7 @@ class HotelFilterSection extends Component<{}>
                 <View style={styles.viewWrapper}>
 
                     <ButtonWithIcon iconName={'map-marker'} text={'Nearby'}/>
-                    <View style={[styles.pickerWrapper, {marginLeft: -20,}]}>
+                    <View style={[styles.pickerWrapper, {marginLeft: -30,}]}>
                         <Icon style={[styles.icon]} name={'bed'} />
                         <Picker
                             mode="dropdown"
@@ -74,7 +74,7 @@ class HotelFilterSection extends Component<{}>
                             onValueChange={this.__onServiceChange.bind(this)}
                             itemStyle={[styles.pricePickerItem, serviceItemActive]}
                             textStyle={[styles.pricePickerItem, serviceItemActive]}
-                            style={[styles.pricePicker, serviceActive]}
+                            style={[styles.pricePicker, serviceActive, {marginLeft: 3,}]}
                         >
                             {pickerServiceItems.map(item=>{
                                 return <Item key={item.value} label={item.label} value={item.value} />

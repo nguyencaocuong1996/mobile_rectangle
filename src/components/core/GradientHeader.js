@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     buttonBack:{
         position: 'absolute',
         top: 20,
+        left: 10,
         backgroundColor: 'transparent',
         width: 30,
         height: 30,

@@ -56,6 +56,16 @@ export default class ExploreCarouselSlider extends Component<{}>
         this.__carousel.snapToItem(this.state.currentIndex -  this.navStep);
     };
 
+    __toggleAutoplay = ()=>{
+        if (this.state.autoPlay){
+            this.__carousel.stopAutoplay();
+        } else {
+            this.__carousel.startAutoplay();
+        }
+        this.setState({
+            autoPlay: !this.state.autoPlay,
+        })
+    };
 
     render()
     {
@@ -84,6 +94,14 @@ export default class ExploreCarouselSlider extends Component<{}>
                                 outer={'circle-thin'}
                                 inner={'angle-right'}
                                 isActive={this.state.canNext}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={this.__toggleAutoplay.bind(this)}
+                        >
+                            <NestedIcon
+                                outer={'circle-thin'}
+                                inner={'play'}
+                                isActive={this.state.autoPlay}/>
                         </TouchableOpacity>
                     </View>
                 </View>

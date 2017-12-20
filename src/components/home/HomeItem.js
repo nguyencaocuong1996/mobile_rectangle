@@ -14,7 +14,8 @@ export default class HomeItem extends Component<{}>
             <TouchableOpacity onPress={()=>this.props.navigation.navigate(this.props.item.screen)}>
                 <View style={styles.container}>
                     <Image
-                        resizeMode={"cover"}
+                        resizeMode={"stretch"}
+                        resizeMethod={"scale"}
                         source={this.props.item.img}
                         style={styles.image}/>
 
@@ -38,7 +39,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 15,
         justifyContent: 'center',
-        height: 140,
+        height: 220,
+        width: '100%',
         // shadowColor: '#000000',
         // shadowOffset: {
         //     width: 0,
@@ -53,8 +55,8 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        // height: undefined,
-        // width: undefined,
+        height: '100%',
+        width: '100%',
         alignSelf: 'center',
 
     },

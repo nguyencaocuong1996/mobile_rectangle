@@ -35,11 +35,17 @@ class Explore extends Component<{}>
     }
 
     __renderHotel(item){
-        return <ExploreItemSmall item={item} onPress={(a)=>alert(a.name)}/>
+        const onNav = ()=>{
+            this.props.navigation.navigate('HotelDetail', {item})
+        };
+        return <ExploreItemSmall item={item} onPress={onNav}/>
     }
 
     __renderEvent(item){
-        return <ExploreItemSwipe item={item} onPress={(a)=>alert(a.name)}/>
+        const onNav = ()=>{
+            this.props.navigation.navigate('RestaurantDetail', {item})
+        };
+        return <ExploreItemSwipe item={item} onPress={onNav}/>
     }
 
     componentDidMount(){
@@ -69,24 +75,26 @@ class Explore extends Component<{}>
                     <View style={[styles.viewWrapper, styles.hotelSection]}>
                         <ExploreCarouselSlider
                             data={this.props.listHotel}
-                            renderItem={this.__renderHotel}
+                            renderItem={this.__renderHotel.bind(this)}
                             itemWidth={smallItemWidth}
                             sliderWidth={sliderWidth}
                             title={'Popular Hotel'}
-                            autoplay={true}
+                            autoplay={false}
                             autoplayDelay={1000}
                             autoplayInterval={3000}
-                            loop={true}
                         />
                     </View>
 
                     <View style={[styles.viewWrapper,styles.restaurantSection]}>
                         <ExploreCarouselSlider
                             data={this.props.listRestaurant}
-                            renderItem={this.__renderHotel}
+                            renderItem={this.__renderHotel.bind(this)}
                             itemWidth={smallItemWidth}
                             sliderWidth={sliderWidth}
                             title={'Awesome Restaurant'}
+                            autoplay={false}
+                            autoplayDelay={1000}
+                            autoplayInterval={3000}
                         />
                     </View>
 
@@ -97,9 +105,6 @@ class Explore extends Component<{}>
                             itemWidth={swipeItemWidth}
                             sliderWidth={sliderWidth}
                             title={'Landscape'}
-                            autoplay={true}
-                            autoplayDelay={2000}
-                            autoplayInterval={4000}
                         />
                     </View>
                     <View style={[styles.viewWrapper,styles.placeSection]}>
