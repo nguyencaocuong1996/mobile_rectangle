@@ -152,7 +152,7 @@ const listItem = [
         title: "Restaurant",
         description: "des 2",
         left: false,
-        screen: 'RestaurantList',
+        screen: 'Restaurant',
     },
     {
         img: PlaceImg,

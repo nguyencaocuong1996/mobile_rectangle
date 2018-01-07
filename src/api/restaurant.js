@@ -14,12 +14,19 @@ const add = ({name, address, star, price, description}, r, e) =>{
     }},r,e);
 };
 
+const addFavorite = ({customer, restaurant}, r, e) =>{
+    api.post('restaurant/add-favorite/',r,e, {data:{
+        customer,
+        restaurant
+    }});
+};
+
 const getList = (r, e) => {
-    api.get('hotel/', r, e);
+    api.get('restaurant/', r, e);
 };
 
 const getAll = (r, e)=>{
-    api.get('hotel/all', r ,e, {
+    api.get('restaurant/all', r ,e, {
         headers: {
             'Authorization': 'Token 79e60238fe252fcd2774040d03000c09f3ec7fba',
         }
@@ -27,7 +34,7 @@ const getAll = (r, e)=>{
 };
 
 const getAround = ({lat, long, radius}, r , e) =>{
-    api.get('hotel/around', r, e, {
+    api.get('restaurant/around', r, e, {
         params: {
             lat,
             long,
@@ -37,7 +44,7 @@ const getAround = ({lat, long, radius}, r , e) =>{
 };
 
 const getByService = ({id}, r, e) => {
-    api.get('hotel/by-service', r, e, {
+    api.get('restaurant/by-service', r, e, {
         params: {
             id,
         }
@@ -73,6 +80,7 @@ const getListBookedRestaurant = (r, e)=>{
 
 export default {
     add,
+    addFavorite,
     getList,
     getAll,
     getListMyRestaurant,

@@ -7,7 +7,8 @@ import {
 import icLocation from '../assets/img/icLocation.png';
 import MapView from 'react-native-maps';
 import ListHotelCarousel from '../components/hotel/HotelListCarousel';
-import {hotel as hotelApi} from '../api';
+import {hotel as hotelAction} from '../redux/actions';
+import {connect} from "react-redux";
 
 const { width, height } = Dimensions.get('window');
 
@@ -19,7 +20,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA;
 let id = 0;
 
 
-export default class HotelMap extends Component<{}>
+class HotelMap extends Component<{}>
 {
     static navigationOptions = {
         title: 'Maps',
@@ -35,8 +36,6 @@ export default class HotelMap extends Component<{}>
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
             },
-            listHotel: [],
-
         };
 
         this.onMapPress = this.onMapPress.bind(this);
@@ -44,18 +43,15 @@ export default class HotelMap extends Component<{}>
 
 
     componentDidMount(){
-        hotelApi.getAll((r)=>{
-            this.setState({
-                listHotel: r.data
-            });
-            let first_hotel = r.data[0];
-            this.__setStateRegion(first_hotel.lat, first_hotel.long);
-        }, (e)=>{
-            console.log(e);
-            alert("Load error");
-        })
+
     }
 
+    componentWillReceiveProps(nextProps){
+        if (nextProps.listHotel.length !== 0){
+            let first_hotel = this.props.listHotel[0];
+            this.__setStateRegion(first_hotel.lat, first_hotel.long);
+        }
+    }
 
     onMapPress(e) {
         this.setState({
@@ -111,7 +107,7 @@ export default class HotelMap extends Component<{}>
                     // onPress={this.onMapPress}
                     ref={(map)=>{this.__map=map;}}
                 >
-                    {this.state.listHotel.map(hotel => this.__renderMaker(hotel))}
+                    {this.props.listHotel.map(hotel => this.__renderMaker(hotel))}
                 </MapView>
                 <View style={styles.listCarousel}>
                     <ListHotelCarousel
@@ -128,6 +124,17 @@ export default class HotelMap extends Component<{}>
 HotelMap.propTypes = {
     provider: MapView.ProviderPropType,
 };
+const mapStateToProps = (state) => {
+    return {
+        listHotel: state.hotel.listHotel,
+    };
+};
+
+const mapActionToProps = {
+    getAll: hotelAction.getAll,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(HotelMap);
 
 const styles = StyleSheet.create({
     listCarousel: {

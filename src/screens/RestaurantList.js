@@ -6,18 +6,29 @@ import {
     View,
     TextInput, FlatList,
 } from 'react-native';
-import RestaurantItem from "../components/restaurant/RestaurantItem";
+import {RestaurantItem} from "../components/restaurant";
+import {connect} from 'react-redux';
+import GradientHeader from "../components/core/GradientHeader";
+import GradientSection from "../components/core/GradientSection";
+import {HotelFilterSection} from "../components/hotel/index";
+import restaurantAction from "../redux/actions/RestaurantAction";
 
-import imgRestaurant4 from '../assets/img/imgRestaurant4.jpeg';
-import imgRestaurant2 from '../assets/img/imgRestaurant2.jpg';
-import imgRestaurant3 from '../assets/img/imgRestaurant3.jpg';
-import settings from '../config';
 
-export default class RestaurantList extends Component<{}>
+class RestaurantList extends Component<{}>
 {
-    static navigationOptions = {
-        title: 'List Restaurant',
+    static navigationOptions = ({navigation})=>{
+        return {
+            header: <GradientHeader navigation={navigation} backScreen={'Home'} />
+        }
     };
+
+    constructor(props){
+        super(props);
+    }
+
+    componentDidMount(){
+        this.props.getAll();
+    }
 
 
     _keyExtractor = (item, index)=>{
@@ -25,34 +36,31 @@ export default class RestaurantList extends Component<{}>
     };
 
     _renderItem = ({item}) => {
-        console.log("name", item.title);
+        const onNav = ()=>{
+            this.props.navigation.navigate('HotelDetail', {item});
+        };
+        const onFavorite = ()=>{
+            this.props.addFavorite(item.id)
+        };
         return (
-            <RestaurantItem isLeft={item.left}
-                      imgSrc={item.img}
-                      title={item.title}
-                      description={item.description}
-                      navigation={this.props.navigation}
-            />
+            <RestaurantItem item={item} onPress={onNav} onFavorite={onFavorite}/>
         )
     };
 
 
     render()
     {
-        console.log(listItem);
         return (
             <View style={styles.container}>
-                <View style={styles.searchSection}>
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder={"🔍 Search services"}
-                        // onChangeText={(text) => this.setState({text})}
-                        // value={this.state.text}
-                    />
-                </View>
-                <View style={styles.menuSection}>
+                <GradientSection height={130}>
+                    <Text style={styles.titleText}>
+                        Looking for Restaurant?
+                    </Text>
+                </GradientSection>
+                <HotelFilterSection style={{position: 'absolute', top: 60,}} />
+                <View style={styles.listSection}>
                     <FlatList
-                        data = {listItem}
+                        data = {this.props.listRestaurant}
                         renderItem = {this._renderItem}
                         keyExtractor={this._keyExtractor}
                     />
@@ -62,10 +70,30 @@ export default class RestaurantList extends Component<{}>
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        listRestaurant: state.restaurant.listRestaurant,
+    };
+};
+
+const mapActionToProps = {
+    getAll: restaurantAction.getAll,
+    addFavorite: restaurantAction.addFavorite,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(RestaurantList);
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#fff',
+    },
+    titleText: {
+        fontSize: 20,
+        color: '#F7FBFE',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold',
+        alignSelf: 'center',
     },
     searchSection: {
         flex:1,
@@ -85,11 +113,16 @@ const styles = StyleSheet.create({
         elevation: 10,
         marginBottom: 10,
     },
-    menuSection: {
-        flex:7,
+    listSection: {
+        // borderColor: 'red',
+        // borderWidth: 1,
+        marginTop: 50,
+        flex:5,
         flexDirection: 'column',
         padding: 5,
         backgroundColor: '#fff',
+        paddingLeft: '2%',
+        paddingRight: '2%',
     },
     searchInput: {
         height: 40,
@@ -102,22 +135,3 @@ const styles = StyleSheet.create({
 
 
 });
-
-const listItem = [
-    {
-        img: imgRestaurant4,
-        title: "Nhà hàng Rectangle",
-        description: "21 Lương Định Của, Quận 8, TP HCM",
-    },
-    {
-        img: imgRestaurant2,
-        title: "Nhà hàng Diamond",
-        description: "12 Nguyễn Huệ, Quận 1, TP HCM",
-        left: false,
-    },
-    {
-        img: imgRestaurant3,
-        title: "Nhà hàng For You",
-        description: "320/12 Trường Chinh, TP HCM",
-    },
-];

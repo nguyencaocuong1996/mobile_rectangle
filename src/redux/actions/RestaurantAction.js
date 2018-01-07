@@ -36,6 +36,7 @@ const restaurantAction = {
     getAll: ()=>{
         return (dispatch=>{
             restaurantApi.getAll((response)=>{
+                console.log("restaurant response", response);
                 dispatch(restaurantAction.setData(response.data));
             }, (error)=>{
                 console.log("GET LIST ALL RESTAURANT ERROR", error);
@@ -74,14 +75,15 @@ const restaurantAction = {
         return (dispatch=>{
             let data = {
                 customer: commonHelper.account().id,
-                hotel: restaurantId
+                restaurant: restaurantId
             };
+            console.log("data", data);
             restaurantApi.addFavorite(data, (response)=>{
                 console.log("Add favorite restaurant response", response);
                 dispatch(restaurantAction.getListMyFavoriteRestaurant());
                 alert("Thêm thành công.");
             }, (error)=>{
-                alert("Bạn đã nhà hàng sạn này rồi.");
+                alert("Bạn đã nhà hàng này rồi.");
             });
         })
     }
