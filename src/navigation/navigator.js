@@ -14,16 +14,18 @@ import {
     HotelDetail,
 } from '../screens';
 import GradientHeader from "../components/core/GradientHeader";
+import Loading from "../screens/Loading";
 
 
 export default StackNavigator({
-    // Loading: {
-    //     screen: Home
-    // },
+
 
     Tutorial: {
         screen: Tutorial,
 
+    },
+    Loading: {
+        screen: Loading
     },
     TabNav: {
         screen: mainTabStack,

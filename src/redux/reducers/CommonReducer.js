@@ -2,6 +2,7 @@ import {snippets} from '../actions/CommonAction';
 
 
 const default_state = {
+    isLoading: false,
     account: {
         id: null,
         name: null,
@@ -27,7 +28,7 @@ const default_state = {
         {
             name: 'aasbc',
         }
-    ]
+    ],
 };
 
 const commonReducer = (state=default_state, action) => {

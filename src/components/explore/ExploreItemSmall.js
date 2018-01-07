@@ -21,6 +21,7 @@ export default class ExploreItemSmall extends Component<{}>
         super(props);
         this.item = this.props.item;
         this.onPress = this.props.onPress;
+        this.item.reviewCount = this.item.reviewCount || Math.floor(Math.random() * 1000);
     }
 
     __renderStar(starCount){
@@ -73,7 +74,7 @@ ExploreItemSmall.defaultProps = {
     item: {
         name: 'this is name of item',
         star: 3,
-        reviewCount: 1000,
+        reviewCount: Math.floor(Math.random() * 20),
         image: 'urlofimage',
     },
     onPress: ()=>null,

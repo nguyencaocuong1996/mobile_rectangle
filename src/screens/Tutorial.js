@@ -32,7 +32,7 @@ class Loading extends Component<{}>
     constructor(props){
         super(props);
         commonHelper.checkLogin((account)=>{
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Loading');
         }, (error)=>{
             console.log("Check login error", error);
         });
@@ -66,7 +66,7 @@ class Loading extends Component<{}>
                         {`this is example text`}
                     </Text>
                     <View style={styles.txtUseWrap}>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Loading')}>
                             <Text style={styles.txtUse}>
                                 {`\nLet's use!`}
                             </Text>

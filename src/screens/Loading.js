@@ -2,16 +2,14 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet, Image
 } from 'react-native';
 
 import {connect} from 'react-redux';
-
-import {common as commonHelper} from "../helpers";
-
 import {common as commonAction} from '../redux/actions'
-
-
+import loadingImg from '../assets/img/loading.gif';
+import txtLoading from '../assets/img/textLoading.gif';
+import GradientSection from "../components/core/GradientSection";
 class Loading extends Component<{}>
 {
 
@@ -21,20 +19,27 @@ class Loading extends Component<{}>
 
     constructor(props){
         super(props);
-        // commonHelper.setLogin({id: 11, email: 'asdasd'});
-        commonHelper.checkLogin((account)=>{
+    }
+
+    componentDidMount(){
+        setTimeout(()=>{
             this.props.navigation.navigate('Home');
-        }, (error)=>{
-            console.log("not login", error);
-            this.props.navigation.navigate('Tutorial');
-        });
+        }, 3000);
     }
 
     render()
     {
         return (
             <View style={styles.container}>
-                <Text style={styles.txt}>FOOCO</Text>
+                <GradientSection height={300}>
+                    <Text style={styles.txt}>FOOCO</Text>
+                    <Image style={styles.txtLoading} source={txtLoading} />
+                    <View style={styles.loadingWrapper}>
+                        <Image style={styles.loadingImg} source={loadingImg} />
+                    </View>
+
+                </GradientSection>
+
             </View>
 
         );
@@ -51,11 +56,52 @@ export default connect(mapStateToProps, {login: commonAction.login})(Loading);
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        backgroundColor: '#fff',
         justifyContent: 'space-between',
         flexDirection: 'column',
     },
     txt:{
         fontSize: 30,
-        color: '#ff0060'
+        color: '#fff',
+        position: 'absolute',
+        alignSelf: 'center',
+        backgroundColor: 'transparent',
+        top: 50,
+        fontWeight: 'bold'
+    },
+    txtLoading: {
+        width: 128,
+        height: 36,
+        alignSelf: 'center',
+        position: 'absolute',
+        top: 200,
+        backgroundColor: 'transparent'
+    },
+    loadingImg: {
+        width: 128,
+        height: 128,
+    },
+
+    bgImage: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+    },
+    iconImage: {
+        width: 128,
+        height: 128,
+        alignSelf: 'center',
+        position: 'absolute',
+        top: 100,
+    },
+    loadingWrapper: {
+        position: 'absolute',
+        width: 128,
+        height: 128,
+        borderRadius: 64,
+        backgroundColor: '#fff',
+        alignSelf: 'center',
+        bottom: -64
     }
 });
