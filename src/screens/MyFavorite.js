@@ -33,7 +33,7 @@ class MyFavorite extends Component<{}>
     }
 
     componentDidMount(){
-        this.props.getListMyHotel();
+        this.props.getListMyFavoriteHotel();
         this.props.getListMyRestaurant();
     }
 
@@ -60,11 +60,11 @@ class MyFavorite extends Component<{}>
     __getListService(type){
         switch (type){
             case services.hotel:
-                return this.props.listMyHotel;
+                return this.props.listMyFavoriteHotel;
             case services.restaurant:
                 return this.props.listMyRestaurant;
             default:
-                return this.props.listMyHotel;
+                return this.props.listMyFavoriteHotel;
         }
     }
 
@@ -130,13 +130,13 @@ class MyFavorite extends Component<{}>
 
 const mapStateToProps = (state) => {
     return {
-        listMyHotel: state.hotel.listMyHotel,
+        listMyFavoriteHotel: state.hotel.listMyFavoriteHotel,
         listMyRestaurant: state.restaurant.listMyRestaurant,
     };
 };
 
 const mapActionToProps = {
-    getListMyHotel: hotelAction.getListMyHotel,
+    getListMyFavoriteHotel: hotelAction.getListMyFavoriteHotel,
     getListMyRestaurant: restaurantAction.getListMyRestaurant,
 };
 

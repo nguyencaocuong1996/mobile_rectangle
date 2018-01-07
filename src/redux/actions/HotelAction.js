@@ -1,4 +1,5 @@
 import {hotel as hotelApi} from '../../api';
+import commonHelper from "../../helpers/commonHelper";
 
 export const snippets = {
     setData: 'SET_DATA',
@@ -53,7 +54,7 @@ const hotelAction = {
     getListMyFavoriteHotel: ()=>{
         return (dispatch=>{
             hotelApi.getListMyFavoriteHotel((response)=>{
-                dispatch(hotelAction.setMyListHotel(response.data));
+                dispatch(hotelAction.setListMyFavoriteHotel(response.data));
             }, (error)=>{
                 console.log("GET MY FAVORITE HOTEL ERROR", error.response);
             })
@@ -66,6 +67,21 @@ const hotelAction = {
             }, (error)=>{
                 console.log("GET MY FAVORITE HOTEL ERROR", error.response);
             })
+        })
+    },
+    addFavorite: (hotelId)=>{
+        return (dispatch=>{
+            let data = {
+                customer: commonHelper.account().id,
+                hotel: hotelId
+            };
+            hotelApi.addFavorite(data, (response)=>{
+                console.log("Add favorite response", response);
+                dispatch(hotelAction.getListMyFavoriteHotel());
+                alert("Thêm thành công.");
+            }, (error)=>{
+                alert("Bạn đã thêm khách sạn này rồi.");
+            });
         })
     }
 };

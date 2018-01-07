@@ -45,6 +45,10 @@ export default class HotelItem extends Component<{}>
         this.props.onPress(this.item);
     };
 
+    __onFavorite = ()=>{
+        this.props.onFavorite(this.item);
+    };
+
     render() {
         return (
            
@@ -74,7 +78,7 @@ export default class HotelItem extends Component<{}>
                             </View>
                 </View>
 
-                <TouchableOpacity style={styles.btnFavorite}>
+                <TouchableOpacity style={styles.btnFavorite} onPress={this.__onFavorite}>
                     <Icon style={{fontSize: 20, color: '#aeb1b5'}} name={'heart-o'} />
                 </TouchableOpacity>
                 <Text style={styles.txtPrice}>

@@ -4,13 +4,20 @@ import {common as commonHelper} from '../helpers';
 const api = core(default_config);
 
 const add = ({name, address, star, price, description}, r, e) =>{
-    api.post('customer/create/', {data:{
+    api.post('customer/create/', r, e,{data:{
         name,
         address,
         star,
         price,
         description
-    }},r,e);
+    }});
+};
+
+const addFavorite = ({customer, hotel}, r, e) =>{
+    api.post('hotel/add-favorite/',r,e, {data:{
+        customer,
+        hotel
+    }});
 };
 
 const getList = (r, e) => {
@@ -75,5 +82,6 @@ export default {
     getAll,
     getListMyHotel,
     getListMyFavoriteHotel,
-    getListBookedHotel
+    getListBookedHotel,
+    addFavorite,
 }

@@ -24,7 +24,18 @@ const core = (config=default_config)=>({
             url: path,
             data,
             headers,
-        }).then(response => successCallback(response)).catch(error => errorCallback(error));
+        }).then(response => {
+            console.log("Post success response", response);
+            if (response.status === 200 || response.status === 201){
+                successCallback(response.data)
+            } else {
+                errorCallback(response)
+            }
+
+        }).catch(error => {
+            console.log("Post response error", error.response);
+            errorCallback(error.response)
+        });
     },
     get: (path, successCallback, errorCallback, {params={}, headers={}} = {}) => {
         getInstance(config).request({

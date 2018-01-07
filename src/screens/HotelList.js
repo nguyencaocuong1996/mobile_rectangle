@@ -39,8 +39,11 @@ class HotelList extends Component<{}>
         const onNav = ()=>{
             this.props.navigation.navigate('HotelDetail', {item});
         };
+        const onFavorite = ()=>{
+            this.props.addFavorite(item.id)
+        };
         return (
-            <HotelItem item={item} onPress={onNav}/>
+            <HotelItem item={item} onPress={onNav} onFavorite={onFavorite}/>
         )
     };
 
@@ -75,6 +78,7 @@ const mapStateToProps = (state) => {
 
 const mapActionToProps = {
     getAll: hotelAction.getAll,
+    addFavorite: hotelAction.addFavorite,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(HotelList);

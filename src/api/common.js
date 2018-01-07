@@ -16,8 +16,7 @@ const register = ({email, password, first_name, last_name, phone}, r, e) =>{
 
 const login = ({username, password}, successCallback, errorCallback) => {
     let success = (response)=>{
-        let account = response.data;
-        commonHelper.login(account);
+        commonHelper.login(response);
         successCallback(response);
     };
     api.post('customer/login/', success, errorCallback, {data: {
