@@ -53,9 +53,29 @@ const getListMyRestaurant = (r, e)=>{
     })
 };
 
+const getListMyFavoriteRestaurant = (r, e)=>{
+    const token = commonHelper.getAccessToken();
+    api.get('restaurant/favorites/', r, e, {
+        headers:{
+            'Authorization': 'Token '.concat(token),
+        }
+    })
+};
+
+const getListBookedRestaurant = (r, e)=>{
+    const token = commonHelper.getAccessToken();
+    api.get('restaurant/list-booked/', r, e, {
+        headers:{
+            'Authorization': 'Token '.concat(token),
+        }
+    })
+};
+
 export default {
     add,
     getList,
     getAll,
     getListMyRestaurant,
+    getListMyFavoriteRestaurant,
+    getListBookedRestaurant
 }

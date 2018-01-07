@@ -34,7 +34,7 @@ class MyFavorite extends Component<{}>
 
     componentDidMount(){
         this.props.getListMyFavoriteHotel();
-        this.props.getListMyRestaurant();
+        this.props.getListMyFavoriteRestaurant();
     }
 
     __chooseService(type){
@@ -62,7 +62,7 @@ class MyFavorite extends Component<{}>
             case services.hotel:
                 return this.props.listMyFavoriteHotel;
             case services.restaurant:
-                return this.props.listMyRestaurant;
+                return this.props.listMyFavoriteRestaurant;
             default:
                 return this.props.listMyFavoriteHotel;
         }
@@ -84,8 +84,11 @@ class MyFavorite extends Component<{}>
     };
 
     _renderItem = ({item}) => {
+        const onPress = ()=>{
+            this.props.navigation.navigate('HotelDetail', {item});
+        };
         return (
-            <ServiceItem item={item}/>
+            <ServiceItem item={item} onPress={onPress}/>
         )
     };
 
@@ -122,7 +125,7 @@ class MyFavorite extends Component<{}>
                         keyExtractor={this._keyExtractor}
                     />
                 </View>
-                <FloatAddButton onPress={this.addService.bind(this)} />
+                {/*<FloatAddButton onPress={this.addService.bind(this)} />*/}
             </View>
         );
     }
@@ -131,13 +134,13 @@ class MyFavorite extends Component<{}>
 const mapStateToProps = (state) => {
     return {
         listMyFavoriteHotel: state.hotel.listMyFavoriteHotel,
-        listMyRestaurant: state.restaurant.listMyRestaurant,
+        listMyFavoriteRestaurant: state.restaurant.listMyFavoriteRestaurant,
     };
 };
 
 const mapActionToProps = {
     getListMyFavoriteHotel: hotelAction.getListMyFavoriteHotel,
-    getListMyRestaurant: restaurantAction.getListMyRestaurant,
+    getListMyFavoriteRestaurant: restaurantAction.getListMyFavoriteRestaurant,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(MyFavorite);

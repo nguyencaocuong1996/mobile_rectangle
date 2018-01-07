@@ -74,7 +74,7 @@ class MyServices extends Component<{}>
 
     _renderItem = ({item}) => {
         const onNav = ()=>{
-            this.props.navigation.navigate('HotelDetail', {item})
+            this.props.navigation.navigate('HotelDetail', {item});
         };
         return (
             <ServiceItem item={item} onPress={onNav}/>

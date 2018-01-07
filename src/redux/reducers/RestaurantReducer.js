@@ -4,6 +4,8 @@ import {snippets} from '../actions/RestaurantAction';
 const default_state = {
     listRestaurant: [],
     listMyRestaurant: [],
+    listMyFavoriteRestaurant: [],
+    listBookedRestaurant: []
 };
 
 const restaurantReducer = (state=default_state, action) => {
@@ -18,6 +20,16 @@ const restaurantReducer = (state=default_state, action) => {
             return {
                 ...state,
                 listMyRestaurant: action.listMyRestaurant
+            };
+        case snippets.setListMyFavoriteRestaurant:
+            return {
+                ...state,
+                listMyFavoriteRestaurant: action.listMyFavoriteRestaurant
+            };
+        case snippets.setListBookedRestaurant:
+            return {
+                ...state,
+                listBookedRestaurant: action.listBookedRestaurant
             };
         default:
             return state;
