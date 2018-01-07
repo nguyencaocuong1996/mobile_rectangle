@@ -4,6 +4,8 @@ import {snippets} from '../actions/HotelAction';
 const default_state = {
     listHotel: [],
     listMyHotel: [],
+    listMyFavoriteHotel: [],
+    listBookedHotel: [],
 };
 
 const hotelReducer = (state=default_state, action) => {
@@ -18,6 +20,16 @@ const hotelReducer = (state=default_state, action) => {
             return {
                 ...state,
                 listMyHotel: action.listMyHotel
+            };
+        case snippets.setListMyFavoriteHotel:
+            return {
+                ...state,
+                listMyFavoriteHotel: action.listMyFavoriteHotel
+            };
+        case snippets.setListBookedHotel:
+            return {
+                ...state,
+                listMyFavoriteHotel: action.listBookedHotel
             };
         default:
             return state;

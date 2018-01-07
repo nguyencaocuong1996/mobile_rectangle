@@ -49,9 +49,31 @@ const getListMyHotel = (r, e)=>{
     })
 };
 
+const getListMyFavoriteHotel = (r, e)=>{
+    const token = commonHelper.getAccessToken();
+    console.log(token);
+    api.get('hotel/favorites/', r, e, {
+        headers:{
+            'Authorization': 'Token '.concat(token),
+        }
+    })
+};
+
+const getListBookedHotel = (r, e)=>{
+    const token = commonHelper.getAccessToken();
+    console.log(token);
+    api.get('hotel/list-booked/', r, e, {
+        headers:{
+            'Authorization': 'Token '.concat(token),
+        }
+    })
+};
+
 export default {
     add,
     getList,
     getAll,
     getListMyHotel,
+    getListMyFavoriteHotel,
+    getListBookedHotel
 }

@@ -96,7 +96,6 @@ class MyServices extends Component<{}>
     render()
     {
         const listService = this.__getListService();
-        console.log(listService);
         const buttons = getSwitchButtons(this);
         return (
                 <View style={styles.container}>
