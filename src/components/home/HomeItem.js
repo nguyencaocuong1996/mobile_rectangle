@@ -3,8 +3,12 @@ import {
     StyleSheet,
     Text,
     View,
-    Image, TouchableOpacity,
+    Image,
+    TouchableOpacity,
+    Dimensions,
 } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 export default class HomeItem extends Component<{}>
 {
@@ -40,6 +44,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         justifyContent: 'center',
         height: 220,
+        minWidth: screenWidth - 20,
         width: '100%',
         // shadowColor: '#000000',
         // shadowOffset: {
@@ -52,6 +57,7 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: 'red',
         overflow: 'hidden',
+        alignSelf: 'center',
     },
     image: {
         flex: 1,

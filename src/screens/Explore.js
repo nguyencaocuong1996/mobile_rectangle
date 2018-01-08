@@ -68,7 +68,7 @@ class Explore extends Component<{}>
             <View style={styles.container}>
                 <GradientSection height={40}>
                     <Text style={styles.txtHeader}>
-                        Recommend for you.
+                        Đề xuất cho bạn
                     </Text>
                 </GradientSection>
                 <ScrollView>

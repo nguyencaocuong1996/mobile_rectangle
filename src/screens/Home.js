@@ -5,19 +5,22 @@ import {
     Text,
     View,
     TextInput,
-    FlatList, TouchableOpacity,
+    FlatList,
+    TouchableOpacity,
+    Dimensions,
 } from 'react-native';
 import HomeItem from "../components/home/HomeItem";
 import HeaderLoginButton from '../components/core/HeaderLoginButton'
 import HotelImg from '../assets/img/home-item-bg-hotel.jpg';
 import RestaurantImg from '../assets/img/home-item-bg-restaurant.jpg';
 import EventImg from '../assets/img/home-item-bg-event.jpg';
-import {Button} from "native-base";
+import {Button, Icon} from "native-base";
 import {common as commonHelper} from '../helpers';
 import HeaderLogoutButton from '../components/core/HeaderLogoutButton';
 import PlaceImg from '../assets/img/placeHomeImage.jpg';
 import GradientHeader from "../components/core/GradientHeader";
 import GradientSection from "../components/core/GradientSection";
+
 
 
 export default class Home extends Component<{}>
@@ -59,7 +62,8 @@ export default class Home extends Component<{}>
                 <GradientSection height={80}>
                     <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Explore')}}>
                         <Text style={styles.txtExplore}>
-                            Where should I go?
+                            <Icon style={{color: '#ffffff',fontSize:20,}} name={'hand-o-right'} />
+                            <Text> Khám phá</Text>
                         </Text>
                     </TouchableOpacity>
                 </GradientSection>
@@ -124,6 +128,8 @@ const styles = StyleSheet.create({
         padding: 5,
         backgroundColor: '#fff',
         marginTop: 30,
+        // borderWidth: 1,
+        alignItems: 'center',
     },
     searchInput: {
         width: '100%',
@@ -143,26 +149,26 @@ const styles = StyleSheet.create({
 const listItem = [
     {
         img: HotelImg,
-        title: "Hotel",
+        title: "Khách sạn",
         description: "des 1",
         screen: 'Hotel',
     },
     {
         img: RestaurantImg,
-        title: "Restaurant",
+        title: "Nhà hàng",
         description: "des 2",
         left: false,
         screen: 'Restaurant',
     },
     {
         img: PlaceImg,
-        title: "Place",
+        title: "Địa điểm",
         description: "des 3",
         screen: 'Place',
     },
     {
         img: EventImg,
-        title: "Event",
+        title: "Sự kiện",
         description: "des 3",
         screen: 'Event',
     },
