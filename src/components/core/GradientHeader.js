@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         // borderColor: 'red',
     },
     title:{
-        color: '#9BD5F8',
+        color: '#dafffa',
         fontSize: 18,
         position: 'absolute',
         top: 25,

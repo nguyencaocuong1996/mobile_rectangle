@@ -7,7 +7,7 @@ import {
     TextInput, FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {hotel as hotelAction} from '../redux/actions';
+import {place as placeAction} from '../redux/actions';
 import GradientHeader from "../components/core/GradientHeader";
 import GradientSection from "../components/core/GradientSection";
 import {PlaceItem, PlaceFilterSection} from "../components/place/";
@@ -26,7 +26,7 @@ class PlaceList extends Component<{}>
     }
 
     componentDidMount(){
-        this.props.getAll();
+        this.props.getListPlace();
     }
 
 
@@ -36,7 +36,7 @@ class PlaceList extends Component<{}>
 
     _renderItem = ({item}) => {
         const onNav = ()=>{
-            this.props.navigation.navigate('HotelDetail', {item});
+            this.props.navigation.navigate('PlaceDetail', {item});
         };
         return (
             <PlaceItem item={item} onPress={onNav}/>
@@ -56,7 +56,7 @@ class PlaceList extends Component<{}>
                 <PlaceFilterSection style={{position: 'absolute', top: 40,}} />
                 <View style={styles.listSection}>
                     <FlatList
-                        data = {this.props.listHotel}
+                        data = {this.props.listPlace}
                         renderItem = {this._renderItem}
                         keyExtractor={this._keyExtractor}
                     />
@@ -68,13 +68,12 @@ class PlaceList extends Component<{}>
 
 const mapStateToProps = (state) => {
     return {
-        listHotel: state.hotel.listHotel,
+        listPlace: state.place.listPlace,
     };
 };
 
 const mapActionToProps = {
-    getAll: hotelAction.getAll,
-    addFavorite: hotelAction.addFavorite,
+    getListPlace: placeAction.getListPlace,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(PlaceList);

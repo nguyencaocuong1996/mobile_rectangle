@@ -13,6 +13,7 @@ import {
     AddRestaurant,
     Explore,
     HotelDetail,
+    PlaceDetail,
 } from '../screens';
 import GradientHeader from "../components/core/GradientHeader";
 import Loading from "../screens/Loading";
@@ -64,7 +65,15 @@ export default StackNavigator({
     // },
     HotelDetail: {
         screen: HotelDetail,
-    }
+    },
+    PlaceDetail: {
+        screen: PlaceDetail,
+        navigationOptions: ({navigation})=>{
+            return ({
+                header: <GradientHeader navigation={navigation} title={"Thông tin địa điểm"}/>
+            })
+        }
+    },
 
 
 }, {

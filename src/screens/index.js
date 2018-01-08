@@ -19,7 +19,7 @@ import MyFavorite from "./MyFavorite";
 import MyServices from "./MyServices";
 import Explore from './Explore';
 import PlaceList from './PlaceList';
-
+import PlaceDetail from './PlaceDetail';
 module.exports = {
     Tutorial,
     Login,
@@ -37,5 +37,6 @@ module.exports = {
     MyFavorite,
     MyServices,
     Explore,
-    PlaceList
+    PlaceList,
+    PlaceDetail,
 };

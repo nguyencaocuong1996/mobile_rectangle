@@ -39,7 +39,7 @@ export default class PlaceItem extends Component<{}>
                     <TouchableOpacity onPress={this.__onPress}>
                             <Image
                                 resizeMode={"stretch"}
-                                source={{uri: this.state.item.image}}
+                                source={{uri: this.state.item.cover}}
                                 style={styles.image}/>
                     </TouchableOpacity>
                 </View>
