@@ -19,9 +19,19 @@ export default class ExploreItemSmall extends Component<{}>
 
     constructor(props){
         super(props);
-        this.item = this.props.item;
-        this.onPress = this.props.onPress;
-        this.item.reviewCount = this.item.reviewCount || Math.floor(Math.random() * 1000);
+        this.state = {
+            item: props.item,
+            onPress: props.onPress,
+            reviewCount: props.item.reviewCount || Math.floor(Math.random() * 1000)
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            item: nextProps.item,
+            onPress: nextProps.onPress,
+            reviewCount: nextProps.item.reviewCount || Math.floor(Math.random() * 1000)
+        });
     }
 
     __renderStar(starCount){
@@ -35,7 +45,7 @@ export default class ExploreItemSmall extends Component<{}>
     }
 
     __onPress = ()=>{
-        this.onPress(this.item);
+        this.state.onPress(this.state.item);
     };
 
     render() {
@@ -46,19 +56,19 @@ export default class ExploreItemSmall extends Component<{}>
                         <View style={styles.imageWrapper}>
                             <Image
                                 resizeMode={"stretch"}
-                                source={{uri: this.item.image}}
+                                source={{uri: this.state.item.image}}
                                 style={styles.image}/>
                         </View>
                         <View style={styles.titleWrapper}>
-                            <Text style={styles.txtTitle}>{this.item.name}</Text>
+                            <Text style={styles.txtTitle}>{this.state.item.name}</Text>
                         </View>
                         <View style={styles.metaDataWrapper}>
                             <View style={styles.starSection}>
-                                {this.__renderStar(this.item.star)}
+                                {this.__renderStar(this.state.item.star)}
                             </View>
                             <Text style={styles.txtReview}>
                                 <Text style={styles.txtReviewCount}>
-                                    {this.item.reviewCount + ' '}
+                                    {this.state.reviewCount + ' '}
                                 </Text>
                                 reviews
                             </Text>

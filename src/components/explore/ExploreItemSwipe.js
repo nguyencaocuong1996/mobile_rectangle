@@ -18,12 +18,14 @@ export default class ExploreItemSwipe extends Component<{}>
 
     constructor(props){
         super(props);
-        this.item = this.props.item;
-        this.onPress = this.props.onPress;
+        this.state = {
+            item: props.item,
+            onPress: props.onPress
+        };
     }
 
     __onPress = ()=>{
-        this.onPress(this.item);
+        this.state.onPress(this.state.item);
     };
 
     render() {
@@ -34,10 +36,10 @@ export default class ExploreItemSwipe extends Component<{}>
                         <View style={styles.wrapper}>
                             <Image
                                 resizeMode={"stretch"}
-                                source={{uri: this.item.image}}
+                                source={{uri: this.state.item.image}}
                                 style={styles.image}/>
                             <Text style={styles.txtName}>
-                                {this.item.name}
+                                {this.state.item.name}
                             </Text>
                         </View>
                     </View>
