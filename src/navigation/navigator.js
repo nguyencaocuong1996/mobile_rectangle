@@ -38,7 +38,7 @@ export default StackNavigator({
         screen: Explore,
         navigationOptions: ({navigation})=>{
             return ({
-                header: <GradientHeader navigation={navigation} title={"EXPLORE"}/>
+                header: <GradientHeader navigation={navigation} title={"KHÁM PHÁ"}/>
             })
         }
     },
@@ -65,6 +65,11 @@ export default StackNavigator({
     // },
     HotelDetail: {
         screen: HotelDetail,
+        navigationOptions: ({navigation})=>{
+            return ({
+                header: <GradientHeader navigation={navigation} title={"Thông tin khách sạn"}/>
+            })
+        }
     },
     PlaceDetail: {
         screen: PlaceDetail,

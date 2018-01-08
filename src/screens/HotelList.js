@@ -54,7 +54,7 @@ class HotelList extends Component<{}>
             <View style={styles.container}>
                 <GradientSection height={130}>
                     <Text style={styles.titleText}>
-                        Looking for Hotel?
+                        Hãy chọn khách sạn vừa ý!
                     </Text>
                 </GradientSection>
                 <HotelFilterSection style={{position: 'absolute', top: 60,}} />

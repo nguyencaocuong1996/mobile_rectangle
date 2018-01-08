@@ -10,7 +10,7 @@ const hotelTabStack = TabNavigator({
     HotelNormalList: {
         screen: HotelList,
         navigationOptions: ({ navigation }) => {
-            const title = 'Filter';
+            const title = 'Tìm kiếm';
             return {
                 title,
                 ...getTabBarItemOptions('search', title),
@@ -20,7 +20,7 @@ const hotelTabStack = TabNavigator({
     HotelMapList: {
         screen: HotelMap,
         navigationOptions: ({ navigation }) => {
-            const title = 'Maps';
+            const title = 'Bản đồ';
             return {
                 title,
                 ...getTabBarItemOptions('map-marker', title),

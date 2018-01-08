@@ -10,7 +10,7 @@ const placeTabStack = TabNavigator({
     PlaceNormalList: {
         screen: PlaceList,
         navigationOptions: ({ navigation }) => {
-            const title = 'Filter';
+            const title = 'Tìm kiếm';
             return {
                 title,
                 ...getTabBarItemOptions('search', title),
@@ -20,7 +20,7 @@ const placeTabStack = TabNavigator({
     // PlaceMapList: {
     //     screen: HotelMap,
     //     navigationOptions: ({ navigation }) => {
-    //         const title = 'Maps';
+    //         const title = 'Bản đồ';
     //         return {
     //             title,
     //             ...getTabBarItemOptions('map-marker', title),

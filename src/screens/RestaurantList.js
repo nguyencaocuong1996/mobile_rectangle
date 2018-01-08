@@ -10,7 +10,7 @@ import {RestaurantItem} from "../components/restaurant";
 import {connect} from 'react-redux';
 import GradientHeader from "../components/core/GradientHeader";
 import GradientSection from "../components/core/GradientSection";
-import {HotelFilterSection} from "../components/hotel/index";
+import {RestaurantFilterSection} from "../components/restaurant";
 import restaurantAction from "../redux/actions/RestaurantAction";
 
 
@@ -54,10 +54,10 @@ class RestaurantList extends Component<{}>
             <View style={styles.container}>
                 <GradientSection height={130}>
                     <Text style={styles.titleText}>
-                        Looking for Restaurant?
+                        Không biết ăn ở đâu?
                     </Text>
                 </GradientSection>
-                <HotelFilterSection style={{position: 'absolute', top: 60,}} />
+                <RestaurantFilterSection customStyle={{position: 'absolute', top: 60,}} />
                 <View style={styles.listSection}>
                     <FlatList
                         data = {this.props.listRestaurant}

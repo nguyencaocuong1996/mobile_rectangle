@@ -9,6 +9,7 @@ import MapView from 'react-native-maps';
 import ListHotelCarousel from '../components/hotel/HotelListCarousel';
 import {hotel as hotelAction} from '../redux/actions';
 import {connect} from "react-redux";
+import {GradientHeader} from "../components/core/index";
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,8 +23,10 @@ let id = 0;
 
 class HotelMap extends Component<{}>
 {
-    static navigationOptions = {
-        title: 'Maps',
+    static navigationOptions = ({navigation})=>{
+        return {
+            header: <GradientHeader title={"Bản đồ khách sạn"} navigation={navigation} />
+        }
     };
 
     constructor(props) {
