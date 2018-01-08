@@ -7,8 +7,14 @@ export default class ButtonWithIcon extends Component<{}> {
     constructor(props){
         super(props);
         this.state = {
-            isActive: false,
+            isActive: props.isActive,
         }
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            isActive: nextProps.isActive
+        });
     }
 
     __onPress=()=>{
@@ -35,6 +41,7 @@ ButtonWithIcon.defaultProps = {
     onPress: ()=>null,
     iconName: 'home',
     text: 'text of button',
+    isActive: false,
 };
 
 const styles = StyleSheet.create({

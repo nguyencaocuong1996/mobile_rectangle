@@ -4,6 +4,7 @@ import {Icon} from 'native-base';
 import hotelTabStack from "./HotelStack";
 import restaurantTabStack from "./RestaurantStack";
 import mainTabStack from "./MainStack";
+import placeTabStack from "./PlaceStack";
 import {
     Tutorial,
     Login,
@@ -19,7 +20,9 @@ import Loading from "../screens/Loading";
 
 export default StackNavigator({
 
-
+    Place: {
+        screen: placeTabStack,
+    },
     Tutorial: {
         screen: Tutorial,
 
@@ -56,6 +59,9 @@ export default StackNavigator({
     Restaurant: {
         screen: restaurantTabStack,
     },
+    // Place: {
+    //     screen: placeTabStack,
+    // },
     HotelDetail: {
         screen: HotelDetail,
     }

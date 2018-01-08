@@ -158,12 +158,12 @@ const listItem = [
         img: PlaceImg,
         title: "Place",
         description: "des 3",
-        screen: 'RestaurantList',
+        screen: 'Place',
     },
     {
         img: EventImg,
         title: "Event",
         description: "des 3",
-        screen: 'RestaurantList',
+        screen: 'Event',
     },
 ];
