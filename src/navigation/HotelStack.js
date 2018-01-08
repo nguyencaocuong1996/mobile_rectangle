@@ -17,16 +17,16 @@ const hotelTabStack = TabNavigator({
             };
         },
     },
-    // HotelMapList: {
-    //     screen: HotelMap,
-    //     navigationOptions: ({ navigation }) => {
-    //         const title = 'Maps';
-    //         return {
-    //             title,
-    //             ...getTabBarItemOptions('map-marker', title),
-    //         };
-    //     },
-    // },
+    HotelMapList: {
+        screen: HotelMap,
+        navigationOptions: ({ navigation }) => {
+            const title = 'Maps';
+            return {
+                title,
+                ...getTabBarItemOptions('map-marker', title),
+            };
+        },
+    },
 },{
     tabBarOptions: {
         ...tabBarOptionsDefault,

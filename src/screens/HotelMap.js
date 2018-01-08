@@ -48,7 +48,7 @@ class HotelMap extends Component<{}>
 
     componentWillReceiveProps(nextProps){
         if (nextProps.listHotel.length !== 0){
-            let first_hotel = this.props.listHotel[0];
+            let first_hotel = nextProps.listHotel[0];
             this.__setStateRegion(first_hotel.lat, first_hotel.long);
         }
     }

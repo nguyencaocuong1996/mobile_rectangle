@@ -12,9 +12,9 @@ const restaurantTabStack = TabNavigator({
     RestaurantNormalList: {
         screen: RestaurantList,
     },
-    // RestaurantMapList: {
-    //     screen: RestaurantMap
-    // },
+    RestaurantMapList: {
+        screen: RestaurantMap
+    },
 }, {
     tabBarPosition: 'bottom',
     animationEnabled: false,

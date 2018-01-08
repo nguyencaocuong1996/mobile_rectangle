@@ -1,123 +1,182 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
-    Text,
     View,
-    TextInput, FlatList,
+    Dimensions, Text, Image
 } from 'react-native';
-import RestaurantItem from "../components/restaurant/RestaurantItem";
+import icLocation from '../assets/img/icLocation.png';
+import MapView from 'react-native-maps';
+import ListHotelCarousel from '../components/hotel/HotelListCarousel';
+import {connect} from "react-redux";
+import {restaurant as restaurantAction} from "../redux/actions/";
 
-import imgRestaurant4 from '../assets/img/imgRestaurant4.jpeg';
-import imgRestaurant2 from '../assets/img/imgRestaurant2.jpg';
-import imgRestaurant3 from '../assets/img/imgRestaurant3.jpg';
-import settings from '../config';
+const { width, height } = Dimensions.get('window');
 
-export default class RestaurantList extends Component<{}>
+const ASPECT_RATIO = width / height;
+const LATITUDE = 10.870139;
+const LONGITUDE = 106.778219;
+const LATITUDE_DELTA = 0.01;
+const LONGITUDE_DELTA = LATITUDE_DELTA;
+let id = 0;
+
+
+class RestaurantMap extends Component<{}>
 {
     static navigationOptions = {
-        title: 'List Restaurant',
+        title: 'Maps',
     };
 
+    constructor(props) {
+        super(props);
 
-    _keyExtractor = (item, index)=>{
-        return index;
+        this.state = {
+            region: {
+                latitude: LATITUDE,
+                longitude: LONGITUDE,
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA,
+            },
+            listRestaurant: props.listRestaurant
+        };
+
+        this.onMapPress = this.onMapPress.bind(this);
+    }
+
+
+    componentDidMount(){
+
+    }
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.listRestaurant.length !== 0){
+            this.setState({
+                listRestaurant: nextProps.listRestaurant
+            });
+            console.log("LIST RESTAURANT", nextProps.listRestaurant);
+            let first_restaurant = nextProps.listRestaurant[0];
+            this.__setStateRegion(first_restaurant.lat, first_restaurant.long);
+        }
+    }
+
+    onMapPress(e) {
+        this.setState({
+            markers: [
+                ...this.state.markers,
+                {
+                    coordinate: e.nativeEvent.coordinate,
+                    key: `foo${id++}`,
+                },
+            ],
+        });
+    }
+
+    __setStateRegion = (lat, long) => {
+        let region = {
+            ...this.state.region,
+            latitude: lat,
+            longitude: long,
+        };
+        this.setState({
+            region
+        });
+        this.__map.animateToRegion(region, 200);
     };
 
-    _renderItem = ({item}) => {
-        console.log("name", item.title);
+    __updateRegion = (hotel)=>{
+        this.__setStateRegion(hotel.lat, hotel.long);
+    };
+
+    __renderMaker = (hotel)=>{
         return (
-            <RestaurantItem isLeft={item.left}
-                            imgSrc={item.img}
-                            title={item.title}
-                            description={item.description}
-                            navigation={this.props.navigation}
-            />
-        )
+            <MapView.Marker
+                title={hotel.name}
+                key={hotel.name}
+                coordinate={{latitude: hotel.lat, longitude: hotel.long}}
+            >
+                <Image
+                    source={icLocation}
+                    style={{width: 30, height: 80}}
+                />
+            </MapView.Marker>
+        );
     };
 
-
-    render()
-    {
-        console.log(listItem);
+    render() {
         return (
             <View style={styles.container}>
-                <View style={styles.searchSection}>
-                    <TextInput
-                        style={styles.searchInput}
-                        placeholder={"🔍 Search services"}
-                        // onChangeText={(text) => this.setState({text})}
-                        // value={this.state.text}
+                <MapView
+                    // showsUserLocation={true}
+                    provider={this.props.provider}
+                    style={styles.map}
+                    // initialRegion={this.state.region}
+                    // onPress={this.onMapPress}
+                    ref={(map)=>{this.__map=map;}}
+                >
+                    {this.state.listRestaurant.map(hotel => this.__renderMaker(hotel))}
+                </MapView>
+                <View style={styles.listCarousel}>
+                    <ListHotelCarousel
+                        listHotel={this.state.listRestaurant}
+                        updateMapRegion={this.__updateRegion.bind(this)}
                     />
                 </View>
-                <View style={styles.menuSection}>
-                    <FlatList
-                        data = {listItem}
-                        renderItem = {this._renderItem}
-                        keyExtractor={this._keyExtractor}
-                    />
-                </View>
+
             </View>
         );
     }
 }
 
+RestaurantMap.propTypes = {
+    provider: MapView.ProviderPropType,
+};
+const mapStateToProps = (state) => {
+    return {
+        listRestaurant: state.restaurant.listRestaurant,
+    };
+};
+
+const mapActionToProps = {
+    getAll: restaurantAction.getAll,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(RestaurantMap);
 
 const styles = StyleSheet.create({
+    listCarousel: {
+        position: 'absolute',
+        height: 400,
+        left: 0, right: 0,
+    },
     container: {
+        ...StyleSheet.absoluteFillObject,
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    map: {
+        ...StyleSheet.absoluteFillObject,
         flex: 1,
     },
-    searchSection: {
-        flex:1,
-        flexDirection: 'row',
-        height: 50,
-        backgroundColor: '#fff',
-        justifyContent: 'center',
-        alignItems: 'center',
-
-        shadowColor: '#9c9c9c',
-        shadowOffset: {
-            width: 0,
-            height: 5
-        },
-        shadowRadius: 10,
-        shadowOpacity: 0.7,
-        elevation: 10,
-        marginBottom: 10,
-    },
-    menuSection: {
-        flex:7,
-        flexDirection: 'column',
-        padding: 5,
-        backgroundColor: '#fff',
-    },
-    searchInput: {
-        height: 40,
-        borderColor: '#d1d1d1',
-        borderWidth: 1,
-        minWidth: 350,
+    bubble: {
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        paddingHorizontal: 18,
+        paddingVertical: 12,
         borderRadius: 20,
-        textAlign: 'center',
-    }
-
-
+    },
+    latlng: {
+        width: 200,
+        alignItems: 'stretch',
+    },
+    button: {
+        width: 80,
+        paddingHorizontal: 12,
+        alignItems: 'center',
+        marginHorizontal: 10,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        marginVertical: 20,
+        backgroundColor: 'transparent',
+    },
 });
 
-const listItem = [
-    {
-        img: imgRestaurant4,
-        title: "Nhà hàng Rectangle",
-        description: "21 Lương Định Của, Quận 8, TP HCM",
-    },
-    {
-        img: imgRestaurant2,
-        title: "Nhà hàng Diamond",
-        description: "12 Nguyễn Huệ, Quận 1, TP HCM",
-        left: false,
-    },
-    {
-        img: imgRestaurant3,
-        title: "Nhà hàng For You",
-        description: "320/12 Trường Chinh, TP HCM",
-    },
-];
