@@ -36,11 +36,8 @@ class HotelListBooked extends Component<{}>
         const onNav = ()=>{
             this.props.navigation.navigate('HotelDetail', {item: item.hotel});
         };
-        const onFavorite = ()=>{
-            this.props.addFavorite(item.id)
-        };
         return (
-            <HotelBookedItem item={item} onPress={onNav} onFavorite={onFavorite}/>
+            <HotelBookedItem item={item} onPress={onNav}/>
         )
     };
 

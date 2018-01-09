@@ -42,10 +42,6 @@ export default class HotelBookedItem extends Component<{}>
         this.props.onPress(this.state.item.hotel);
     };
 
-    __onFavorite = ()=>{
-        this.props.onFavorite(this.state.item.hotel);
-    };
-
     render() {
         return (
 
@@ -77,10 +73,6 @@ export default class HotelBookedItem extends Component<{}>
                         </Text>
                     </View>
                 </View>
-
-                <TouchableOpacity style={styles.btnFavorite} onPress={this.__onFavorite}>
-                    <Icon style={{fontSize: 20, color: '#aeb1b5'}} name={'heart-o'} />
-                </TouchableOpacity>
             </View>
         );
     }
@@ -88,7 +80,6 @@ export default class HotelBookedItem extends Component<{}>
 
 HotelBookedItem.defaultProps = {
     isLeft: true,
-    onFavorite: ()=>null,
 };
 
 const styles = StyleSheet.create({
