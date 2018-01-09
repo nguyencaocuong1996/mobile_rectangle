@@ -5,7 +5,6 @@ import {
     FlatList,
     Image,
 } from 'react-native';
-import {FloatAddButton} from "../components/core";
 import {connect} from 'react-redux';
 import {Button, Icon} from "native-base";
 import ServiceItem from "../components/home/ServiceItem";
@@ -241,10 +240,10 @@ const styles = StyleSheet.create({
 const getSwitchButtons = (instance)=>{
     return [
         {
-            text: 'Hotel',
+            text: 'Khách sạn',
             action: ()=>{instance.__chooseService(services.hotel)}
         }, {
-            text: 'Restaurant',
+            text: 'Nhà hàng',
             action: ()=>{instance.__chooseService(services.restaurant)}
         },
     ];

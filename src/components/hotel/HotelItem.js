@@ -78,7 +78,7 @@ export default class HotelItem extends Component<{}>
                         <Text style={styles.titleText}>{this.state.item.name}</Text>
                         <View style={styles.viewAddress}>
                             <Icon style={styles.icon} name={'map-marker'} />
-                            <Text style={styles.addressText}>{this.state.item.address}</Text>
+                            <Text numberOfLines={1} style={styles.addressText}>{this.state.item.address}</Text>
                         </View>
                     </TouchableOpacity>
                     <View style={styles.viewService}>
@@ -165,8 +165,10 @@ const styles = StyleSheet.create({
         fontSize: 13,
     },
     viewAddress:{
+        // width: '80%',
         marginTop: 3,
         flexDirection: 'row',
+        // borderWidth: 1,
     },
     addressText: {
       color: '#aeb1b5',

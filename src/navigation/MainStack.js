@@ -23,7 +23,7 @@ const mainTabStack = TabNavigator({
     MyFavorite: {
         screen: FavoriteScreen,
         navigationOptions: ({ navigation }) => {
-            const title = 'Favorite';
+            const title = 'Ưa thích';
             return {
                 ...getNavigationOptions(navigation, {title, tabBarIconName: 'star'})
             };
@@ -32,7 +32,7 @@ const mainTabStack = TabNavigator({
     MyService: {
         screen: MyServices,
         navigationOptions: ({ navigation }) => {
-            const title = 'Services';
+            const title = 'Của tôi';
             return {
                 ...getNavigationOptions(navigation, {title, tabBarIconName: 'tags'})
             };
@@ -41,7 +41,7 @@ const mainTabStack = TabNavigator({
     Settings: {
         screen: Settings,
         navigationOptions: ({ navigation }) => {
-            const title = 'More';
+            const title = 'Thêm';
             return {
                 ...getNavigationOptions(navigation, {title, tabBarIconName: 'ellipsis-h'})
             };

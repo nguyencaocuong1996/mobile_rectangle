@@ -15,7 +15,10 @@ export default class MenuItemWithTextUnderline extends Component<{}> {
     render() {
         return (
             <TouchableOpacity style={[styles.container,]} onPress={this.__onPress.bind(this)}>
-                <Icon style={styles.icon} name={this.props.iconName} />
+                <View style={styles.iconWrapper}>
+                    <Icon style={styles.icon} name={this.props.iconName} />
+                </View>
+
                 <View style={styles.infoWrapper}>
                     <Text style={[styles.text,]}>{this.props.title}</Text>
                     {this.props.showUnderLine && <View style={styles.breakLine}/>}
@@ -57,8 +60,12 @@ const styles = StyleSheet.create({
         borderBottomColor: '#000',
         // borderBottomWidth: 1,
     },
+    iconWrapper:{
+        width: 32,
+        // borderWidth: 1,
+    },
     infoWrapper: {
-        marginLeft: 10,
+        marginLeft: 5,
         // borderWidth: 1,
         width: '100%',
     },

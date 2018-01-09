@@ -3,7 +3,6 @@ import {
     StyleSheet,
     Text,
     View,
-    Image, TouchableOpacity,
 } from 'react-native';
 import {Icon} from 'native-base';
 import {MenuItemWithTextUnderline} from "../core";

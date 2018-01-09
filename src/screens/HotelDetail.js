@@ -156,7 +156,11 @@ class HotelDetail extends Component<{}>
                         </View>
                     </View>
                     <TextWithIconLight iconName={'phone'} text={this.item.phone}/>
-                    <TextWithIconLight iconName={'map-marker'} text={this.item.address}/>
+                    <TextWithIconLight
+                        wrapperStyle={{width: '80%'}}
+                        numberOfLines={2}
+                        iconName={'map-marker'}
+                        text={this.item.address}/>
                     <FloatButton
                         iconName={'cart-plus'}
                         onPress={this.__onBookHotel.bind(this)}
@@ -279,7 +283,7 @@ const styles = StyleSheet.create({
     },
     metaDataWrapper: {
         width: '100%',
-        height: 90,
+        height: 110,
         // borderWidth: 1,
         padding: 10,
     },

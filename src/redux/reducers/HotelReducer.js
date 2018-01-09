@@ -10,7 +10,7 @@ const default_state = {
 
 const hotelReducer = (state=default_state, action) => {
     switch (action.type){
-        case snippets.setData:
+        case snippets.setListHotel:
             return {
                 ...state,
                 listHotel: action.data,

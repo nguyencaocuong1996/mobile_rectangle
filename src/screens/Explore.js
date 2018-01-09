@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     Dimensions,
-    ScrollView, TouchableOpacity, Text
+    ScrollView,
+    Text
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -78,7 +79,7 @@ class Explore extends Component<{}>
                             renderItem={this.__renderHotel.bind(this)}
                             itemWidth={smallItemWidth}
                             sliderWidth={sliderWidth}
-                            title={'Popular Hotel'}
+                            title={'Khách sạn nổi tiếng'}
                             autoplay={false}
                             autoplayDelay={1000}
                             autoplayInterval={3000}
@@ -91,7 +92,7 @@ class Explore extends Component<{}>
                             renderItem={this.__renderHotel.bind(this)}
                             itemWidth={smallItemWidth}
                             sliderWidth={sliderWidth}
-                            title={'Awesome Restaurant'}
+                            title={'Nhà hàng được đánh giá cao'}
                             autoplay={false}
                             autoplayDelay={1000}
                             autoplayInterval={3000}
@@ -104,7 +105,7 @@ class Explore extends Component<{}>
                             renderItem={this.__renderEvent}
                             itemWidth={swipeItemWidth}
                             sliderWidth={sliderWidth}
-                            title={'Landscape'}
+                            title={'Địa điểm đẹp'}
                         />
                     </View>
                     <View style={[styles.viewWrapper,styles.placeSection]}>
@@ -113,7 +114,7 @@ class Explore extends Component<{}>
                             renderItem={this.__renderEvent}
                             itemWidth={swipeItemWidth}
                             sliderWidth={sliderWidth}
-                            title={'Event'}
+                            title={'Sự kiện sắp diễn ra'}
                         />
                     </View>
                 </ScrollView>
@@ -123,6 +124,7 @@ class Explore extends Component<{}>
 }
 
 const mapStateToProps = (state) => {
+    console.log("state,,,,,", state);
     return {
         listHotel: state.hotel.listHotel,
         listRestaurant: state.restaurant.listRestaurant,
@@ -170,27 +172,3 @@ const styles = StyleSheet.create({
     }
 
 });
-
-const listItem = [
-    {
-        image: 'http://localhost:8000/media/image/hotel/Screen_Shot_2017-12-14_at_23.56.34.png',
-        name: 'item 1',
-        star: 6,
-        reviewCount: 2233,
-    },{
-        image: 'http://localhost:8000/media/image/hotel/Screen_Shot_2017-12-14_at_23.56.34.png',
-        name: 'asjkdhjasd',
-        star: 3,
-        reviewCount: 12321,
-    },{
-        image: 'http://localhost:8000/media/image/hotel/Screen_Shot_2017-12-14_at_23.56.34.png',
-        name: 'asjkdhjasd',
-        star: 3,
-        reviewCount: 2421,
-    },{
-        image: 'http://localhost:8000/media/image/hotel/Screen_Shot_2017-12-14_at_23.56.34.png',
-        name: 'asjkdhjasd',
-        star: 3,
-        reviewCount: 12355,
-    }
-];

@@ -10,7 +10,7 @@ export default class TextWithIconLight extends Component<{}> {
 
     render() {
         return (
-            <View style={styles.wrapper}>
+            <View style={[styles.wrapper, this.props.wrapperStyle]}>
                 <Icon style={styles.icon} name={this.props.iconName} />
                 <Text numberOfLines={this.props.numberOfLines} style={styles.txt}>{this.props.text}</Text>
             </View>
@@ -21,6 +21,9 @@ export default class TextWithIconLight extends Component<{}> {
 TextWithIconLight.defaultProps = {
     iconName: 'Name of service',
     numberOfLines: 1,
+    wrapperStyle: {
+
+    }
 };
 
 const styles = StyleSheet.create({

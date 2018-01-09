@@ -104,59 +104,64 @@ const accountHeader = (account)=>{
 
 const listSection = (navigation)=> [
     {
-        title: "PERSONAL ACCOUNT",
+        title: "TÀI KHOẢN CÁ NHÂN",
         header: null,
         listItem: [
             {
-                title: 'Edit profile',
-                iconName: 'home',
+                title: 'Sửa hồ sơ',
+                iconName: 'user',
                 action: ()=>{},
             },
-            {
-                title: 'My payment info',
-                iconName: 'home',
-                action: ()=>{},
-            }
         ]
     },
     {
-        title: "ABC ACCOUNT",
+        title: "LỊCH SỬ",
         header: null,
         listItem: [
             {
-                title: 'Edit profile',
-                iconName: 'home',
+                title: 'Khách sạn đã đặt',
+                iconName: 'bed',
                 action: ()=>{},
             },
             {
-                title: 'My payment info',
-                iconName: 'home',
+                title: 'Nhà hàng đã đặt',
+                iconName: 'cutlery',
                 action: ()=>{},
-            }
+            },
+            {
+                title: 'Địa điểm đã tới',
+                iconName: 'map-marker',
+                action: ()=>{},
+            },
+            {
+                title: 'Sự kiện đã tham gia',
+                iconName: 'calendar',
+                action: ()=>{},
+            },
         ]
     },
     {
-        title: "MORE",
+        title: "...",
         header: null,
         listItem: [
             {
-                title: 'About Us',
-                iconName: 'home',
+                title: 'Giới thiệu',
+                iconName: 'align-left',
                 action: ()=>{},
             },
             {
-                title: 'FAQ',
-                iconName: 'home',
+                title: 'Câu hỏi',
+                iconName: 'question-circle-o',
                 action: ()=>{},
             },
             {
-                title: 'Contact Us',
-                iconName: 'home',
+                title: 'Liên hệ với chúng tôi',
+                iconName: 'address-book',
                 action: ()=>{},
             },
             {
-                title: 'Logout',
-                iconName: 'home',
+                title: 'Đăng xuất',
+                iconName: 'sign-out',
                 action: ()=>{
                     commonHelper.logout();
                     navigation.navigate('Login');

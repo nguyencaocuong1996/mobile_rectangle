@@ -2,16 +2,16 @@ import {hotel as hotelApi} from '../../api';
 import commonHelper from "../../helpers/commonHelper";
 
 export const snippets = {
-    setData: 'SET_DATA',
+    setListHotel: 'SET_HOTEL_DATA',
     setMyListHotel: 'SET_MY_LIST_HOTEL',
     setListMyFavoriteHotel: 'SET_LIST_MY_FAVORITE_HOTEL',
     setListBookedHotel: 'SET_LIST_BOOKED_HOTEL',
 };
 
 const hotelAction = {
-    setData: (data)=>{
+    setListHotel: (data)=>{
         return {
-            type: snippets.setData,
+            type: snippets.setListHotel,
             data,
         };
     },
@@ -36,7 +36,7 @@ const hotelAction = {
     getAll: ()=>{
         return (dispatch=>{
             hotelApi.getAll((response)=>{
-                dispatch(hotelAction.setData(response.data));
+                dispatch(hotelAction.setListHotel(response.data));
             }, (error)=>{
                 console.log("GET LIST ALL HOTEL ERROR", error);
             });

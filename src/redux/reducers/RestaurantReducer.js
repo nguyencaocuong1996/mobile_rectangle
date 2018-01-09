@@ -10,7 +10,7 @@ const default_state = {
 
 const restaurantReducer = (state=default_state, action) => {
     switch (action.type){
-        case snippets.setData:
+        case snippets.setListRestaurant:
             return {
                 ...state,
                 listRestaurant: action.data,

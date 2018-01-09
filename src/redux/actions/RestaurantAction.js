@@ -2,16 +2,16 @@ import {restaurant as restaurantApi} from '../../api';
 import commonHelper from "../../helpers/commonHelper";
 
 export const snippets = {
-    setData: 'SET_DATA',
+    setListRestaurant: 'SET_RESTAURANT_DATA',
     setMyListRestaurant: 'SET_MY_LIST_RESTAURANT',
     setListMyFavoriteRestaurant: 'SET_LIST_MY_FAVORITE_RESTAURANT',
     setListBookedRestaurant: 'SET_LIST_BOOKED_RESTAURANT'
 };
 
 const restaurantAction = {
-    setData: (data)=>{
+    setListRestaurant: (data)=>{
         return {
-            type: snippets.setData,
+            type: snippets.setListRestaurant,
             data,
         };
     },
@@ -37,7 +37,7 @@ const restaurantAction = {
         return (dispatch=>{
             restaurantApi.getAll((response)=>{
                 console.log("restaurant response", response);
-                dispatch(restaurantAction.setData(response.data));
+                dispatch(restaurantAction.setListRestaurant(response.data));
             }, (error)=>{
                 console.log("GET LIST ALL RESTAURANT ERROR", error);
             });
