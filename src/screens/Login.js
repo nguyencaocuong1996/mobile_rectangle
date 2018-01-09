@@ -45,7 +45,7 @@ class Login extends Component<{}>
                 <Image source={bgImage} style={styles.bgImage} />
                 <Content style={styles.content}>
                     <Text style={styles.txtHeader}>
-                        WELCOME BACK
+                        {/*XIN CHÀO*/}
                     </Text>
                     <View style={styles.iconWrap}>
                         <Image source={iconFooco} style={styles.icon}/>

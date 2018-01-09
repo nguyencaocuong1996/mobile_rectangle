@@ -48,7 +48,7 @@ export default class Register extends Component<{}>
                 <Image source={bgImage} style={styles.bgImage} />
                 <Content style={styles.content}>
                     <Text style={styles.txtHeader}>
-                        LET'S GET STARTED
+
                     </Text>
                     <View style={styles.iconWrap}>
                         <Image source={iconFooco} style={styles.icon}/>

@@ -44,11 +44,13 @@ export default class HotelListCarousel extends Component<{}>
 
     __renderService(services){
         return services.map((service, index)=>{
-            return (
-                <View key={index} style={styles.serviceWrapper}>
-                    <Text numberOfLines={1} style={styles.txtService}> service </Text>
-                </View>
-            );
+            if (index < 3){
+                return (
+                    <View key={index} style={styles.serviceWrapper}>
+                        <Text numberOfLines={1} style={styles.txtService}> {service} </Text>
+                    </View>
+                );
+            }
         })
     }
 
@@ -86,7 +88,7 @@ export default class HotelListCarousel extends Component<{}>
                         </View>
                         <View style={styles.breakLine} />
                         <View style={styles.infoBottom}>
-                            <Text style={styles.txtDescription}>{ item.description }</Text>
+                            <Text numberOfLines={3} style={styles.txtDescription}>{ item.description }</Text>
                         </View>
                     </View>
 

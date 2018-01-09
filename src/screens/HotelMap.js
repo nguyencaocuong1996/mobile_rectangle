@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     View,
-    Dimensions, Text, Image
+    Dimensions,
+    Image
 } from 'react-native';
 import icLocation from '../assets/img/icLocation.png';
 import MapView from 'react-native-maps';
@@ -114,7 +115,7 @@ class HotelMap extends Component<{}>
                 </MapView>
                 <View style={styles.listCarousel}>
                     <ListHotelCarousel
-                        listHotel={this.state.listHotel}
+                        listHotel={this.props.listHotel}
                         updateMapRegion={this.__updateRegion.bind(this)}
                     />
                 </View>
