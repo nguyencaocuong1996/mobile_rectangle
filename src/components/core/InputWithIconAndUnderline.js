@@ -3,7 +3,7 @@ import { Item, Input, Icon } from 'native-base';
 import {StyleSheet} from 'react-native';
 
 
-export default class Login extends Component<{}> {
+export default class InputWithIconAndUnderline extends Component<{}> {
     constructor(props){
         super(props);
         this.state = {

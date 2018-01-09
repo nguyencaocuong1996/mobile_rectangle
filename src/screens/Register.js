@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Container, Header, Form, Content, Button } from 'native-base';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import GreenButton from '../components/core/GreenButton';
-import bgImage from '../assets/img/bgTutorial1.png';
+import bgImage from '../assets/img/LoginBackgound.jpg';
 import iconFooco from '../assets/img/icAtTut1.png';
 import {InputWithIconAndUnderline as MyInput, OpacityHeader} from '../components/core';
 import {common as apiCommon} from '../api';
@@ -63,29 +63,30 @@ export default class Register extends Component<{}>
 
                         />
                         <MyInput icon={'unlock'}
-                                 placeholder={'PASSWORD'}
+                                 placeholder={'Mật khẩu'}
                                  onChangeText={(password)=>{this.setState({password})}}
                                  secureTextEntry={true}
                         />
                         <MyInput icon={'user'}
-                                 placeholder={'FIRST NAME'}
+                                 placeholder={'Họ'}
                                  onChangeText={(first_name)=>{this.setState({first_name})}}
                         />
                         <MyInput icon={'user'}
-                                 placeholder={'LAST NAME'}
+                                 placeholder={'Tên'}
                                  onChangeText={(last_name)=>{this.setState({last_name})}}
                         />
                         <MyInput icon={'phone'}
-                                 placeholder={'PHONE'}
+                                 placeholder={'Số điện thoại'}
                                  onChangeText={(phone)=>{this.setState({phone})}}
                         />
                         <View style={styles.space} />
-                        <GreenButton text={'Sign Up'} onPress={this._register.bind(this)}/>
+                        <GreenButton text={'Đăng ký'} onPress={this._register.bind(this)}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
-                        <Text style={styles.txtSignUp}>Have an account?</Text>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Login')}>
-                            <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Sign In now</Text>
+                        <Text style={styles.txtSignUp}>Đã có tài khoản?</Text>
+                        <TouchableOpacity
+                            onPress={()=>this.props.navigation.navigate('Login')}>
+                            <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Đăng nhập</Text>
                         </TouchableOpacity>
                     </View>
                 </Content>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Container, Header, Form, Content, Button } from 'native-base';
 import {OpacityHeader, GreenButton, InputWithIconAndUnderline as MyInput} from '../components/core';
 import {Image, StyleSheet, Text, TouchableOpacity, View, AsyncStorage} from 'react-native';
-import bgImage from '../assets/img/bgTutorial1.png';
+import bgImage from '../assets/img/LoginBackgound.jpg';
 import iconFooco from '../assets/img/icAtTut1.png';
 import {common as commonApi} from '../api';
 import {connect} from 'react-redux';
@@ -24,17 +24,16 @@ class Login extends Component<{}>
             password: null,
             doingLogin: false,
         };
-        console.log("load login");
     }
 
     _login(){
         this.setState({doingLogin: true});
         commonApi.login(this.state, (response)=>{
-            alert("Login success!");
+            alert("Đăng nhập thành công!");
             this.props.navigation.navigate('Home');
             this.setState({doingLogin:false});
         }, (error=>{
-            alert("Login fail!");
+            alert("Đăng nhập thất bại!");
             this.setState({doingLogin:false});
         }));
     }
@@ -56,19 +55,20 @@ class Login extends Component<{}>
                     </View>
                     <Form style={styles.form}>
                         <MyInput icon={'envelope-o'}
-                                 placeholder={'EMAIL'}
+                                 placeholder={'Tài khoản'}
                                  onChangeText={(email)=>this.setState({username: email})}/>
                         <MyInput secureTextEntry={true}
                                  icon={'unlock'}
-                                 placeholder={'PASSWORD'}
+                                 placeholder={'Mật khẩu'}
                                  onChangeText={(password)=>this.setState({password})}/>
                         <View style={styles.space} />
-                        <GreenButton disabled={this.state.doingLogin} text={'Sign In'} onPress={()=>this._login()}/>
+                        <GreenButton disabled={this.state.doingLogin} text={'Đăng nhập'} onPress={()=>this._login()}/>
                     </Form>
                     <View style={styles.txtSignUpWrap}>
-                        <Text style={styles.txtSignUp}>Don't have an account?</Text>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Register')}>
-                            <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Sign Up now</Text>
+                        <Text style={styles.txtSignUp}>Chưa có tải khoản?</Text>
+                        <TouchableOpacity
+                            onPress={()=>this.props.navigation.navigate('Register')}>
+                            <Text style={[styles.txtSignUp, styles.txtSignUpColor]}> Đăng ký</Text>
                         </TouchableOpacity>
                     </View>
                 </Content>
