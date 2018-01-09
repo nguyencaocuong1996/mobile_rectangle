@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 import Carousel from "react-native-snap-carousel";
 import { Item, Input, Icon } from 'native-base';
-import getTheme from '../../../native-base-theme/components';
-import myTheme from '../../themes/fontAwsome';
 
 
 const horizontalMargin = 20;

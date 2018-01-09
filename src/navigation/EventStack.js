@@ -3,7 +3,7 @@ import {tabBarOptionsDefault, styles, getTabBarItemOptions} from "./helper";
 import {TabNavigator} from "react-navigation";
 import {
     EventList,
-    // HotelMap
+    EventMap,
 } from '../screens';
 
 const eventTabStack = TabNavigator({
@@ -17,16 +17,16 @@ const eventTabStack = TabNavigator({
             };
         },
     },
-    // PlaceMapList: {
-    //     screen: HotelMap,
-    //     navigationOptions: ({ navigation }) => {
-    //         const title = 'Bản đồ';
-    //         return {
-    //             title,
-    //             ...getTabBarItemOptions('map-marker', title),
-    //         };
-    //     },
-    // },
+    EventMapList: {
+        screen: EventMap,
+        navigationOptions: ({ navigation }) => {
+            const title = 'Bản đồ';
+            return {
+                title,
+                ...getTabBarItemOptions('map-marker', title),
+            };
+        },
+    },
 },{
     tabBarOptions: {
         ...tabBarOptionsDefault,

@@ -4,11 +4,10 @@ import {
     Text,
     View,
     Image,
-    TouchableOpacity, ScrollView,
+    ScrollView,
     Dimensions,
 } from 'react-native';
 import {Button, Icon} from "native-base";
-import commonHelper from "../helpers/commonHelper";
 import {
     SwitchMenuNavigation,
     TextWithIconLight,
@@ -17,8 +16,6 @@ import {
 } from "../components/core";
 import {ReviewSection, DetailMapSection} from "../components/common";
 import iconDecoration from '../assets/img/iconDecorationTextDetail.png';
-import PlaceCarouselSlider from "../components/place/PlaceCarouselSlider";
-
 
 const tabs = {
     detail: 'detail',
@@ -273,13 +270,13 @@ const styles = StyleSheet.create({
 const getSwitchButtons = (instance)=>{
     return [
         {
-            text: 'Detail',
+            text: 'Chi tiết',
             action: ()=>{instance.__switchTab(tabs.detail)}
         }, {
-            text: 'Comment',
+            text: 'Góp ý',
             action: ()=>{instance.__switchTab(tabs.review)}
         }, {
-            text: 'Map',
+            text: 'Bản đồ',
             action: ()=>{instance.__switchTab(tabs.map)}
         },
     ];

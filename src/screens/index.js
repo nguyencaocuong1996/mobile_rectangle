@@ -20,8 +20,10 @@ import MyServices from "./MyServices";
 import Explore from './Explore';
 import PlaceList from './PlaceList';
 import PlaceDetail from './PlaceDetail';
+import PlaceMap from './PlaceMap';
 import EventList from './EventList';
 import EventDetail from './EventDetail';
+import EventMap from './EventMap';
 
 module.exports = {
     Tutorial,
@@ -42,6 +44,8 @@ module.exports = {
     Explore,
     PlaceList,
     PlaceDetail,
+    PlaceMap,
     EventList,
     EventDetail,
+    EventMap,
 };

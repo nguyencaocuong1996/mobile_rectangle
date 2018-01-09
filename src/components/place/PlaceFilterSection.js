@@ -45,12 +45,12 @@ export default class PlaceFilterSection extends Component<{}>
         return (
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.viewWrapper}>
-                    <ButtonWithIcon isActive={this.state.nearby} onPress={this.__onNearby} iconName={'map-marker'} text={'Nearby'}/>
+                    <ButtonWithIcon isActive={this.state.nearby} onPress={this.__onNearby} iconName={'map-marker'} text={'Gần đây'}/>
                     <View style={[styles.pickerWrapper,]}>
                         <Icon style={[styles.icon, {marginLeft: -150,}]} name={'flag'} />
                         <Picker
                             mode="dropdown"
-                            placeholder="Province"
+                            placeholder="Tỉnh thành"
                             note={false}
                             selectedValue={this.state.province}
                             onValueChange={this.__onProvinceChange.bind(this)}

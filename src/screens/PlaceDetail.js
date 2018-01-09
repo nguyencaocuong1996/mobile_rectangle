@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
 const getSwitchButtons = (instance)=>{
     return [
         {
-            text: 'Detail',
+            text: 'Chi tiết',
             action: ()=>{instance.__switchTab(tabs.detail)}
         }, {
-            text: 'Review',
+            text: 'Đánh giá',
             action: ()=>{instance.__switchTab(tabs.review)}
         }, {
-            text: 'Map',
+            text: 'Bản đồ',
             action: ()=>{instance.__switchTab(tabs.map)}
         },
     ];

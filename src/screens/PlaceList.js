@@ -50,7 +50,7 @@ class PlaceList extends Component<{}>
             <View style={styles.container}>
                 <GradientSection height={80}>
                     <Text style={styles.titleText}>
-                        Looking for Landscape?
+                        Cảnh đẹp
                     </Text>
                 </GradientSection>
                 <PlaceFilterSection style={{position: 'absolute', top: 40,}} />
