@@ -89,9 +89,9 @@ export default class RestaurantItem extends Component<{}>
                 <TouchableOpacity style={styles.btnFavorite} onPress={this.__onFavorite}>
                     <Icon style={{fontSize: 20, color: '#aeb1b5'}} name={'heart-o'} />
                 </TouchableOpacity>
-                <Text style={styles.txtPrice}>
-                    {this.state.item.price} VNĐ
-                </Text>
+                {/*<Text style={styles.txtPrice}>*/}
+                    {/*{this.state.item.price} VNĐ*/}
+                {/*</Text>*/}
             </View>
         );
     }

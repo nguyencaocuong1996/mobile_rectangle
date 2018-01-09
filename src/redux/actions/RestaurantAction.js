@@ -83,7 +83,7 @@ const restaurantAction = {
                 dispatch(restaurantAction.getListMyFavoriteRestaurant());
                 alert("Thêm thành công.");
             }, (error)=>{
-                alert("Bạn đã nhà hàng này rồi.");
+                alert("Bạn đã thêm nhà hàng này rồi.");
             });
         })
     }

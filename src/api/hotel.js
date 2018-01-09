@@ -3,13 +3,16 @@ import {common as commonHelper} from '../helpers';
 
 const api = core(default_config);
 
-const add = ({name, address, star, price, description}, r, e) =>{
-    api.post('customer/create/', r, e,{data:{
+const add = ({name, address, phone, star, price, description}, r, e) =>{
+    api.post('hotel/create/', r, e,{data:{
         name,
         address,
         star,
         price,
-        description
+        description,
+        phone,
+        owner : commonHelper.account().id,
+        services: [],
     }});
 };
 

@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#b6b6b6',
         padding: 10,
         paddingRight: 15,
-        borderWidth: 1,
+        // borderWidth: 1,
     },
     txtName: {
         fontSize: 16,

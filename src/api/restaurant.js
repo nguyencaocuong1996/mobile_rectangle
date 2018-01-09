@@ -4,14 +4,16 @@ import {common as commonHelper} from '../helpers';
 
 const api = core(default_config);
 
-const add = ({name, address, star, price, description}, r, e) =>{
-    api.post('customer/create/', {data:{
+const add = ({name, address, phone, star, description}, r, e) =>{
+    api.post('restaurant/create/',r,e, {data:{
         name,
         address,
+        phone,
         star,
-        price,
-        description
-    }},r,e);
+        description,
+        owner : commonHelper.account().id,
+        services: [],
+    }});
 };
 
 const addFavorite = ({customer, restaurant}, r, e) =>{
