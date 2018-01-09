@@ -4,6 +4,7 @@ import commonAction from '../redux/actions/CommonAction';
 import _ from 'lodash';
 
 const commonHelper = {
+    baseUrl: 'http://localhost:8000/',
     checkLogin: async (isLoginCallback, notLoginCallback)=>{
         try {
             localStore.getValue('account').then(account=>{
