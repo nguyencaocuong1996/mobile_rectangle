@@ -4,7 +4,7 @@ import commonAction from '../redux/actions/CommonAction';
 import _ from 'lodash';
 
 const commonHelper = {
-    baseUrl: 'http://localhost:8000/',
+    baseUrl: 'https://mobile-rectangle.herokuapp.com/',
     checkLogin: async (isLoginCallback, notLoginCallback)=>{
         try {
             localStore.getValue('account').then(account=>{
@@ -56,7 +56,7 @@ const commonHelper = {
     },
     formatDateTimeToDMYHM(date){
         date = new Date(date);
-        return date.getDate()+ '/' +date.getMonth()+ '/' +date.getFullYear()+ ' ' +commonHelper.formatTimeToAMPM(date);
+        return date.getDate()+ '/' +(date.getMonth()+1)+ '/' +date.getFullYear()+ ' ' +commonHelper.formatTimeToAMPM(date);
     },
     formatTimeToAMPM(date) {
         let hours = date.getHours();

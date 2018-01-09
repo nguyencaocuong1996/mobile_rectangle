@@ -42,6 +42,7 @@ export default class PlaceFilterSection extends Component<{}>
     {
         const provinceActive = this.state.province ? styles.pickerActive: null;
         const provinceItemActive = this.state.province ? styles.pickerItemActive: null;
+        const marginLeftProvince = Platform.OS === 'android' ? -150 : 0;
         return (
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.viewWrapper}>
@@ -56,7 +57,7 @@ export default class PlaceFilterSection extends Component<{}>
                             onValueChange={this.__onProvinceChange.bind(this)}
                             itemStyle={[styles.pricePickerItem, provinceItemActive]}
                             textStyle={[styles.pricePickerItem, provinceItemActive]}
-                            style={[styles.pricePicker, provinceActive,]}
+                            style={[styles.pricePicker, provinceActive, {marginLeft: marginLeftProvince}]}
                         >
                             {listProvince.map(item=>{
                                 return <Item key={item.CityId} label={item.CityName} value={item.CityId} />

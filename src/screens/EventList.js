@@ -39,7 +39,7 @@ class EventList extends Component<{}>
             this.props.navigation.navigate('EventDetail', {item});
         };
         const onJoin = ()=>{
-            alert("ahihi");
+            alert("Đã thêm vào địa điểm sẽ đến.");
         };
         return (
             <EventItem item={item} onPress={onNav} onJoin={onJoin}/>

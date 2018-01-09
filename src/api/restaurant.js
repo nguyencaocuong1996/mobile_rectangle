@@ -28,7 +28,7 @@ const getList = (r, e) => {
 };
 
 const getAll = (r, e)=>{
-    api.get('restaurant/all', r ,e, {
+    api.get('restaurant/all/', r ,e, {
         headers: {
             'Authorization': 'Token 79e60238fe252fcd2774040d03000c09f3ec7fba',
         }
@@ -36,7 +36,7 @@ const getAll = (r, e)=>{
 };
 
 const getAround = ({lat, long, radius}, r , e) =>{
-    api.get('restaurant/around', r, e, {
+    api.get('restaurant/around/', r, e, {
         params: {
             lat,
             long,
@@ -46,7 +46,7 @@ const getAround = ({lat, long, radius}, r , e) =>{
 };
 
 const getByService = ({id}, r, e) => {
-    api.get('restaurant/by-service', r, e, {
+    api.get('restaurant/by-service/', r, e, {
         params: {
             id,
         }

@@ -32,7 +32,7 @@ export default class ReviewSection extends Component<{}>
     {
         let count = Math.floor(Math.random() * 12 + 12);
         let data = getListComment(count);
-        console.log("lit comment", data);
+        console.log(data);
         return (
             <View style={styles.container}>
                 <View style={styles.listSection}>
