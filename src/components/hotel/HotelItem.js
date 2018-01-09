@@ -41,12 +41,14 @@ export default class HotelItem extends Component<{}>
 
     __renderService(services){
         return services.map((service, index)=>{
-            return (
-                <View key={index} style={styles.viewServiceItem}>
-                    <Text numberOfLines={1} style={styles.servicesText}>{service}</Text>
-                </View>
-            );
-        })
+            if (index < 3){
+                return (
+                    <View key={index} style={styles.viewServiceItem}>
+                        <Text numberOfLines={1} style={styles.servicesText}>{service}</Text>
+                    </View>
+                );
+            }
+        });
     }
 
     __onPress = ()=>{
@@ -73,7 +75,7 @@ export default class HotelItem extends Component<{}>
                 <View style={styles.infoWrapper}>
                     <TouchableOpacity onPress={this.__onPress}>
                         <View style={styles.starSection}>
-                            {this.__renderStar(3)}
+                            {this.__renderStar(this.state.item.star)}
                         </View>
                         <Text style={styles.titleText}>{this.state.item.name}</Text>
                         <View style={styles.viewAddress}>
