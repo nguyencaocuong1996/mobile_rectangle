@@ -23,6 +23,14 @@ const addFavorite = ({customer, hotel}, r, e) =>{
     }});
 };
 
+const bookHotel = ({customer, hotel, bookedAt}, r, e) =>{
+    api.post('hotel/book/',r,e, {data:{
+        customer,
+        hotel,
+        bookedAt,
+    }});
+};
+
 const getList = (r, e) => {
     api.get('hotel/', r, e);
 };
@@ -71,7 +79,7 @@ const getListMyFavoriteHotel = (r, e)=>{
 
 const getListBookedHotel = (r, e)=>{
     const token = commonHelper.getAccessToken();
-    console.log(token);
+    console.log("listbookedtoken", token);
     api.get('hotel/list-booked/', r, e, {
         headers:{
             'Authorization': 'Token '.concat(token),
@@ -81,6 +89,7 @@ const getListBookedHotel = (r, e)=>{
 
 export default {
     add,
+    bookHotel,
     getList,
     getAll,
     getListMyHotel,

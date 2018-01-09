@@ -121,7 +121,9 @@ const listSection = (navigation)=> [
             {
                 title: 'Khách sạn đã đặt',
                 iconName: 'bed',
-                action: ()=>{},
+                action: ()=>{
+                    navigation.navigate('HotelListBooked');
+                },
             },
             {
                 title: 'Nhà hàng đã đặt',

@@ -24,6 +24,7 @@ import PlaceMap from './PlaceMap';
 import EventList from './EventList';
 import EventDetail from './EventDetail';
 import EventMap from './EventMap';
+import HotelListBooked from './HotelListBooked';
 
 module.exports = {
     Tutorial,
@@ -32,6 +33,7 @@ module.exports = {
     Home,
     AddHotel,
     HotelList,
+    HotelListBooked,
     HotelMap,
     HotelDetail,
     AddRestaurant,

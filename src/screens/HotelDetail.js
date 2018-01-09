@@ -9,16 +9,16 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Button, Icon} from "native-base";
-import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
+import {hotel as hotelApi} from '../api';
 import commonHelper from "../helpers/commonHelper";
 import {
     SwitchMenuNavigation,
     TextWithIconLight,
-    GradientHeader,
     FloatButton,
 } from "../components/core";
 import {ReviewSection, DetailMapSection} from "../components/common";
 import iconDecoration from '../assets/img/iconDecorationTextDetail.png';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 
 const tabs = {
@@ -36,6 +36,8 @@ class HotelDetail extends Component<{}>
         this.state = {
             currentTab: tabs.detail,
             isShowHeader: true,
+            isShowBookModal: false,
+            isShowDatePicker: false,
         };
         this.account = commonHelper.account();
         let {params} = this.props.navigation.state;
@@ -62,7 +64,26 @@ class HotelDetail extends Component<{}>
     };
 
     __onBookHotel = ()=>{
-        alert("book item");
+        this.setState({
+            isShowDatePicker: true,
+        });
+    };
+    __handleDatePicked = (date)=>{
+        let data = {
+            customer: commonHelper.account().id,
+            hotel: this.item.id,
+            bookedAt: date,
+        };
+        hotelApi.bookHotel(data, (response)=>{
+            alert("Đặt thành công.");
+        }, (error)=>{
+            alert("Đặt thất bại vui lòng thử lại.");
+        });
+    };
+    __hideDatePicker = ()=>{
+        this.setState({
+            isShowDatePicker: false,
+        });
     };
 
     __toggleHeader(){
@@ -184,22 +205,18 @@ class HotelDetail extends Component<{}>
                 >
                     <Icon style={[styles.btnToggleHeader,]} name={iconBtnToggleHeader} />
                 </TouchableOpacity>
+                <DateTimePicker
+                    cancelTextIOS={"Huỷ"}
+                    confirmTextIOS={"Đặt"}
+                    titleIOS={"Chọn ngày đặt"}
+                    isVisible={this.state.isShowDatePicker}
+                    onConfirm={this.__handleDatePicked}
+                    onCancel={this.__hideDatePicker}
+                    mode={'datetime'}/>
             </View>
         );
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        listMyHotel: state.hotel.listMyHotel,
-        listMyRestaurant: state.restaurant.listMyRestaurant,
-    };
-};
-
-const mapActionToProps = {
-    getListMyHotel: hotelAction.getListMyHotel,
-    getListMyRestaurant: restaurantAction.getListMyRestaurant,
-};
 
 HotelDetail.defaultProps = {
     item: {
@@ -216,9 +233,25 @@ HotelDetail.defaultProps = {
     }
 };
 
+const mapStateToProps = (state) => {
+    return {
+
+    };
+};
+
+const mapActionToProps = {
+
+};
+
 export default connect(mapStateToProps, mapActionToProps)(HotelDetail);
 
 const styles = StyleSheet.create({
+    bookModal:{
+        width: '60%',
+        height: '40%',
+        alignSelf: 'center',
+        backgroundColor: 'red',
+    },
     breakLine: {
         borderBottomWidth: 1,
         borderBottomColor: '#c1c1c1',
@@ -238,6 +271,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        // alignItems: 'center',
         // borderWidth: 10,
     },
     headerWrapper: {

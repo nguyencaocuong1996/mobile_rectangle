@@ -27,10 +27,10 @@ const hotelAction = {
             listMyFavoriteHotel,
         }
     },
-    setListBookedHotel: (listMyFavoriteHotel) => {
+    setListBookedHotel: (listBookedHotel) => {
         return {
             type: snippets.setListBookedHotel,
-            listMyFavoriteHotel,
+            listBookedHotel,
         }
     },
     getAll: ()=>{
@@ -63,9 +63,10 @@ const hotelAction = {
     getListBookedHotel: ()=>{
         return (dispatch=>{
             hotelApi.getListBookedHotel((response)=>{
+                console.log(response);
                 dispatch(hotelAction.setListBookedHotel(response.data));
             }, (error)=>{
-                console.log("GET MY FAVORITE HOTEL ERROR", error.response);
+                console.log("GET MY BOOKED HOTEL ERROR", error.response);
             })
         })
     },

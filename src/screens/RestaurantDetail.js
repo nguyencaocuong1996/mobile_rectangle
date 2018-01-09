@@ -5,7 +5,7 @@ import {
     View,
     Image,
     TouchableOpacity, ScrollView,
-    Dimensions,
+    Dimensions, Modal,
 } from 'react-native';
 import {Button, Icon} from "native-base";
 import commonHelper from "../helpers/commonHelper";

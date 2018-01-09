@@ -52,7 +52,21 @@ const commonHelper = {
     formatDate(date){
         let obj = new Date(date);
         return obj.toLocaleDateString();
+    },
+    formatDateTimeToDMYHM(date){
+        date = new Date(date);
+        return date.getDate()+ '/' +date.getMonth()+ '/' +date.getFullYear()+ ' ' +commonHelper.formatTimeToAMPM(date);
+    },
+    formatTimeToAMPM(date) {
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        return hours + ':' + minutes + ' ' + ampm;
     }
+
 };
 
 export default commonHelper;

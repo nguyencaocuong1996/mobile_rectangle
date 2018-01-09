@@ -29,7 +29,7 @@ const hotelReducer = (state=default_state, action) => {
         case snippets.setListBookedHotel:
             return {
                 ...state,
-                listMyFavoriteHotel: action.listBookedHotel
+                listBookedHotel: action.listBookedHotel
             };
         default:
             return state;

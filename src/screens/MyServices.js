@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
+    Text,
     View,
     FlatList,
     Image,
+    TouchableOpacity,
 } from 'react-native';
-import {FloatAddButton,} from "../components/core";
+import {FloatAddButton, ButtonGradientToggle} from "../components/core";
 import {connect} from 'react-redux';
+import img from '../assets/img/home-item-bg-restaurant.jpg';
 import {Button, Icon} from "native-base";
 import ServiceItem from "../components/home/ServiceItem";
 import {hotel as hotelAction, restaurant as restaurantAction} from "../redux/actions";
@@ -227,10 +230,10 @@ const styles = StyleSheet.create({
 const getSwitchButtons = (instance)=>{
     return [
         {
-            text: 'Khách sạn',
+            text: 'Hotel',
             action: ()=>{instance.__chooseService(services.hotel)}
         }, {
-            text: 'Nhà hàng',
+            text: 'Restaurant',
             action: ()=>{instance.__chooseService(services.restaurant)}
         },
     ];

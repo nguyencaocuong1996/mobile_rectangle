@@ -17,6 +17,7 @@ import {
     RestaurantDetail,
     PlaceDetail,
     EventDetail,
+    HotelListBooked,
 } from '../screens';
 import GradientHeader from "../components/core/GradientHeader";
 import Loading from "../screens/Loading";
@@ -68,6 +69,9 @@ export default StackNavigator({
     },
     Event: {
         screen: eventTabStack,
+    },
+    HotelListBooked:{
+        screen: HotelListBooked,
     },
     HotelDetail: {
         screen: HotelDetail,
