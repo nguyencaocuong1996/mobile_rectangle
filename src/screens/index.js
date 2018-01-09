@@ -20,6 +20,9 @@ import MyServices from "./MyServices";
 import Explore from './Explore';
 import PlaceList from './PlaceList';
 import PlaceDetail from './PlaceDetail';
+import EventList from './EventList';
+import EventDetail from './EventDetail';
+
 module.exports = {
     Tutorial,
     Login,
@@ -39,4 +42,6 @@ module.exports = {
     Explore,
     PlaceList,
     PlaceDetail,
+    EventList,
+    EventDetail,
 };
