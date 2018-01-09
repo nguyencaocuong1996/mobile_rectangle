@@ -42,7 +42,7 @@ export default class ServiceItem extends Component<{}>
                         <Text style={styles.txtName}>{this.item.name}</Text>
                         <TextWithIconLight iconName={'clock-o'} text={this.time}/>
                         <TextWithIconLight iconName={'phone'} text={this.item.phone}/>
-                        <TextWithIconLight iconName={'home'} text={this.item.address}/>
+                        <TextWithIconLight numberOfLines={2} iconName={'home'} text={this.item.address}/>
                         <Text style={styles.txtCreateAt}>Created at: {this.createdAt}</Text>
                     </View>
 
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#b6b6b6',
         padding: 10,
         paddingRight: 15,
+        borderWidth: 1,
     },
     txtName: {
         fontSize: 16,
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         // borderWidth: 1,
         // borderColor: 'red',
+        width: '60%',
         // flex: 70
     },
     txtCreateAt: {

@@ -91,18 +91,6 @@ class MyFavorite extends Component<{}>
         )
     };
 
-    addService(){
-        switch(this.state.service){
-            case services.hotel:
-                this.props.navigation.navigate('AddHotel');
-                break;
-            case services.restaurant:
-                this.props.navigation.navigate('AddRestaurant');
-                break;
-        }
-
-    }
-
     render()
     {
         const listService = this.__getListService(this.state.service);

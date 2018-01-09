@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     Image, TouchableOpacity,
 
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import icLocation from '../../../src/assets/img/icLocation.png'
 import {Icon} from "native-base";
 
 
@@ -101,6 +98,7 @@ export default class HotelItem extends Component<{}>
 
 HotelItem.defaultProps = {
     isLeft: true,
+    onFavorite: ()=>null,
 };
 
 const styles = StyleSheet.create({
