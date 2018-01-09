@@ -36,7 +36,7 @@ class EventList extends Component<{}>
 
     _renderItem = ({item}) => {
         const onNav = ()=>{
-            this.props.navigation.navigate('HotelDetail', {item});
+            this.props.navigation.navigate('EventDetail', {item});
         };
         const onJoin = ()=>{
             alert("ahihi");

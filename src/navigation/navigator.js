@@ -15,6 +15,7 @@ import {
     Explore,
     HotelDetail,
     PlaceDetail,
+    EventDetail,
 } from '../screens';
 import GradientHeader from "../components/core/GradientHeader";
 import Loading from "../screens/Loading";
@@ -72,7 +73,7 @@ export default StackNavigator({
         navigationOptions: ({navigation})=>{
             return ({
                 header: <GradientHeader navigation={navigation} title={"Thông tin khách sạn"}/>
-            })
+            });
         }
     },
     PlaceDetail: {
@@ -80,9 +81,17 @@ export default StackNavigator({
         navigationOptions: ({navigation})=>{
             return ({
                 header: <GradientHeader navigation={navigation} title={"Thông tin địa điểm"}/>
-            })
+            });
         }
     },
+    EventDetail: {
+        screen: EventDetail,
+        navigationOptions: ({navigation})=>{
+            return ({
+                header: <GradientHeader navigation={navigation} title={"Thông tin sự kiện"}/>
+            });
+    }
+},
 
 
 }, {
