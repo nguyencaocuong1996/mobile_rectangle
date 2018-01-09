@@ -14,6 +14,7 @@ import {
     AddRestaurant,
     Explore,
     HotelDetail,
+    RestaurantDetail,
     PlaceDetail,
     EventDetail,
 } from '../screens';
@@ -73,6 +74,14 @@ export default StackNavigator({
         navigationOptions: ({navigation})=>{
             return ({
                 header: <GradientHeader navigation={navigation} title={"Thông tin khách sạn"}/>
+            });
+        }
+    },
+    RestaurantDetail: {
+        screen: RestaurantDetail,
+        navigationOptions: ({navigation})=>{
+            return ({
+                header: <GradientHeader navigation={navigation} title={"Thông tin nhà hàng"}/>
             });
         }
     },

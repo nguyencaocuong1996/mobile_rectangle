@@ -7,10 +7,6 @@ import {
     Text
 } from 'react-native';
 import {connect} from 'react-redux';
-import {
-    hotel as hotelAction,
-    restaurant as restaurantAction
-} from '../redux/actions';
 import {ExploreCarouselSlider} from "../components/explore";
 import {
     ExploreItemSmall,
@@ -19,6 +15,12 @@ import {
     swipeItemWidth,
 } from "../components/explore";
 import GradientSection from "../components/core/GradientSection";
+import {
+    event as eventAction,
+    place as placeAction,
+    hotel as hotelAction,
+    restaurant as restaurantAction,
+} from "../redux/actions";
 
 const sliderWidth = Dimensions.get('window').width;
 
@@ -41,21 +43,38 @@ class Explore extends Component<{}>
         };
         return <ExploreItemSmall item={item} onPress={onNav}/>
     }
-
-    __renderEvent(item){
+    __renderRestaurant(item){
         const onNav = ()=>{
             this.props.navigation.navigate('RestaurantDetail', {item})
+        };
+        return <ExploreItemSmall item={item} onPress={onNav}/>
+    }
+
+    __renderPlace(item){
+        const onNav = ()=>{
+            this.props.navigation.navigate('PlaceDetail', {item})
+        };
+        return <ExploreItemSwipe item={item} onPress={onNav}/>
+    }
+    __renderEvent(item){
+        const onNav = ()=>{
+            this.props.navigation.navigate('EventDetail', {item})
         };
         return <ExploreItemSwipe item={item} onPress={onNav}/>
     }
 
     componentDidMount(){
-        console.log("props this", this.props);
         if(this.props.listHotel.length === 0){
             this.props.getAllHotel();
         }
         if (this.props.listRestaurant.length === 0){
             this.props.getAllRestaurant();
+        }
+        if(this.props.listEvent.length === 0){
+            this.props.getAllEvent();
+        }
+        if (this.props.listPlace.length === 0){
+            this.props.getAllPlace();
         }
     }
 
@@ -89,7 +108,7 @@ class Explore extends Component<{}>
                     <View style={[styles.viewWrapper,styles.restaurantSection]}>
                         <ExploreCarouselSlider
                             data={this.props.listRestaurant}
-                            renderItem={this.__renderHotel.bind(this)}
+                            renderItem={this.__renderRestaurant.bind(this)}
                             itemWidth={smallItemWidth}
                             sliderWidth={sliderWidth}
                             title={'Nhà hàng được đánh giá cao'}
@@ -101,8 +120,8 @@ class Explore extends Component<{}>
 
                     <View style={[styles.viewWrapper,styles.placeSection]}>
                         <ExploreCarouselSlider
-                            data={this.props.listHotel}
-                            renderItem={this.__renderEvent}
+                            data={this.props.listPlace}
+                            renderItem={this.__renderPlace.bind(this)}
                             itemWidth={swipeItemWidth}
                             sliderWidth={sliderWidth}
                             title={'Địa điểm đẹp'}
@@ -110,8 +129,8 @@ class Explore extends Component<{}>
                     </View>
                     <View style={[styles.viewWrapper,styles.placeSection]}>
                         <ExploreCarouselSlider
-                            data={this.props.listRestaurant}
-                            renderItem={this.__renderEvent}
+                            data={this.props.listEvent}
+                            renderItem={this.__renderEvent.bind(this)}
                             itemWidth={swipeItemWidth}
                             sliderWidth={sliderWidth}
                             title={'Sự kiện sắp diễn ra'}
@@ -124,16 +143,19 @@ class Explore extends Component<{}>
 }
 
 const mapStateToProps = (state) => {
-    console.log("state,,,,,", state);
     return {
         listHotel: state.hotel.listHotel,
         listRestaurant: state.restaurant.listRestaurant,
+        listEvent: state.event.listEvent,
+        listPlace: state.place.listPlace,
     };
 };
 
 const mapActionToProps = {
     getAllHotel: hotelAction.getAll,
     getAllRestaurant: restaurantAction.getAll,
+    getAllEvent: eventAction.getListEvent,
+    getAllPlace: placeAction.getListPlace,
 };
 
 export default connect(mapStateToProps, mapActionToProps)(Explore);

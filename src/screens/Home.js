@@ -105,7 +105,7 @@ export default class Home extends Component<{}>
                 }
                 {this.state.isSearching &&
                     <View style={styles.searchDetailSection}>
-                        <SearchSection keyword={this.state.searchKeyword} />
+                        <SearchSection navigation={this.props.navigation} keyword={this.state.searchKeyword} />
                     </View>
                 }
 

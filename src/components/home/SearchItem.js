@@ -54,14 +54,14 @@ export default class SearchItem extends Component<{}>
                     <TouchableOpacity onPress={this.__onPress}>
                         <Text style={styles.titleText}>{this.state.item.name}</Text>
                         <View style={styles.viewAddress}>
-                            <Icon style={styles.icon} name={'phone'} />
+                            <Icon style={styles.icon} name={'folder'} />
                             <Text numberOfLines={1} style={styles.addressText}>
                                 {this.state.item.type}
                             </Text>
                         </View>
                         <View style={styles.viewAddress}>
                             <Icon style={styles.icon} name={'map-marker'} />
-                            <Text numberOfLines={1} style={styles.addressText}>
+                            <Text numberOfLines={3} style={styles.addressText}>
                                 {this.state.item.address}
                             </Text>
                         </View>
@@ -79,7 +79,7 @@ SearchItem.defaultProps = {
         address: "asdasd",
     },
     isLeft: true,
-    onFavorite: ()=>null,
+    onPress: ()=>null,
 };
 
 const styles = StyleSheet.create({
@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
         color: '#aeb1b5',
         fontSize: 12,
         marginLeft: 5,
+        width: '90%',
 
     },
     viewService: {

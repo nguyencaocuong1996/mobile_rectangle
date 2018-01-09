@@ -29,6 +29,7 @@ export default class ExploreItemSwipe extends Component<{}>
     };
 
     render() {
+        let image = this.state.item.image || this.state.item.cover;
         return (
             <TouchableOpacity onPress={this.__onPress}>
                 <View style={styles.slide}>
@@ -36,7 +37,7 @@ export default class ExploreItemSwipe extends Component<{}>
                         <View style={styles.wrapper}>
                             <Image
                                 resizeMode={"stretch"}
-                                source={{uri: this.state.item.image}}
+                                source={{uri: image}}
                                 style={styles.image}/>
                             <Text style={styles.txtName}>
                                 {this.state.item.name}

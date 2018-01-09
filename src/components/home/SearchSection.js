@@ -20,14 +20,13 @@ class SearchSection extends Component<{}>
     constructor(props){
         super(props);
         this.state = {
-            data: props.data,
             keyword: props.keyword,
-        }
+        };
+        this.navigation = props.navigation;
     }
 
     componentWillReceiveProps(nextProps){
         this.setState({
-            data: nextProps.data,
             keyword: nextProps.keyword,
         });
     }
@@ -37,8 +36,22 @@ class SearchSection extends Component<{}>
     };
 
     _renderItem = ({item}) => {
+        let screen = 0;
+        switch (item.typeId){
+            case 1: screen = 'HotelDetail';
+                break;
+            case 2: screen = 'RestaurantDetail';
+                break;
+            case 3: screen = 'PlaceDetail';
+                break;
+            case 4: screen = 'EventDetail';
+                break;
+        }
+        const onPress = ()=>{
+            this.navigation.navigate(screen, {item});
+        };
         return (
-            <SearchItem item={item}/>
+            <SearchItem item={item} onPress={onPress}/>
         )
     };
 
@@ -83,7 +96,6 @@ class SearchSection extends Component<{}>
 
     render() {
         const data = this.__getListAll();
-        console.log("search section data", data);
         return (
             <View style={styles.container}>
                 <FlatList
@@ -123,28 +135,7 @@ const styles = StyleSheet.create({
 });
 
 SearchSection.defaultProps = {
-    data: [
-        {
-            name: "Ten item 1",
-            type: "loai item 1",
-            address: "asdasd",
-        },
-        {
-            name: "Ten item 2",
-            type: "loai item 2",
-            address: "asdasd",
-        },
-        {
-            name: "Ten item 3",
-            type: "loai item 3",
-            address: "asdasd",
-        },
-        {
-            name: "Ten item 4",
-            type: "loai item 4",
-            address: "asdasd",
-        },
-    ],
     keyword: "",
     isLeft: true,
+    navigation: {},
 };
