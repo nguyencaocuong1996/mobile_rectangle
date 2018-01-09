@@ -39,7 +39,7 @@ class RestaurantMap extends Component<{}>
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
             },
-            listRestaurant: props.listRestaurant
+            // listRestaurant: props.listRestaurant
         };
 
         this.onMapPress = this.onMapPress.bind(this);
@@ -52,9 +52,9 @@ class RestaurantMap extends Component<{}>
 
     componentWillReceiveProps(nextProps){
         if (nextProps.listRestaurant.length !== 0){
-            this.setState({
-                listRestaurant: nextProps.listRestaurant
-            });
+            // this.setState({
+            //     listRestaurant: nextProps.listRestaurant
+            // });
             console.log("LIST RESTAURANT", nextProps.listRestaurant);
             let first_restaurant = nextProps.listRestaurant[0];
             this.__setStateRegion(first_restaurant.lat, first_restaurant.long);
@@ -115,11 +115,11 @@ class RestaurantMap extends Component<{}>
                     // onPress={this.onMapPress}
                     ref={(map)=>{this.__map=map;}}
                 >
-                    {this.state.listRestaurant.map(hotel => this.__renderMaker(hotel))}
+                    {this.props.listRestaurant.map(hotel => this.__renderMaker(hotel))}
                 </MapView>
                 <View style={styles.listCarousel}>
                     <ListHotelCarousel
-                        listHotel={this.state.listRestaurant}
+                        listHotel={this.props.listRestaurant}
                         updateMapRegion={this.__updateRegion.bind(this)}
                     />
                 </View>
