@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     TextInput,
     FlatList,
     TouchableOpacity,
-    Dimensions,
 } from 'react-native';
 import HomeItem from "../components/home/HomeItem";
 import HeaderLoginButton from '../components/core/HeaderLoginButton'
@@ -16,10 +14,13 @@ import RestaurantImg from '../assets/img/home-item-bg-restaurant.jpg';
 import EventImg from '../assets/img/home-item-bg-event.jpg';
 import {Button, Icon} from "native-base";
 import {common as commonHelper} from '../helpers';
-import HeaderLogoutButton from '../components/core/HeaderLogoutButton';
+import {
+    HeaderLogoutButton,
+    GradientHeader,
+    GradientSection
+} from '../components/core';
+import {SearchSection} from '../components/home';
 import PlaceImg from '../assets/img/placeHomeImage.jpg';
-import GradientHeader from "../components/core/GradientHeader";
-import GradientSection from "../components/core/GradientSection";
 
 
 
@@ -41,6 +42,10 @@ export default class Home extends Component<{}>
     };
     constructor(props){
         super(props);
+        this.state = {
+            isSearching: false,
+            searchKeyword: "",
+        }
     }
 
 
@@ -54,6 +59,19 @@ export default class Home extends Component<{}>
         )
     };
 
+    __changeTextSearch(text){
+        if (text === ""){
+            this.setState({
+                isSearching: false,
+                searchKeyword: "",
+            });
+        } else {
+            this.setState({
+                isSearching: true,
+                searchKeyword: text,
+            });
+        }
+    }
 
     render()
     {
@@ -70,12 +88,13 @@ export default class Home extends Component<{}>
                 <View style={styles.searchSection}>
                     <TextInput
                         style={styles.searchInput}
-                        placeholder={"🔍 Search services"}
-                        // onChangeText={(text) => this.setState({text})}
+                        placeholder={"🔍 Tìm kiếm"}
+                        onChangeText={(text) => this.__changeTextSearch(text)}
                         // value={this.state.text}
                         underlineColorAndroid={'rgba(0,0,0,0)'}
                     />
                 </View>
+                {!this.state.isSearching &&
                 <View style={styles.menuSection}>
                     <FlatList
                         data = {listItem}
@@ -83,6 +102,13 @@ export default class Home extends Component<{}>
                         keyExtractor={this._keyExtractor}
                     />
                 </View>
+                }
+                {this.state.isSearching &&
+                    <View style={styles.searchDetailSection}>
+                        <SearchSection keyword={this.state.searchKeyword} />
+                    </View>
+                }
+
             </View>
         );
     }
@@ -121,6 +147,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.7,
         elevation: 10,
         marginBottom: 10,
+    },
+    searchDetailSection:{
+        marginTop: 30,
+        padding: 5,
+        flex: 1,
     },
     menuSection: {
         flex:7,
