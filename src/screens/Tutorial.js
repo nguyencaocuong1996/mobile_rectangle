@@ -14,10 +14,10 @@ import {common as commonHelper} from "../helpers";
 import {common as commonAction} from '../redux/actions'
 
 import Swiper from 'react-native-swiper';
-import BgTut1 from '../assets/img/bgTutorial1.png';
-import BgTut3 from '../assets/img/bgTutorial3.png';
-import BgTut4 from '../assets/img/bgTutorial4.png';
-import BgTut5 from '../assets/img/bgTutorial5.jpg';
+import SSHomeLogin from '../assets/img/SSHomeLogin.png';
+import SSFavorite from '../assets/img/SSFavorite.png';
+import SSExplore from '../assets/img/SSExplore.png';
+import mainBackground from '../assets/img/LoginBackgound.jpg';
 import IcTut1 from '../assets/img/icAtTut1.png';
 import Home from "./Home";
 
@@ -43,27 +43,34 @@ class Loading extends Component<{}>
         return (
             <Swiper style={styles.wrapper} dotColor={'#E5E5E5'} activeDotColor={'#70B1B6'}>
                 <View style={styles.container}>
-                    <Image source={BgTut5} style={[styles.tutImg, styles.tutImg1]} />
+                    <Image source={mainBackground} style={[styles.tutImg, styles.tutImg1]} />
                     <Image source={IcTut1} style={styles.icTut1}/>
                     <Text style={styles.appName}>FooCo</Text>
-                    <Text style={styles.txtDescription}>asdasdashdjkh</Text>
-                    <TouchableOpacity style={styles.cancelButton} onPress={()=>this.props.navigation.navigate('Home')}>
-                        <Text style={styles.cancelText}>Cancel</Text>
+                    <Text style={styles.txtDescription2}>
+                        Du lịch và khám phá
+                    </Text>
+                    <TouchableOpacity style={styles.cancelButton}
+                                      onPress={()=>this.props.navigation.navigate('Home')}>
+                        <Text style={styles.cancelText}>Bỏ qua</Text>
                     </TouchableOpacity>
 
                 </View>
                 <View style={styles.container}>
-                    <Image source={BgTut1} style={styles.tutImg}/>
-                    <Text style={[styles.txtDescription, styles.txtBlue]}>this is example text</Text>
-                </View>
-                <View style={styles.container}>
-                    <Image source={BgTut3} style={styles.tutImg}/>
-                    <Text style={[styles.txtDescription, styles.txtBlue]}>this is example text</Text>
-                </View>
-                <View style={styles.container}>
-                    <Image source={BgTut4} style={styles.tutImg}/>
+                    <Image source={SSHomeLogin} style={styles.tutImg}/>
                     <Text style={[styles.txtDescription, styles.txtBlue]}>
-                        {`this is example text`}
+                        Dễ dàng tìm kiếm nhà hàng, khách sạn, địa điểm du lịch, sự kiện.
+                    </Text>
+                </View>
+                <View style={styles.container}>
+                    <Image source={SSFavorite} style={styles.tutImg}/>
+                    <Text style={[styles.txtDescription, styles.txtBlue]}>
+                        Thêm những nhà hàng, khách sạn, ưa thích vào danh sách của mình.
+                    </Text>
+                </View>
+                <View style={styles.container}>
+                    <Image source={SSExplore} style={styles.tutImg}/>
+                    <Text style={[styles.txtDescription, styles.txtBlue]}>
+
                     </Text>
                     <View style={styles.txtUseWrap}>
                         <TouchableOpacity onPress={()=>this.props.navigation.navigate('Loading')}>
@@ -116,20 +123,32 @@ const styles = StyleSheet.create({
         resizeMode: 'stretch',
         position: 'absolute',
         width: '90%',
-        height: '70%',
-        top:0,
+        height: '80%',
+        top:30,
 
     },
     tutImg1: {
         position: 'absolute',
         width: '100%',
         height: '100%',
+        top:0,
+    },
+    txtDescription2:{
+        position: 'absolute',
+        bottom: '50%',
+        fontSize: 17,
+        color: '#fff',
+        width: '90%',
+        alignSelf: 'center',
+        left: '30%',
     },
     txtDescription:{
         position: 'absolute',
-        bottom: '25%',
+        bottom: '5%',
         fontSize: 17,
         color: '#fff',
+        width: '90%',
+        alignSelf: 'center',
     },
     cancelButton: {
         position: 'absolute',
