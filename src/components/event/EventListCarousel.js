@@ -19,7 +19,7 @@ const itemWidth = slideWidth + horizontalMargin * 2;
 const itemHeight = 200;
 
 
-export default class PlaceListCarousel extends Component<{}>
+export default class EventListCarousel extends Component<{}>
 {
     static navigationOptions = {
         title: 'List Place',
@@ -74,6 +74,7 @@ export default class PlaceListCarousel extends Component<{}>
 
     render()
     {
+        console.log("dadatatat", this.props.data);
         return (
             <View style={styles.container}>
                 {!this.state.isHide &&
@@ -100,31 +101,42 @@ export default class PlaceListCarousel extends Component<{}>
 }
 
 
-PlaceListCarousel.defaultProps = {
+EventListCarousel.defaultProps = {
     data: [
         {
             "id": 1,
-            "name": "Cầu rồng",
-            "address": "Cầu Rồng, An Hải Trung, Sơn Trà, Đà Nẵng, Vietnam",
-            "lat": 16.06121,
-            "long": 108.226976,
-            "cover": "http://localhost:8000/media/image/place/cau-rong-da-nang.jpg",
+            "name": "Digital Marketing 2018 Landscape",
+            "address": "Lầu 6 toà nhà Flemington, 182 Lê Đại Hành, F.15, Q.11, TP.HCM",
+            "lat": 10.764323,
+            "long": 106.655991,
+            "cover": "http://localhost:8000/media/image/event/digital_meetup_copy.jpg",
+            "description": "Xu hướng Digital Marketing 2018 và thực trạng truyền thông số ở Việt Nam\r\nCông việc thực sự của một Digital Marketer và đánh giá hiệu quả của chiến dịch Marketing\r\nSử dụng Machine Learning để tối đa hóa doanh thu từ Digital Marketing như thế nào?\r\nỨng dụng Marketing Automation vào việc cải thiện tỉ lệ chuyển đổi\r\nDigitalization hiện nay đã trở thành một phần không thể thiếu trong xã hội chúng ta.\r\n\r\nNăm 2017, phong trào Digital Marketing được xây dựng dựa trên các quảng cáo video, tối ưu hóa trên điện thoại di động, dữ liệu lớn, các ứng dụng chuyên dụng, kiểm toán SEO, nội dung chất lượng cao. Cũng trong năm 2017, có sáu ban nhạc tại Zurich Openair xây dựng danh tiếng của họ hoàn toàn thông qua Youtube. Twitter, ứng dụng thanh toán di động của Thụy Sĩ và đã tiến hành giải quyết gần 10.000 giao dịch mỗi ngày. Đây là một bằng chứng về vai trò quan trọng của Digital Marketing.",
+            "createdAt": "2018-01-09T04:42:08.572808Z",
+            "startAt": "2018-01-12T17:00:00Z",
+            "joinCount": 150
         },
         {
             "id": 1,
-            "name": "Cầu rồng",
-            "address": "Cầu Rồng, An Hải Trung, Sơn Trà, Đà Nẵng, Vietnam",
-            "lat": 16.06121,
-            "long": 108.226976,
-            "cover": "http://localhost:8000/media/image/place/cau-rong-da-nang.jpg",
-        },
-        {
+            "name": "Digital Marketing 2018 Landscape",
+            "address": "Lầu 6 toà nhà Flemington, 182 Lê Đại Hành, F.15, Q.11, TP.HCM",
+            "lat": 10.764323,
+            "long": 106.655991,
+            "cover": "http://localhost:8000/media/image/event/digital_meetup_copy.jpg",
+            "description": "Xu hướng Digital Marketing 2018 và thực trạng truyền thông số ở Việt Nam\r\nCông việc thực sự của một Digital Marketer và đánh giá hiệu quả của chiến dịch Marketing\r\nSử dụng Machine Learning để tối đa hóa doanh thu từ Digital Marketing như thế nào?\r\nỨng dụng Marketing Automation vào việc cải thiện tỉ lệ chuyển đổi\r\nDigitalization hiện nay đã trở thành một phần không thể thiếu trong xã hội chúng ta.\r\n\r\nNăm 2017, phong trào Digital Marketing được xây dựng dựa trên các quảng cáo video, tối ưu hóa trên điện thoại di động, dữ liệu lớn, các ứng dụng chuyên dụng, kiểm toán SEO, nội dung chất lượng cao. Cũng trong năm 2017, có sáu ban nhạc tại Zurich Openair xây dựng danh tiếng của họ hoàn toàn thông qua Youtube. Twitter, ứng dụng thanh toán di động của Thụy Sĩ và đã tiến hành giải quyết gần 10.000 giao dịch mỗi ngày. Đây là một bằng chứng về vai trò quan trọng của Digital Marketing.",
+            "createdAt": "2018-01-09T04:42:08.572808Z",
+            "startAt": "2018-01-12T17:00:00Z",
+            "joinCount": 150
+        },{
             "id": 1,
-            "name": "Cầu rồng",
-            "address": "Cầu Rồng, An Hải Trung, Sơn Trà, Đà Nẵng, Vietnam",
-            "lat": 16.06121,
-            "long": 108.226976,
-            "cover": "http://localhost:8000/media/image/place/cau-rong-da-nang.jpg",
+            "name": "Digital Marketing 2018 Landscape",
+            "address": "Lầu 6 toà nhà Flemington, 182 Lê Đại Hành, F.15, Q.11, TP.HCM",
+            "lat": 10.764323,
+            "long": 106.655991,
+            "cover": "http://localhost:8000/media/image/event/digital_meetup_copy.jpg",
+            "description": "Xu hướng Digital Marketing 2018 và thực trạng truyền thông số ở Việt Nam\r\nCông việc thực sự của một Digital Marketer và đánh giá hiệu quả của chiến dịch Marketing\r\nSử dụng Machine Learning để tối đa hóa doanh thu từ Digital Marketing như thế nào?\r\nỨng dụng Marketing Automation vào việc cải thiện tỉ lệ chuyển đổi\r\nDigitalization hiện nay đã trở thành một phần không thể thiếu trong xã hội chúng ta.\r\n\r\nNăm 2017, phong trào Digital Marketing được xây dựng dựa trên các quảng cáo video, tối ưu hóa trên điện thoại di động, dữ liệu lớn, các ứng dụng chuyên dụng, kiểm toán SEO, nội dung chất lượng cao. Cũng trong năm 2017, có sáu ban nhạc tại Zurich Openair xây dựng danh tiếng của họ hoàn toàn thông qua Youtube. Twitter, ứng dụng thanh toán di động của Thụy Sĩ và đã tiến hành giải quyết gần 10.000 giao dịch mỗi ngày. Đây là một bằng chứng về vai trò quan trọng của Digital Marketing.",
+            "createdAt": "2018-01-09T04:42:08.572808Z",
+            "startAt": "2018-01-12T17:00:00Z",
+            "joinCount": 150
         },
 
     ],

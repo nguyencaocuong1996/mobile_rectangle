@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import icLocation from '../assets/img/icLocation.png';
 import MapView from 'react-native-maps';
-import ListHotelCarousel from '../components/hotel/HotelListCarousel';
+import {EventListCarousel} from '../components/event';
 import {event as eventAction} from '../redux/actions';
 import {connect} from "react-redux";
 import {GradientHeader} from "../components/core/index";
@@ -114,8 +114,8 @@ class EventMap extends Component<{}>
                     {this.props.listEvent.map(hotel => this.__renderMaker(hotel))}
                 </MapView>
                 <View style={styles.listCarousel}>
-                    <ListHotelCarousel
-                        listHotel={this.state.listEvent}
+                    <EventListCarousel
+                        data={this.props.listEvent}
                         updateMapRegion={this.__updateRegion.bind(this)}
                     />
                 </View>
