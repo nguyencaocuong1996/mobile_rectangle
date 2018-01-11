@@ -186,6 +186,14 @@ const listService = [
     {
         value: 4,
         label: "Món Nhật Bản",
+    },
+    {
+        value: 4,
+        label: "Phòng VIP",
+    },
+    {
+        value: 4,
+        label: "Đặt tiệc",
     }
 ];
 

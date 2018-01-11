@@ -77,7 +77,10 @@ export default StackNavigator({
         screen: HotelDetail,
         navigationOptions: ({navigation})=>{
             return ({
-                header: <GradientHeader navigation={navigation} title={"Thông tin khách sạn"}/>
+                header: <GradientHeader navigation={navigation}
+                                        title={"Thông tin khách sạn"}
+                                        backScreen={"Hotel"}
+                />
             });
         }
     },
@@ -85,7 +88,9 @@ export default StackNavigator({
         screen: RestaurantDetail,
         navigationOptions: ({navigation})=>{
             return ({
-                header: <GradientHeader navigation={navigation} title={"Thông tin nhà hàng"}/>
+                header: <GradientHeader navigation={navigation}
+                                        title={"Thông tin nhà hàng"}
+                                        backScreen={"Restaurant"}/>
             });
         }
     },
@@ -93,7 +98,9 @@ export default StackNavigator({
         screen: PlaceDetail,
         navigationOptions: ({navigation})=>{
             return ({
-                header: <GradientHeader navigation={navigation} title={"Thông tin địa điểm"}/>
+                header: <GradientHeader navigation={navigation}
+                                        title={"Thông tin địa điểm"}
+                                        backScreen={"Place"}/>
             });
         }
     },
@@ -101,7 +108,9 @@ export default StackNavigator({
         screen: EventDetail,
         navigationOptions: ({navigation})=>{
             return ({
-                header: <GradientHeader navigation={navigation} title={"Thông tin sự kiện"}/>
+                header: <GradientHeader navigation={navigation}
+                                        title={"Thông tin sự kiện"}
+                                        backScreen={"Event"}/>
             });
     }
 },

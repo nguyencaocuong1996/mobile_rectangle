@@ -37,7 +37,7 @@ class RestaurantList extends Component<{}>
 
     _renderItem = ({item}) => {
         const onNav = ()=>{
-            this.props.navigation.navigate('HotelDetail', {item});
+            this.props.navigation.navigate('RestaurantDetail', {item});
         };
         const onFavorite = ()=>{
             this.props.addFavorite(item.id)

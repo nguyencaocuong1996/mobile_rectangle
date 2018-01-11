@@ -147,9 +147,10 @@ const pickerToPriceItems = [
 ];
 const pickerServiceItems = [
     { label: 'Dịch vụ', value: 0 },
-    { label: 'Ăn', value: 500000 },
-    { label: 'Ngủ', value: 1000000 },
-    { label: 'Nghỉ', value: 1500000 },
+    { label: 'Mát xa', value:  2},
+    { label: 'Karaoke', value:  1},
+    { label: 'Đồ ăn free', value:  3},
+    { label: 'Hồ bơi', value:  4},
 ];
 
 HotelFilterSection.defaultProps = {

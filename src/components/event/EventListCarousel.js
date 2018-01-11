@@ -52,7 +52,7 @@ export default class EventListCarousel extends Component<{}>
                         </View>
                         <View style={styles.breakLine} />
                         <View style={styles.infoBottom}>
-                            <Text style={styles.txtDescription}>day la mo ta</Text>
+                            <Text style={styles.txtDescription}>{item.description}</Text>
                         </View>
                     </View>
 
@@ -217,11 +217,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     infoTop: {
-        flex: 3,
+        flex: 5,
         overflow: 'hidden',
     },
     infoBottom: {
-        flex: 7,
+        flex: 5,
         paddingTop: 20,
 
     },

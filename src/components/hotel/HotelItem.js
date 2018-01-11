@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     txtPrice: {
         position: 'absolute',
         right: 10,
-        bottom: 5,
+        bottom: 0,
         color: '#60ACF8',
         fontSize: 14,
     }

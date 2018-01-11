@@ -126,7 +126,13 @@ export default class EventDetail extends Component<{}>
                             {this.item.name}
                         </Text>
                     </View>
-                    <TextWithIconLight iconName={'map-marker'} text={this.item.address}/>
+                    <View style={{width: '80%'}}>
+                        <TextWithIconLight
+                            numberOfLines={2}
+                            iconName={'map-marker'}
+                            text={this.item.address}/>
+                    </View>
+
                     <FloatButton
                         iconName={'bookmark'}
                         onPress={this.__onJoinEvent.bind(this)}
