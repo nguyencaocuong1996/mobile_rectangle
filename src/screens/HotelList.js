@@ -12,7 +12,7 @@ import {hotel as hotelAction} from '../redux/actions';
 import GradientHeader from "../components/core/GradientHeader";
 import GradientSection from "../components/core/GradientSection";
 import {HotelFilterSection} from "../components/hotel/index";
-
+import _ from 'lodash';
 
 class HotelList extends Component<{}>
 {
@@ -24,10 +24,15 @@ class HotelList extends Component<{}>
 
     constructor(props){
         super(props);
+        this.state = {
+            data: []
+        }
+
     }
 
     componentDidMount(){
         this.props.getAll();
+
     }
 
 
@@ -47,6 +52,9 @@ class HotelList extends Component<{}>
         )
     };
 
+    __onNearby = ()=>{
+        this.state.data = this.props.listHotel.filter(hotel=>_.includes(hotel.address.toLowerCase(), "thủ đức"))
+    };
 
     render()
     {
@@ -57,7 +65,7 @@ class HotelList extends Component<{}>
                         Hãy chọn khách sạn vừa ý!
                     </Text>
                 </GradientSection>
-                <HotelFilterSection style={{position: 'absolute', top: 60,}} />
+                <HotelFilterSection onNearby={this.__onNearby} style={{position: 'absolute', top: 60,}} />
                 <View style={styles.listSection}>
                     <FlatList
                         data = {this.props.listHotel}

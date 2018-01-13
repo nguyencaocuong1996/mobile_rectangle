@@ -50,6 +50,9 @@ class HotelFilterSection extends Component<{}>
         })
     };
 
+    __onNearby = ()=>{
+        this.props.onNearby();
+    };
 
     render()
     {
@@ -63,7 +66,7 @@ class HotelFilterSection extends Component<{}>
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.viewWrapper}>
 
-                    <ButtonWithIcon iconName={'map-marker'} text={'Nearby'}/>
+                    <ButtonWithIcon onPress={this.__onNearby} iconName={'map-marker'} text={'Nearby'}/>
                     <View style={[styles.pickerWrapper, {marginLeft: -30,}]}>
                         <Icon style={[styles.icon]} name={'bed'} />
                         <Picker
