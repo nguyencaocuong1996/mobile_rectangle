@@ -51,7 +51,7 @@ export default class PlaceFilterSection extends Component<{}>
                         <Icon style={[styles.icon, {marginLeft: -150,}]} name={'flag'} />
                         <Picker
                             mode="dropdown"
-                            placeholder="Tỉnh thành"
+                            placeholder="Ưa thích"
                             note={false}
                             selectedValue={this.state.province}
                             onValueChange={this.__onProvinceChange.bind(this)}
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 const listProvince = [
     {
         "CityId": 18,
-        "CityName": "Hà Nội"
+        "CityName": "Yêu thích"
     },
     {
         "CityId": 52,

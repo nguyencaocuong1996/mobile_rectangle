@@ -200,7 +200,7 @@ const listService = [
 const listProvince = [
     {
         "CityId": 0,
-        "CityName": "Khu vực"
+        "CityName": "Yêu thích"
     },
     {
         "CityId": 18,

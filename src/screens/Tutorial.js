@@ -47,7 +47,7 @@ class Loading extends Component<{}>
                     <Image source={IcTut1} style={styles.icTut1}/>
                     <Text style={styles.appName}>FooCo</Text>
                     <Text style={styles.txtDescription2}>
-                        Du lịch và khám phá
+                        Du lịch và khám phá quận 9
                     </Text>
                     <TouchableOpacity style={styles.cancelButton}
                                       onPress={()=>this.props.navigation.navigate('Home')}>
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         width: '90%',
         alignSelf: 'center',
-        left: '30%',
+        left: '20%',
     },
     txtDescription:{
         position: 'absolute',
