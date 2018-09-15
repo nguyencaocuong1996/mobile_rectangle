@@ -5,6 +5,19 @@ import _ from 'lodash';
 
 const commonHelper = {
     baseUrl: 'https://mobile-rectangle.herokuapp.com/',
+    checkSeenTut: async (isSeenTutCallBack, notSeenTutCallback)=>{
+        try {
+            localStore.getValue('seen_tut').then(seenTut=>{
+                if (seenTut !== null){
+                    isSeenTutCallBack()
+                } else {
+                    localStore.setValue('seen_tut', '1');
+                }
+            })
+        } catch (e){
+            notSeenTutCallback(e);
+        }
+    },
     checkLogin: async (isLoginCallback, notLoginCallback)=>{
         try {
             localStore.getValue('account').then(account=>{

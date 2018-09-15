@@ -35,6 +35,11 @@ class Loading extends Component<{}>
             this.props.navigation.navigate('Loading');
         }, (error)=>{
             console.log("Check login error", error);
+            commonHelper.checkSeenTut(()=>{
+                this.props.navigation.navigate('Loading');
+            }, (error)=>{
+                console.log("Check seen tut fail", error)
+            });
         });
     }
 
