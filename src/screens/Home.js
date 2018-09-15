@@ -29,11 +29,11 @@ export default class Home extends Component<{}>
     static navigationOptions = ({navigation})=> {
         const isLogin = commonHelper.isLogin();
         return {
-            title: 'FooCo',
+            title: 'MY DISTRICT9',
             tabBarVisible: isLogin,
             headerLeft: null,
             header: (
-                <GradientHeader title={'FOOCO'} showBackButton={false}>
+                <GradientHeader title={'MY DISTRICT9'} showBackButton={false}>
                     {isLogin && <HeaderLogoutButton navigation={navigation}/>}
                     {!isLogin && <HeaderLoginButton navigation={navigation}/>}
                 </GradientHeader>
