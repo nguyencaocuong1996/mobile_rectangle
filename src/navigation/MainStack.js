@@ -16,7 +16,7 @@ const mainTabStack = TabNavigator({
         screen: HomeScreen,
         navigationOptions: ({navigation})=>{
             return {
-                ...getTabBarItemOptions('home', 'FooCo')
+                ...getTabBarItemOptions('home', 'My District9')
             };
         },
     },

@@ -199,6 +199,12 @@ const listItem = [
     },
     {
         img: EventImg,
+        title: "Dịch vụ",
+        description: "des 3",
+        screen: 'Service',
+    },
+    {
+        img: EventImg,
         title: "Sự kiện",
         description: "des 3",
         screen: 'Event',

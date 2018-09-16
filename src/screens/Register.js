@@ -53,7 +53,7 @@ export default class Register extends Component<{}>
                     <View style={styles.iconWrap}>
                         <Image source={iconFooco} style={styles.icon}/>
                         <Text style={styles.iconText}>
-                            FOOCO
+                            MY DISTRICT9
                         </Text>
                     </View>
                     <Form style={styles.form}>

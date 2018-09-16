@@ -6,6 +6,8 @@ import restaurantTabStack from "./RestaurantStack";
 import mainTabStack from "./MainStack";
 import placeTabStack from "./PlaceStack";
 import eventTabStack from "./EventStack";
+import serviceTabStack from "./ServiceStack";
+
 import {
     Tutorial,
     Login,
@@ -21,6 +23,7 @@ import {
 } from '../screens';
 import GradientHeader from "../components/core/GradientHeader";
 import Loading from "../screens/Loading";
+import ServiceDetail from "../screens/ServiceDetail";
 
 
 export default StackNavigator({
@@ -67,6 +70,9 @@ export default StackNavigator({
     Place: {
         screen: placeTabStack,
     },
+    Service: {
+        screen: serviceTabStack,
+    },
     Event: {
         screen: eventTabStack,
     },
@@ -101,6 +107,16 @@ export default StackNavigator({
                 header: <GradientHeader navigation={navigation}
                                         title={"Thông tin địa điểm"}
                                         backScreen={"Place"}/>
+            });
+        }
+    },
+    ServiceDetail: {
+        screen: ServiceDetail,
+        navigationOptions: ({navigation})=>{
+            return ({
+                header: <GradientHeader navigation={navigation}
+                                        title={"Thông tin dịch vụ"}
+                                        backScreen={"Service"}/>
             });
         }
     },

@@ -25,6 +25,9 @@ import EventList from './EventList';
 import EventDetail from './EventDetail';
 import EventMap from './EventMap';
 import HotelListBooked from './HotelListBooked';
+import ServiceList from './ServiceList';
+import ServiceDetail from './ServiceDetail';
+import ServiceMap from './ServiceMap';
 
 module.exports = {
     Tutorial,
@@ -50,4 +53,7 @@ module.exports = {
     EventList,
     EventDetail,
     EventMap,
+    ServiceList,
+    ServiceDetail,
+    ServiceMap,
 };

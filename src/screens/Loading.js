@@ -32,7 +32,7 @@ class Loading extends Component<{}>
         return (
             <View style={styles.container}>
                 <GradientSection height={300}>
-                    <Text style={styles.txt}>FOOCO</Text>
+                    <Text style={styles.txt}>MY DISTRICT9</Text>
                     <Image style={styles.txtLoading} source={txtLoading} />
                     <View style={styles.loadingWrapper}>
                         <Image style={styles.loadingImg} source={loadingImg} />
